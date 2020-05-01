@@ -1,16 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
 import win32clipboard
-import win32con
+from win32con import CF_TEXT
 import threading
 import time
 import GoogleTranslate as gt
-import os
 from PIL import Image
 from PIL import ImageGrab
 import pytesseract
-import numpy as np
-pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
+from numpy import array
+tesseract_cmd = 'tesseract/tesseract.exe'
 
 
 class Test():
@@ -36,12 +35,12 @@ class Test():
         self.combobox = ttk.Combobox(self.root)
         self.combobox["values"] = ["English to Chinese", "Chinese to English"]
         self.combobox.current(0)
-        self.checktop.pack(side=(tk.TOP), fill=(tk.BOTH))
-        self.combobox.pack(side=(tk.TOP), fill=(tk.BOTH))
-        self.button.pack(side=(tk.TOP), fill=(tk.BOTH))
+        self.checktop.pack(fill=(tk.BOTH))
+        self.combobox.pack(fill=(tk.BOTH))
+        self.button.pack(fill=(tk.BOTH))
         self.clearbutton.pack(fill=(tk.BOTH))
-        self.inputbox.pack()
-        self.resultbox.pack(side=(tk.RIGHT), fill=(tk.BOTH))
+        self.inputbox.pack(fill=(tk.BOTH))
+        self.resultbox.pack(fill=(tk.BOTH))
         self.scrollbar.config(command=(self.resultbox.yview))
         self.nowcopy = ''
         self.get_clipboard()
@@ -66,7 +65,7 @@ class Test():
         self.root.destroy()
 
     def get_clipboard(self):
-        if win32clipboard.IsClipboardFormatAvailable(win32con.CF_TEXT):
+        if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
                 self.nowcopy = self.root.clipboard_get()
             except:
@@ -77,10 +76,10 @@ class Test():
             if isinstance(im, Image.Image):
                 try:
                     if self.combobox.get() == "English to Chinese":
-                        self.nowcopy = pytesseract.image_to_string((np.array(im)),
+                        self.nowcopy = pytesseract.image_to_string((array(im)),
                                                                    lang='eng')
                     else:
-                        self.nowcopy = pytesseract.image_to_string((np.array(im)),
+                        self.nowcopy = pytesseract.image_to_string((array(im)),
                                                                    lang='chi_tra').replace(" ", "")
                 except:
                     self.resultbox.insert(tk.END, "Psytesseract Error")

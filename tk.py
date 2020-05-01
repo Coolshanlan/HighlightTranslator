@@ -1,7 +1,7 @@
 import calendar
 import math
 import time
-import requests
+from requests import get
 import re
 
 
@@ -42,7 +42,7 @@ class Token:
         if self.token_key is not None:
             return self.token_key
 
-        response = requests.get("https://translate.google.com/")
+        response = get("https://translate.google.com/")
         tkk_expr = re.search("(tkk:.*?),", response.text)
         if not tkk_expr:
             raise ValueError(

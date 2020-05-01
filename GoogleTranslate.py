@@ -1,22 +1,20 @@
-import requests
+from requests import get
 import json
-import urllib
+from urllib.parse import quote
 import tk as tk
-
-import os
 tk = tk.Token()
 
 
 def get_translate(inputtext, language):
     tkid = tk.calculate_token(inputtext)
-    urltext = urllib.parse.quote(inputtext)
+    urltext = quote(inputtext)
     if language == "English to Chinese":
         tl = "zh-TW"
         sl = "en"
     else:
         sl = "zh-TW"
         tl = "en"
-    r = requests.get(
+    r = get(
         f"https://translate.google.com.tw/translate_a/single?client=webapp&sl={sl}&tl={tl}&hl=zh-TW&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk={tkid}&q={urltext}")
     a = r.text
     a = eval(a.replace('null', '""').replace('"""', '"').replace(
