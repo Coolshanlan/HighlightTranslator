@@ -3,13 +3,14 @@ from tkinter import ttk
 import win32clipboard
 from win32con import CF_TEXT
 import threading
-import time
+from time import sleep
 import GoogleTranslate as gt
 from PIL import Image
 from PIL import ImageGrab
+from PIL import ImageWin
 import pytesseract
 from numpy import array
-tesseract_cmd = 'tesseract/tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 
 
 class Test():
@@ -73,10 +74,11 @@ class Test():
                 return False
         else:
             im = ImageGrab.grabclipboard()
+
             if isinstance(im, Image.Image):
                 try:
                     if self.combobox.get() == "English to Chinese":
-                        self.nowcopy = pytesseract.image_to_string((array(im)),
+                        self.nowcopy = pytesseract.image_to_string(array(im),
                                                                    lang='eng')
                     else:
                         self.nowcopy = pytesseract.image_to_string((array(im)),
@@ -101,7 +103,7 @@ class Test():
 
     def changetop(self):
         self.root.wm_attributes('-topmost', 1)
-        time.sleep(1)
+        sleep(1)
         self.root.wm_attributes('-topmost', 0)
 
     def CheckWhile(self):
@@ -109,7 +111,7 @@ class Test():
             if self.CheckCopy():
                 self.changet = threading.Thread(target=(self.changeText()))
                 self.changet.start()
-            time.sleep(1)
+            sleep(1)
 
     def changeText(self):
         text = self.inputbox.get(1.0, tk.END).replace(
@@ -128,7 +130,7 @@ class Test():
         try:
             result, allresult = gt.get_translate(text, self.combobox.get())
         except:
-            self.resultbox.insert(tk.END, "Error")
+            self.resultbox.insert(tk.END, "Requert Error")
             self.resultbox.insert(tk.END, "\n=========================\n")
             return False
         self.top = threading.Thread(target=self.changetop)
