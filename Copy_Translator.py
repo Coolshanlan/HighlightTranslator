@@ -9,6 +9,7 @@ from PIL import Image
 from PIL import ImageGrab
 from PIL import ImageWin
 import pytesseract
+import CambridgeTranslate as ct
 from numpy import array
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 
@@ -33,11 +34,16 @@ class Test():
         self.checkvalue.set(False)
         self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),
                                        command=(self.checkcange))
-        self.combobox = ttk.Combobox(self.root)
+        self.combobox = ttk.Combobox(self.root, state="readonly")
         self.combobox["values"] = ["English to Chinese", "Chinese to English"]
         self.combobox.current(0)
+        self.selectcombobox = ttk.Combobox(self.root, state="readonly")
+        self.selectcombobox["values"] = ["Google", "Cambridge"]
+        self.selectcombobox.current(0)
+        self.combobox.bind("<<ComboboxSelected>>", self.combochange)
         self.checktop.pack(fill=(tk.BOTH))
         self.combobox.pack(fill=(tk.BOTH))
+        self.selectcombobox.pack(fill=(tk.BOTH))
         self.button.pack(fill=(tk.BOTH))
         self.clearbutton.pack(fill=(tk.BOTH))
         self.inputbox.pack(fill=(tk.BOTH))
@@ -53,6 +59,14 @@ class Test():
         self.t = threading.Thread(target=(self.CheckWhile))
         self.t.start()
         self.root.mainloop()
+
+    def combochange(self, event):
+        if self.combobox.get() == "English to Chinese":
+            self.selectcombobox["values"] = ["Google", "Cambridge"]
+            self.selectcombobox.current(0)
+        else:
+            self.selectcombobox.current(0)
+            self.selectcombobox["values"] = ["Google"]
 
     def checkcange(self):
         if self.checkvalue.get() == True:
@@ -84,9 +98,15 @@ class Test():
                         self.nowcopy = pytesseract.image_to_string((array(im)),
                                                                    lang='chi_tra').replace(" ", "")
                 except:
-                    self.resultbox.insert(tk.END, "Psytesseract Error")
+                    # self.resultbox.insert(tk.END, "Psytesseract Error")
+                    # self.resultbox.insert(
+                    #     tk.END, "\n=========================\n")
                     self.resultbox.insert(
-                        tk.END, "\n=========================\n")
+                        tk.END, ("*"*int((self.linelength-18)/2))+"Psytesseract Error" +
+                        ("*"*int((self.linelength-18)/2)+"\n"))
+                    self.resultbox.insert(
+                        tk.END, "="*self.linelength+"\n")
+                    self.resultbox.see(tk.END)
                 self.root.clipboard_clear()
                 self.root.clipboard_append('')
 
@@ -114,6 +134,7 @@ class Test():
             sleep(1)
 
     def changeText(self):
+        self.linelength = int(self.resultbox.winfo_width()/7-1)
         text = self.inputbox.get(1.0, tk.END).replace(
             '\r', '').replace('¡', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
         for i in range(len(text)):
@@ -128,15 +149,36 @@ class Test():
                 break
         text = text.replace("@", "\n")
         try:
-            result, allresult = gt.get_translate(text, self.combobox.get())
+            if len(text.split(' ')) > 1 and self.selectcombobox.get() != "Google":
+                self.selectcombobox.current(0)
+                self.resultbox.insert(
+                    tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
+                    ("*"*int((self.linelength-16)/2)+"\n"))
+                self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+            if self.selectcombobox.get() == "Google":
+                result, allresult = gt.get_translate(text, self.combobox.get())
+            else:
+                result, allresult = ct.get_translate(text)
+            if result == "" and self.selectcombobox.get() != "Google":
+                self.selectcombobox.current(0)
+                result, allresult = gt.get_translate(text, self.combobox.get())
+                self.resultbox.insert(
+                    tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
+                    ("*"*int((self.linelength-16)/2)+"\n"))
+                self.resultbox.insert(tk.END, "="*self.linelength+"\n")
         except:
-            self.resultbox.insert(tk.END, "Requert Error")
-            self.resultbox.insert(tk.END, "\n=========================\n")
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-13)/2))+"Requert Error" +
+                ("*"*int((self.linelength-13)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+            self.resultbox.see(tk.END)
             return False
-        self.top = threading.Thread(target=self.changetop)
-        self.top.start()
+        if not self.checkvalue.get():
+            self.top = threading.Thread(target=self.changetop)
+            self.top.start()
         self.resultbox.insert(tk.END, text+"\n")
-        self.resultbox.insert(tk.END, "-------------------------\n")
+        self.resultbox.insert(
+            tk.END, "-"*self.linelength+"\n")
         for i in result:
             self.resultbox.insert(tk.END, i)
             if allresult != []:
@@ -145,7 +187,7 @@ class Test():
             self.resultbox.insert(tk.END, "\n")
         for i in range(len(allresult)):
             allresult[i]['name'] = allresult[i]['name'].replace(
-                '動詞', '動  詞').replace('名詞', '名  詞').replace('副詞', '副  詞')
+                '動詞', '動  詞').replace('名詞', '名  詞').replace('代名  詞', '代名詞').replace('副詞', '副  詞')
             self.resultbox.insert(tk.END, allresult[i]['name']+":")
             v = allresult[i]['value'][:4]
             for j in range(len(v)):
@@ -154,7 +196,9 @@ class Test():
                     self.resultbox.insert(tk.END, ",")
             if i != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n")
-        self.resultbox.insert(tk.END, "\n=========================\n")
+            if self.selectcombobox.get() != "Google":
+                self.resultbox.insert(tk.END, "\n")
+        self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
     def ClearText(self):
