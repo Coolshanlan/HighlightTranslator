@@ -29,7 +29,6 @@ class Test():
                                      command=(self.ClearText))
         self.inputbox.insert(
             tk.END, 'Result from google translator\nTry to Copy some Text')
-        self
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
         self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),

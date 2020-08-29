@@ -68,4 +68,4 @@ def get_translate(inputtext):
 #     return result, allresult
 
 
-# get_translate("good")
+# print(get_translate("good"))
