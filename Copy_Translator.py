@@ -23,12 +23,12 @@ class Test():
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
         self.resultbox = tk.Text((self.root),
                                  yscrollcommand=(self.scrollbar.set))
-        self.button = tk.Button((self.root), text='Click to Translate',
+        self.button = tk.Button((self.root), text='Translate',
                                 command=(self.changeText))
         self.clearbutton = tk.Button((self.root), text='Clear',
                                      command=(self.ClearText))
         self.inputbox.insert(
-            tk.END, 'Result from google translator\nTry to Copy some Text')
+            tk.END, 'Try to Copy some Text or capture the screenshot')
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
         self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),
