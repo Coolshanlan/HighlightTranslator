@@ -1,16 +1,22 @@
-import tkinter as tk
-from tkinter import ttk
-import win32clipboard
-from win32con import CF_TEXT
-import threading
-from time import sleep
-import GoogleTranslate as gt
-from PIL import Image
-from PIL import ImageGrab
-from PIL import ImageWin
-import pytesseract
-import CambridgeTranslate as ct
+# import pyautogui
+from pynput.keyboard import Key, Controller
+from pynput.mouse import Listener, Button
 from numpy import array
+import datetime
+import CambridgeTranslate as ct
+import pytesseract
+from PIL import ImageWin
+from PIL import ImageGrab
+from PIL import Image
+import GoogleTranslate as gt
+from time import sleep
+import threading
+from win32con import CF_TEXT
+import win32clipboard
+from tkinter import ttk
+import tkinter as tk
+import sys
+sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 
 
@@ -18,6 +24,7 @@ class Test():
 
     def __init__(self):
         self.root = tk.Tk()
+        self.keyboard = Controller()
         self.inputbox = tk.Text(height=3)
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
@@ -33,6 +40,10 @@ class Test():
         self.checkvalue.set(False)
         self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),
                                        command=(self.checkcange))
+        self.checkvalueclick = tk.BooleanVar()
+        self.checkvalueclick.set(True)
+        self.checkclick = tk.Checkbutton((self.root), text='selected', var=(self.checkvalueclick),
+                                         command=(self.checkchangeclick))
         self.combobox = ttk.Combobox(self.root, state="readonly")
         self.combobox["values"] = ["English to Chinese", "Chinese to English"]
         self.combobox.current(0)
@@ -41,6 +52,7 @@ class Test():
         self.selectcombobox.current(0)
         self.combobox.bind("<<ComboboxSelected>>", self.combochange)
         self.checktop.pack(fill=(tk.BOTH))
+        self.checkclick.pack(fill=(tk.BOTH))
         self.combobox.pack(fill=(tk.BOTH))
         self.selectcombobox.pack(fill=(tk.BOTH))
         self.button.pack(fill=(tk.BOTH))
@@ -52,11 +64,20 @@ class Test():
         self.get_clipboard()
         self.tmpcopy = self.nowcopy
         self.closed = False
+        self.dotop = False
+        self.topagain = False
         self.root.title('Copy Translator')
         self.root.geometry('200x350')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
         self.t = threading.Thread(target=(self.CheckWhile))
+        self.clickstarttime = datetime.datetime.now()
+        self.clickendtime = datetime.datetime.now()
+        self.clickstarttime_tmp = datetime.datetime.now()
+        self.clickendtime_tmp = datetime.datetime.now()
+        self.muls = Listener(on_click=self.on_click)
+        self.muls.start()
         self.t.start()
+
         self.root.mainloop()
 
     def combochange(self, event):
@@ -67,6 +88,13 @@ class Test():
             self.selectcombobox.current(0)
             self.selectcombobox["values"] = ["Google"]
 
+    def checkchangeclick(self):
+        if self.checkvalueclick.get() == True:
+            self.muls = Listener(on_click=self.on_click)
+            self.muls.start()
+        else:
+            self.muls.stop()
+
     def checkcange(self):
         if self.checkvalue.get() == True:
             self.root.wm_attributes('-topmost', 1)
@@ -74,8 +102,12 @@ class Test():
             self.root.wm_attributes('-topmost', 0)
 
     def closewindows(self):
+
         self.closed = True
+        if self.checkvalueclick.get() == True:
+            self.muls.stop()
         self.t.join()
+        # self.muls.join()
         self.root.destroy()
 
     def get_clipboard(self):
@@ -121,16 +153,29 @@ class Test():
         return True
 
     def changetop(self):
+        if self.dotop:
+            self.topagain = True
+            return
+        self.dotop = True
         self.root.wm_attributes('-topmost', 1)
-        sleep(1)
-        self.root.wm_attributes('-topmost', 0)
+        l = True
+        while l:
+            l = False
+            sleep(3)
+            if self.topagain:
+                l = True
+            self.topagain = False
+        self.dotop = False
+        if self.checkvalue.get() == False:
+            self.root.wm_attributes('-topmost', 0)
+            self.root.lower()
 
     def CheckWhile(self):
         while not self.closed:
             if self.CheckCopy():
                 self.changet = threading.Thread(target=(self.changeText()))
                 self.changet.start()
-            sleep(1)
+            sleep(0.3)
 
     def changeText(self):
         self.linelength = int(self.resultbox.winfo_width()/7-1)
@@ -199,6 +244,30 @@ class Test():
                 self.resultbox.insert(tk.END, "\n")
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
+
+    def copyclick(self):
+        # pyautogui.hotkey('ctrl', 'c')
+        with self.keyboard.pressed(Key.ctrl):
+            self.keyboard.press('c')
+            self.keyboard.release('c')
+
+    def on_click(self, x, y, button, pressed):
+        if button == Button.left and pressed == True:
+            self.clickstarttime = datetime.datetime.now()
+        if button == Button.left and pressed == False:
+            self.clickendtime_tmp = datetime.datetime.now()
+            # print((self.clickendtime_tmp - self.clickendtime).total_seconds())
+            if (self.clickendtime_tmp - self.clickendtime).total_seconds() < 0.6:
+                self.clickendtime = self.clickendtime_tmp
+                self.copyclick()
+            elif (self.clickendtime_tmp - self.clickstarttime).total_seconds() > 0.3:
+                self.clickendtime = self.clickendtime_tmp
+                self.copyclick()
+            else:
+                self.clickendtime = self.clickendtime_tmp
+
+        if self.closed:
+            return False
 
     def ClearText(self):
         self.resultbox.delete(0.0, tk.END)
