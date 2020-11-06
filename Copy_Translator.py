@@ -16,8 +16,16 @@ import win32clipboard
 from tkinter import ttk
 import tkinter as tk
 import sys
+import json
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
+with open("config.json") as f:
+    config = json.loads(f.read())
+fontsize = config["font-size"]
+copychecktime = config["copycheck"]
+hidetime = config["hide"]
+doubleclicktime = config["doubleclick"]
+selecttime = config["select"]
 
 
 class Test():
@@ -25,11 +33,11 @@ class Test():
     def __init__(self):
         self.root = tk.Tk()
         self.keyboard = Controller()
-        self.inputbox = tk.Text(height=3)
+        self.inputbox = tk.Text(height=3, font=("Calibri "+str(fontsize)))
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
         self.resultbox = tk.Text((self.root),
-                                 yscrollcommand=(self.scrollbar.set))
+                                 yscrollcommand=(self.scrollbar.set), height=100, font=("Calibri "+str(fontsize)))
         self.button = tk.Button((self.root), text='Translate',
                                 command=(self.changeText))
         self.clearbutton = tk.Button((self.root), text='Clear',
@@ -107,7 +115,6 @@ class Test():
         if self.checkvalueclick.get() == True:
             self.muls.stop()
         self.t.join()
-        # self.muls.join()
         self.root.destroy()
 
     def get_clipboard(self):
@@ -161,7 +168,7 @@ class Test():
         l = True
         while l:
             l = False
-            sleep(3)
+            sleep(hidetime)
             if self.topagain:
                 l = True
             self.topagain = False
@@ -175,10 +182,10 @@ class Test():
             if self.CheckCopy():
                 self.changet = threading.Thread(target=(self.changeText()))
                 self.changet.start()
-            sleep(0.3)
+            sleep(copychecktime)
 
     def changeText(self):
-        self.linelength = int(self.resultbox.winfo_width()/7-1)
+        self.linelength = int(self.resultbox.winfo_width()/(fontsize-4)-1)
         text = self.inputbox.get(1.0, tk.END).replace(
             '\r', '').replace('¡', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
         for i in range(len(text)):
@@ -212,10 +219,12 @@ class Test():
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
         except:
             self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-13)/2))+"Requert Error" +
-                ("*"*int((self.linelength-13)/2)+"\n"))
+                tk.END, ("*"*int((self.linelength-21)/2))+" Try again or check WIFI " +
+                ("*"*int((self.linelength-21)/2)+"\n"))
             self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             self.resultbox.see(tk.END)
+            self.top = threading.Thread(target=self.changetop)
+            self.top.start()
             return False
         if not self.checkvalue.get():
             self.top = threading.Thread(target=self.changetop)
@@ -257,10 +266,10 @@ class Test():
         if button == Button.left and pressed == False:
             self.clickendtime_tmp = datetime.datetime.now()
             # print((self.clickendtime_tmp - self.clickendtime).total_seconds())
-            if (self.clickendtime_tmp - self.clickendtime).total_seconds() < 0.6:
+            if (self.clickendtime_tmp - self.clickendtime).total_seconds() < doubleclicktime:
                 self.clickendtime = self.clickendtime_tmp
                 self.copyclick()
-            elif (self.clickendtime_tmp - self.clickstarttime).total_seconds() > 0.3:
+            elif (self.clickendtime_tmp - self.clickstarttime).total_seconds() > selecttime:
                 self.clickendtime = self.clickendtime_tmp
                 self.copyclick()
             else:
