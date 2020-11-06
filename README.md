@@ -8,7 +8,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 [Copy Translator Github](https://github.com/Coolshanlan/Copy-Translator)
 
-## 功能介紹
+## Features
 ### Translation method
 - Take screenshot for the text
 - Copy
@@ -21,9 +21,9 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 ### Select checkbox
 勾選後開啟選取自動翻譯功能
 ### Change Language
-Only support **Chinese to English** and **English to Chinese**
+Only support Chinese to English and English to Chinese
 ### Change dictionary
-Only support **Google** and **Cambridge**
+Only support Google and Cambridge
 
 ## Config.json
 - hide -> 控制自動消失時間
