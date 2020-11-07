@@ -19,7 +19,7 @@ def get_translate(inputtext):
     #     {'name': i.find("span", class_="pos dpos").text.replace('adverb', '副詞').replace('verb', "動詞").replace('preposition', '介系詞').replace('pronoun', '代名詞').replace('noun', "名詞").replace('adjective', '形容詞').replace('suffix', '字  尾').replace('determiner', '限定詞').replace('prefix', '字  首'), 'value': [(ii.find("span", class_="trans dtrans dtrans-se").text.replace(',', '；').split('；')[:1] for ii in i.find_all('div', 'pr dsense '))]} for i in a]
     for i in a:
         allresult.append({'name': "", 'value': []})
-        name = i.find("div", class_="posgram dpos-g hdib lmr-5").text.replace('[ T ]', '').replace(' ', '').replace('adverb', '副詞').replace('verb', "動詞").replace('preposition', '介系詞').replace(
+        name = i.find("div", class_="posgram dpos-g hdib lmr-5").text.replace('[CorU]', '').replace('[IorT]', '').replace('[ T ]', '').replace(' ', '').replace('adverb', '副詞').replace('verb', "動詞").replace('preposition', '介系詞').replace(
             'pronoun', '代名詞').replace('noun', "名詞").replace('adjective', '形容詞').replace('conjunction', "連接詞").replace('suffix', '字  尾').replace('determiner', '限定詞').replace('prefix', '字  首')
         allresult[len(allresult)-1]['name'] = name
         for ii in i.find_all("span", class_="trans dtrans dtrans-se"):
