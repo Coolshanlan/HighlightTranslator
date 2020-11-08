@@ -1,0 +1,6 @@
+python == 3.6
+pyinstaller == 4.1
+tk == 8.6
+pynput == 1.6
+pyautogui == 0.9
+pytesseract == 0.3

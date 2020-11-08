@@ -17,7 +17,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 如果有勾選，程式會置頂，不會被其他程式蓋住
 
 如果沒有勾選，程式會在特訂時間後自動跑到最下層隱藏起來
-> defult 5 sec, you can modify hide variable in config.json
+> default 5 sec, you can modify hide variable in config.json
 ### Select checkbox
 勾選後開啟選取自動翻譯功能
 ### Change Language
@@ -27,6 +27,20 @@ Only support Google and Cambridge
 
 ## Config.json
 - hide -> 控制自動消失時間
+  > default 8 sec
+- font -> 字體
+  > default Calibri
 - font-size -> 調整字體大小
+  > default 11
 - doubleclick -> 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
+  > default 0.3 sec
 - select -> 長壓幾秒判斷為選取
+  > default 0.3 sec
+- googlenotttk -> google translate don't need ttk version
+  > default 0
+- longttk -> 如果是翻譯整個句子使用非ttk版本
+  > default 0
+- automaticchange -> 如果是翻譯單字自動切換成劍橋字典
+  > default 0
+- restructureSentences -> 自動分辨上下句是否為同一句子
+  > default 1
