@@ -19,9 +19,12 @@ def get_translate_nottk(inputtext, language):
     a = r.text
     a = eval(a.replace('null', '""').replace('"""', '"').replace(
         'true', "True").replace('false', "False"))
-    b = a[0][0]
-    result = b[0]
-    # allresult = [{'name': i[0], 'value':i[1]} for i in a[1]]
+    if len(a[0]) > 1:
+        b = a[0]
+    else:
+        b = a[0]
+    result = [i[0] for i in b]
+    allresult = [{'name': i[0], 'value':i[1]} for i in a[1]]
     return result, []
 
 
@@ -49,4 +52,4 @@ def get_translate(inputtext, language):
 
 
 if __name__ == '__main__':
-    get_translate("看書", "To Chinese")
+    print(get_translate_nottk("automaticchange and not", "To Chinese"))

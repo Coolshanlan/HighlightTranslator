@@ -15,6 +15,7 @@ from win32con import CF_TEXT
 import win32clipboard
 from tkinter import ttk
 import tkinter as tk
+import re
 import sys
 import json
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
@@ -29,6 +30,8 @@ doubleclicktime = config["doubleclick"]
 selecttime = config["select"]
 googlenotttk = config["googlenotttk"]
 automaticchange = config["automaticchange"]
+longttk = config["longttk"]
+restructureSentences = config["restructureSentences"]
 
 
 class Test():
@@ -47,7 +50,7 @@ class Test():
         self.clearbutton = tk.Button((self.root), text='Clear',
                                      command=(self.ClearText))
         self.inputbox.insert(
-            tk.END, 'Try to Copy some Text or capture the screenshot')
+            tk.END, 'Try to Copy some Text or take the screenshot for text')
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
         self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),
@@ -171,7 +174,7 @@ class Test():
             return False
         self.tmpcopy = self.nowcopy
         self.inputbox.delete(1.0, tk.END)
-        self.inputbox.insert(1.0, self.nowcopy)
+        self.inputbox.insert(1.0, self.textprocessing(self.nowcopy))
         return True
 
     def changetop(self):
@@ -198,15 +201,38 @@ class Test():
     def CheckWhile(self):
         while not self.closed:
             if self.CheckCopy():
-                self.changet = threading.Thread(target=(self.changeText()))
+                self.changet = threading.Thread(
+                    target=(self.changeText(False)))
                 self.changet.start()
             sleep(copychecktime)
 
-    def changeText(self):
-        self.movein = False
-        self.linelength = int(self.resultbox.winfo_width()/(fontsize-4)-1)
-        text = self.inputbox.get(1.0, tk.END).replace(
-            '\r', '').replace('¡', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
+    def restructure_sentences(self, text):
+        textlist = text.split('@')
+        newsentence = []
+        tmpsentence = textlist[0].strip()
+        for i in range(1, len(textlist)):
+            textlist[i] = textlist[i].strip()
+            if textlist[i][-1] == "-":
+                textlist[i] = textlist[i][:-1]
+            if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search('[0-9]:', textlist[i]) != None or tmpsentence[-1] == ":":
+                newsentence.append(tmpsentence)
+                tmpsentence = textlist[i]
+                continue
+            tmpsentence += " "+textlist[i]
+        newsentence.append(tmpsentence)
+        # print(len(newsentence))
+        # for i in newsentence:
+        #     print("------------"+i+"--------------")
+        resultsentence = "\n".join(newsentence)
+        print(resultsentence)
+        print(resultsentence[-2:2])
+        if resultsentence[-2:2] == "\n":
+            resultsentence = resultsentence[:-2]
+        return resultsentence
+
+    def textprocessing(self, inptext):
+        text = inptext.replace(
+            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
         for i in range(len(text)):
             if text[-1] == "@" or text[-1] == ' ':
                 text = text[:-1]
@@ -217,7 +243,17 @@ class Test():
                 text = text[1:]
             else:
                 break
-        text = text.replace("@", "\n")
+        if restructureSentences:
+            text = self.restructure_sentences(text)
+        else:
+            text = text.replace("@", "\n")
+        return text
+
+    def changeText(self, click=True):
+        self.movein = False
+        self.linelength = int(self.resultbox.winfo_width()/(fontsize-4)-1)
+        text = self.inputbox.get(1.0, tk.END)
+        # text = text.replace("@", "\n")
         try:
             if len(text.split(' ')) > 1 and self.selectcombobox.get() != "Google":
                 self.selectcombobox.current(0)
@@ -228,7 +264,7 @@ class Test():
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
 
             # and self.selectcombobox.get() != "Cambridge"
-            if automaticchange and self.combobox.get() == "To Chinese" and len(text.split(' ')) == 1:
+            if automaticchange and not click and self.combobox.get() == "To Chinese" and len(text.split(' ')) == 1:
                 self.selectcombobox.current(1)
                 self.combochangedic(None)
                 self.resultbox.insert(
@@ -241,8 +277,12 @@ class Test():
                     result, allresult = gt.get_translate_nottk(
                         text, self.combobox.get())
                 else:
-                    result, allresult = gt.get_translate(
-                        text, self.combobox.get())
+                    if longttk and len(text.split(' ')) > 1:
+                        result, allresult = gt.get_translate_nottk(
+                            text, self.combobox.get())
+                    else:
+                        result, allresult = gt.get_translate(
+                            text, self.combobox.get())
             else:
                 result, allresult = ct.get_translate(text)
             if result == "" and self.selectcombobox.get() != "Google":
@@ -266,7 +306,7 @@ class Test():
         if not self.checkvalue.get():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
-        self.resultbox.insert(tk.END, text+"\n")
+        self.resultbox.insert(tk.END, text)
         self.resultbox.insert(
             tk.END, "-"*self.linelength+"\n")
         for i in result:
