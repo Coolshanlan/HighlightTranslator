@@ -8,6 +8,8 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 [Copy Translator Github](https://github.com/Coolshanlan/Copy-Translator)
 
+[Download Zip](https://drive.google.com/file/d/1CbpNgjE-orV_lMsCHhLgwArKOLc_ZSAt/view?usp=sharing)
+
 ## Features
 ### Translation method
 - Take screenshot for the text
