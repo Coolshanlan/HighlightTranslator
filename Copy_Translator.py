@@ -78,6 +78,7 @@ class Test():
         self.scrollbar.config(command=(self.resultbox.yview))
         self.nowcopy = ''
         self.movein = False
+        self.tmpcopy = self.nowcopy
         self.get_clipboard()
         self.tmpcopy = self.nowcopy
         self.closed = False
@@ -170,7 +171,7 @@ class Test():
         self.get_clipboard()
         if self.nowcopy == self.tmpcopy:
             return False
-        if self.nowcopy.replace(' ', '') == '':
+        if self.nowcopy.strip() == '':
             return False
         self.tmpcopy = self.nowcopy
         self.inputbox.delete(1.0, tk.END)
