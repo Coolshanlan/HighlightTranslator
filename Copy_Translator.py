@@ -16,8 +16,8 @@ import win32clipboard
 from tkinter import ttk
 import tkinter as tk
 import re
-import sys
 import json
+import sys
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 with open("config.json") as f:
@@ -209,6 +209,13 @@ class Test():
     def restructure_sentences(self, text):
         textlist = text.split('@')
         newsentence = []
+        i = 0
+        while i < len(textlist):
+            textlist[i] = textlist[i].strip()
+            if textlist[i] == "":
+                del textlist[i]
+                i -= 1
+            i += 1
         tmpsentence = textlist[0].strip()
         for i in range(1, len(textlist)):
             textlist[i] = textlist[i].strip()
@@ -223,11 +230,13 @@ class Test():
         # print(len(newsentence))
         # for i in newsentence:
         #     print("------------"+i+"--------------")
+        if len(newsentence) > 50:
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-25)/2)) + "The number of sentences exceeds the limit(50)" +
+                ("*"*int((self.linelength-25)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+        newsentence = newsentence[:50]
         resultsentence = "\n".join(newsentence)
-        print(resultsentence)
-        print(resultsentence[-2:2])
-        if resultsentence[-2:2] == "\n":
-            resultsentence = resultsentence[:-2]
         return resultsentence
 
     def textprocessing(self, inptext):
