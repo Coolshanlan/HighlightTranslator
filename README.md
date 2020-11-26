@@ -8,9 +8,10 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 [Copy Translator Github](https://github.com/Coolshanlan/Copy-Translator)
 
-[Download Zip](https://drive.google.com/file/d/1CbpNgjE-orV_lMsCHhLgwArKOLc_ZSAt/view?usp=sharing)
-
 ![](https://github.com/Coolshanlan/Copy-Translator/blob/master/image/demo.gif)
+## Download
+[Download Zip File](https://drive.google.com/file/d/1CbpNgjE-orV_lMsCHhLgwArKOLc_ZSAt/view?usp=sharing)
+
 ## Requirement
 ``` python
 python == 3.6
@@ -39,8 +40,11 @@ Only support Chinese to English and English to Chinese
 Only support Google and Cambridge
 
 ## Config.json
+``` json
+{"hide":6,"copycheck":0.3,"font":"Calibri","font-size":11,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
+```
 - hide -> 控制自動消失時間
-  > default 8 sec
+  > default 6 sec
 - font -> 字體
   > default Calibri
 - font-size -> 調整字體大小
