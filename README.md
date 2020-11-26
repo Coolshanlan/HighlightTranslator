@@ -1,6 +1,6 @@
 # Copy Translator
-You can copy or highlight/select sentence or word in anywhere or take screenshot for the text then this tool will automatic get Google Translate or Cambridge dictionary result and then display to you.
-> Only support **Chinese to English** and **English to Chinese**
+You can copy or highlight/select sentence or word in anywhere or take screenshot for the text then this tool will automatic get Google Translate or Cambridge dictionary result and then show to you.
+
 
 Translation resource: [Google Translate](https://translate.google.com.tw) and [Cambridge dictionary](https://dictionary.cambridge.org)
 
@@ -9,6 +9,17 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Copy Translator Github](https://github.com/Coolshanlan/Copy-Translator)
 
 [Download Zip](https://drive.google.com/file/d/1CbpNgjE-orV_lMsCHhLgwArKOLc_ZSAt/view?usp=sharing)
+
+![](https://github.com/Coolshanlan/Copy-Translator/blob/master/image/demo01.gif)
+## Requirement
+``` python
+python == 3.6
+pyinstaller == 4.1
+tk == 8.6
+pynput == 1.6
+pyautogui == 0.9
+pytesseract == 0.3
+```
 
 ## Features
 ### Translation method
@@ -46,3 +57,9 @@ Only support Google and Cambridge
   > default 0
 - restructureSentences -> 自動分辨上下句是否為同一句子
   > default 1
+
+## How to use
+```
+pip install -r requirements.txt
+python Copy_Translator.py
+```
