@@ -25,7 +25,7 @@ pytesseract == 0.3
 ### Translation method
 - Take screenshot for the text
 - Copy
-- Highlight/Select
+- Highlight/Select (Not support PowerPoint)
 ### Top checkbox
 如果有勾選，程式會置頂，不會被其他程式蓋住
 
