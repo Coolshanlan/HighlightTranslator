@@ -31,7 +31,7 @@ pytesseract == 0.3
 如果有勾選，程式會置頂，不會被其他程式蓋住
 
 如果沒有勾選，程式會在特訂時間後自動跑到最下層隱藏起來
-> default 5 sec, you can modify hide variable in config.json
+> default 6 sec, you can modify hide variable in config.json
 ### Select checkbox
 勾選後開啟選取自動翻譯功能
 ### Change Language
