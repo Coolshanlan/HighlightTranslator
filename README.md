@@ -23,20 +23,24 @@ pytesseract == 0.3
 ```
 
 ## Features
-### Translation method
+### Automatic Resize
+在不同解析度下會自動調整視窗大小及字體大小
+### Translation Method
 - Take screenshot for the text
 - Copy
 - Highlight/Select (Not support PowerPoint)
-### Top checkbox
+### Top Checkbox
 如果有勾選，程式會置頂，不會被其他程式蓋住
 
 如果沒有勾選，程式會在特訂時間後自動跑到最下層隱藏起來
 > default 6 sec, you can modify hide variable in config.json
-### Select checkbox
+### Select Checkbox
 勾選後開啟選取自動翻譯功能
+### Search Box Checkbox
+勾選後display InputBox and Translate Button
 ### Change Language
 Only support Chinese to English and English to Chinese
-### Change dictionary
+### Change Dictionary
 Only support Google and Cambridge
 
 ## Config.json
