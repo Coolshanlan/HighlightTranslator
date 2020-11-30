@@ -2,6 +2,8 @@
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
 from numpy import array
+import win32con
+import win32api
 import datetime
 import CambridgeTranslate as ct
 import pytesseract
@@ -34,17 +36,19 @@ longttk = config["longttk"]
 restructureSentences = config["restructureSentences"]
 
 
-class Test():
+class MainWindow():
 
     def __init__(self):
         self.root = tk.Tk()
+        self.fontsize =fontsize
+        self.setWindowsSize()
         self.keyboard = Controller()
         self.inputbox = tk.Text(height=3, font=(
-            "{} {}".format(str(fontt), str(fontsize))))
+            "{} {}".format(str(fontt), str(self.fontsize))))
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
         self.resultbox = tk.Text((self.root),
-                                 yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(fontt), str(fontsize))))
+                                 yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(fontt), str(self.fontsize))))
         self.button = tk.Button((self.root), text='Translate',
                                 command=(self.changeText))
         self.clearbutton = tk.Button((self.root), text='Clear',
@@ -53,12 +57,13 @@ class Test():
             tk.END, 'Try to Copy some Text or take the screenshot for text')
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
-        self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),
-                                       command=(self.checkcange))
+        self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),command=(self.checkcange))
         self.checkvalueclick = tk.BooleanVar()
         self.checkvalueclick.set(True)
-        self.checkclick = tk.Checkbutton((self.root), text='selected', var=(self.checkvalueclick),
-                                         command=(self.checkchangeclick))
+        self.displayinputboxvalue = tk.BooleanVar()
+        self.displayinputboxvalue.set(False)
+        self.displayinputbox = tk.Checkbutton((self.root), text='Search Box', var=(self.displayinputboxvalue),command=self.changesearchbox)
+        self.checkclick = tk.Checkbutton((self.root), text='selected', var=(self.checkvalueclick),command=(self.checkchangeclick))
         self.combobox = ttk.Combobox(self.root, state="readonly")
         self.combobox["values"] = ["To Chinese", "To English"]
         self.combobox.current(0)
@@ -67,8 +72,9 @@ class Test():
         self.selectcombobox.current(0)
         self.combobox.bind("<<ComboboxSelected>>", self.combochange)
         self.selectcombobox.bind("<<ComboboxSelected>>", self.combochangedic)
-        self.checktop.pack(fill=(tk.BOTH))
-        self.checkclick.pack(fill=(tk.BOTH))
+        self.checktop.pack()
+        self.checkclick.pack()
+        self.displayinputbox.pack()
         self.combobox.pack(fill=(tk.BOTH))
         self.selectcombobox.pack(fill=(tk.BOTH))
         self.button.pack(fill=(tk.BOTH))
@@ -77,6 +83,8 @@ class Test():
         self.resultbox.pack(fill=(tk.BOTH))
         self.scrollbar.config(command=(self.resultbox.yview))
         self.nowcopy = ''
+        self.inputbox.pack_forget()
+        self.button.pack_forget()
         self.movein = False
         self.tmpcopy = self.nowcopy
         self.get_clipboard()
@@ -86,7 +94,6 @@ class Test():
         self.topagain = False
         self.root.bind('<Motion>', self.motion)
         self.root.title('Copy Translator')
-        self.root.geometry('200x350')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
         self.t = threading.Thread(target=(self.CheckWhile))
         self.clickstarttime = datetime.datetime.now()
@@ -98,7 +105,22 @@ class Test():
         self.t.start()
 
         self.root.mainloop()
-
+    def setWindowsSize(self):
+        originX = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+        originY =win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+        scaleX = originX/1280
+        scaleY = originY/720
+        self.fontsize = int(self.fontsize*scaleX)
+        self.root.geometry('{}x{}'.format((int)(200*scaleX),(int)(320*scaleY)))
+    def changesearchbox(self):
+        if self.displayinputboxvalue.get() == True:
+            self.resultbox.pack_forget()
+            self.button.pack(fill=(tk.BOTH))
+            self.inputbox.pack(fill=(tk.BOTH))
+            self.resultbox.pack(fill=(tk.BOTH))
+        else:
+            self.inputbox.pack_forget()
+            self.button.pack_forget()
     def combochange(self, event):
         if self.combobox.get() == "To Chinese":
             self.selectcombobox["values"] = ["Google", "Cambridge"]
@@ -261,7 +283,7 @@ class Test():
 
     def changeText(self, click=True):
         self.movein = False
-        self.linelength = int(self.resultbox.winfo_width()/(fontsize-4)-1)
+        self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
         text = self.inputbox.get(1.0, tk.END)
         # text = text.replace("@", "\n")
         try:
@@ -318,7 +340,7 @@ class Test():
             self.top.start()
         self.resultbox.insert(tk.END, text)
         self.resultbox.insert(
-            tk.END, "-"*self.linelength+"\n")
+            tk.END, "-"*((int)(self.linelength*1.4))+"\n")
         for i in result:
             self.resultbox.insert(tk.END, i)
             if allresult != []:
@@ -371,5 +393,4 @@ class Test():
     def ClearText(self):
         self.resultbox.delete(0.0, tk.END)
 
-
-app = Test()
+app = MainWindow()
