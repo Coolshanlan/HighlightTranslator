@@ -45,7 +45,7 @@ Only support Google and Cambridge
 
 ## Config.json
 ``` json
-{"hide":6,"copycheck":0.3,"font":"Calibri","font-size":11,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
+{"hide":5,"font":"Calibri","font-size":11,"inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
 ```
 - hide -> 控制自動消失時間
   > default 6 sec
@@ -53,6 +53,12 @@ Only support Google and Cambridge
   > default Calibri
 - font-size -> 調整字體大小
   > default 11
+- inputboxcolor -> 調整輸入框背景顏色
+  > defult #F2D8B3
+- resultboxcolor -> 調整輸出框背景顏色
+  > defult #FDF0C4
+- copycheck -> 查看剪貼簿頻率
+  > default 0.3 sec
 - doubleclick -> 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
   > default 0.3 sec
 - select -> 長壓幾秒判斷為選取

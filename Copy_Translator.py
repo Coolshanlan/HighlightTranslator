@@ -34,6 +34,8 @@ googlenotttk = config["googlenotttk"]
 automaticchange = config["automaticchange"]
 longttk = config["longttk"]
 restructureSentences = config["restructureSentences"]
+inputboxcolor = config["inputboxcolor"]
+resultboxcolor = config["resultboxcolor"]
 
 
 class MainWindow():
@@ -103,7 +105,8 @@ class MainWindow():
         self.muls = Listener(on_click=self.on_click)
         self.muls.start()
         self.t.start()
-
+        self.inputbox.configure(bg=inputboxcolor)#82A0C2#FDF0C4
+        self.resultbox.configure(bg=resultboxcolor)#82A0C2#FDF0C4
         self.root.mainloop()
     def setWindowsSize(self):
         originX = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
@@ -177,9 +180,6 @@ class MainWindow():
                         self.nowcopy = pytesseract.image_to_string((array(im)),
                                                                    lang='chi_tra').replace(" ", "")
                 except:
-                    # self.resultbox.insert(tk.END, "Psytesseract Error")
-                    # self.resultbox.insert(
-                    #     tk.END, "\n=========================\n")
                     self.resultbox.insert(
                         tk.END, ("*"*int((self.linelength-18)/2))+"Psytesseract Error" +
                         ("*"*int((self.linelength-18)/2)+"\n"))
@@ -250,9 +250,6 @@ class MainWindow():
                 continue
             tmpsentence += " "+textlist[i]
         newsentence.append(tmpsentence)
-        # print(len(newsentence))
-        # for i in newsentence:
-        #     print("------------"+i+"--------------")
         if len(newsentence) > 50:
             self.resultbox.insert(
                 tk.END, ("*"*int((self.linelength-25)/2)) + "The number of sentences exceeds the limit(50)" +
