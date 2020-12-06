@@ -179,10 +179,10 @@ class MainWindow():
                     im = array(im)
                     # print((im).shape)
                     if self.combobox.get() == "English to Chinese" or self.combobox.get() == "To Chinese":
-                        self.nowcopy = pytesseract.image_to_string(array(im),
+                        self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
                     else:
-                        self.nowcopy = pytesseract.image_to_string(array(im),
+                        self.nowcopy = pytesseract.image_to_string(m,
                                                                    lang='chi_tra').replace(" ", "")
                 except:
                     self.resultbox.insert(
