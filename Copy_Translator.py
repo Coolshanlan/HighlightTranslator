@@ -7,9 +7,10 @@ import win32api
 import datetime
 import CambridgeTranslate as ct
 import pytesseract
+import numpy as np
 from PIL import ImageWin
 from PIL import ImageGrab
-from PIL import Image
+from PIL import Image, ImageOps
 import GoogleTranslate as gt
 from time import sleep
 import threading
@@ -173,11 +174,15 @@ class MainWindow():
 
             if isinstance(im, Image.Image):
                 try:
+                    im = Image.fromarray(array(im), 'RGB')
+                    im = ImageOps.grayscale(im)
+                    im = array(im)
+                    # print((im).shape)
                     if self.combobox.get() == "English to Chinese" or self.combobox.get() == "To Chinese":
                         self.nowcopy = pytesseract.image_to_string(array(im),
                                                                    lang='eng')
                     else:
-                        self.nowcopy = pytesseract.image_to_string((array(im)),
+                        self.nowcopy = pytesseract.image_to_string(array(im),
                                                                    lang='chi_tra').replace(" ", "")
                 except:
                     self.resultbox.insert(
