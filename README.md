@@ -10,7 +10,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## Download
-[Download Zip File](https://bit.ly/36dLvlz)
+[Download Zip File](https://bit.ly/2VNK7A7)
 
 ## Requirement
 ``` python
