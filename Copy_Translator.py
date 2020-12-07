@@ -11,6 +11,7 @@ import numpy as np
 from PIL import ImageWin
 from PIL import ImageGrab
 from PIL import Image, ImageOps
+
 import GoogleTranslate as gt
 from time import sleep
 import threading
@@ -25,6 +26,8 @@ sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 with open("config.json") as f:
     config = json.loads(f.read())
+with open("language.txt") as f:
+    languagelist = eval(f.read())
 fontt = config["font"]
 fontsize = config["font-size"]
 copychecktime = config["copycheck"]
@@ -37,8 +40,17 @@ longttk = config["longttk"]
 restructureSentences = config["restructureSentences"]
 inputboxcolor = config["inputboxcolor"]
 resultboxcolor = config["resultboxcolor"]
+defaultsourcelanguage = config["sourcelanguage"]
+defaulttargetlanguage = config["targetlanguage"]
 
-
+sourcelanguagelist={}
+targetlanguagelist={}
+for i in range(len(languagelist[0])):
+    sourcelanguagelist[languagelist[0][i][1]] = languagelist[0][i][0]
+for i in range(len(languagelist[1])):
+    targetlanguagelist[languagelist[1][i][1]] = languagelist[1][i][0]
+# sourcelanguagelist = [{i[1]:i[0]} for i in languagelist[0]]
+# targetlanguagelist = [{i[1]:i[0]} for i in languagelist[1]]
 class MainWindow():
 
     def __init__(self):
@@ -56,30 +68,33 @@ class MainWindow():
                                 command=(self.changeText))
         self.clearbutton = tk.Button((self.root), text='Clear',
                                      command=(self.ClearText))
+        self.comboboxframe =tk.Frame(self.root)
+
         self.inputbox.insert(
             tk.END, 'Try to Copy some Text or take the screenshot for text')
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
-        self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),command=(self.checkcange))
+        self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),command=(self.checkchange))
         self.checkvalueclick = tk.BooleanVar()
         self.checkvalueclick.set(True)
         self.displayinputboxvalue = tk.BooleanVar()
         self.displayinputboxvalue.set(False)
         self.displayinputbox = tk.Checkbutton((self.root), text='Search Box', var=(self.displayinputboxvalue),command=self.changesearchbox)
         self.checkclick = tk.Checkbutton((self.root), text='selected', var=(self.checkvalueclick),command=(self.checkchangeclick))
-        self.combobox = ttk.Combobox(self.root, state="readonly")
-        self.combobox["values"] = ["To Chinese", "To English"]
-        self.combobox.current(0)
+        self.sourcecombobox = ttk.Combobox(self.comboboxframe, state="readonly")
+        self.targetcombobox = ttk.Combobox(self.comboboxframe, state="readonly")
         self.selectcombobox = ttk.Combobox(self.root, state="readonly")
+        self.setuplanguageitem()
         self.selectcombobox["values"] = ["Google", "Cambridge"]
         self.selectcombobox.current(0)
-        self.combobox.bind("<<ComboboxSelected>>", self.combochange)
         self.selectcombobox.bind("<<ComboboxSelected>>", self.combochangedic)
         self.checktop.pack()
         self.checkclick.pack()
         self.displayinputbox.pack()
-        self.combobox.pack(fill=(tk.BOTH))
         self.selectcombobox.pack(fill=(tk.BOTH))
+        self.sourcecombobox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.targetcombobox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
+        self.comboboxframe.pack(fill=(tk.BOTH))
         self.button.pack(fill=(tk.BOTH))
         self.clearbutton.pack(fill=(tk.BOTH))
         self.inputbox.pack(fill=(tk.BOTH))
@@ -116,6 +131,11 @@ class MainWindow():
         scaleY = originY/720
         self.fontsize = int(self.fontsize*scaleX)
         self.root.geometry('{}x{}'.format((int)(200*scaleX),(int)(320*scaleY)))
+    def setuplanguageitem(self):
+         self.sourcecombobox["values"] = sorted(sourcelanguagelist.keys())
+         self.targetcombobox["values"] = sorted(targetlanguagelist.keys())
+         self.sourcecombobox.current(self.sourcecombobox["values"].index(defaultsourcelanguage))
+         self.targetcombobox.current(self.targetcombobox["values"].index(defaulttargetlanguage))
     def changesearchbox(self):
         if self.displayinputboxvalue.get() == True:
             self.resultbox.pack_forget()
@@ -125,21 +145,15 @@ class MainWindow():
         else:
             self.inputbox.pack_forget()
             self.button.pack_forget()
-    def combochange(self, event):
-        if self.combobox.get() == "To Chinese":
-            self.selectcombobox["values"] = ["Google", "Cambridge"]
-            self.selectcombobox.current(0)
-        else:
-            self.selectcombobox.current(0)
-            self.selectcombobox["values"] = ["Google"]
 
     def combochangedic(self, event):
         if self.selectcombobox.get() == "Cambridge":
-            self.combobox["values"] = ["English to Chinese"]
-            self.combobox.current(0)
+            self.sourcecombobox["values"] = ["English"]
+            self.targetcombobox["values"] = ["Chinese (Traditional)"]
+            self.sourcecombobox.current(0)
+            self.targetcombobox.current(0)
         else:
-            self.combobox["values"] = ["To Chinese", "To English"]
-            self.combobox.current(0)
+            self.setuplanguageitem()
 
     def checkchangeclick(self):
         if self.checkvalueclick.get() == True:
@@ -148,7 +162,7 @@ class MainWindow():
         else:
             self.muls.stop()
 
-    def checkcange(self):
+    def checkchange(self):
         if self.checkvalue.get() == True:
             self.root.wm_attributes('-topmost', 1)
         else:
@@ -178,12 +192,14 @@ class MainWindow():
                     im = ImageOps.grayscale(im)
                     im = array(im)
                     # print((im).shape)
-                    if self.combobox.get() == "English to Chinese" or self.combobox.get() == "To Chinese":
+                    if self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
-                    else:
+                    elif self.sourcecombobox.get() == "Chinese":
                         self.nowcopy = pytesseract.image_to_string(m,
                                                                    lang='chi_tra').replace(" ", "")
+                    else:
+                        tk.messagebox.showinfo(title=f"Not Support {self.sourcecombobox.get()}", message="Screenshot Translate only support English and Chinese")
                 except:
                     self.resultbox.insert(
                         tk.END, ("*"*int((self.linelength-18)/2))+"Psytesseract Error" +
@@ -287,7 +303,6 @@ class MainWindow():
         self.movein = False
         self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
         text = self.inputbox.get(1.0, tk.END)
-        # text = text.replace("@", "\n")
         try:
             if len(text.split(' ')) > 1 and self.selectcombobox.get() != "Google":
                 self.selectcombobox.current(0)
@@ -297,8 +312,7 @@ class MainWindow():
                     ("*"*int((self.linelength-16)/2)+"\n"))
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
 
-            # and self.selectcombobox.get() != "Cambridge"
-            if automaticchange and not click and self.combobox.get() == "To Chinese" and len(text.split(' ')) == 1:
+            if automaticchange and not click and self.selectcombobox.get() != "Google" and len(text.split(' ')) == 1:
                 self.selectcombobox.current(1)
                 self.combochangedic(None)
                 self.resultbox.insert(
@@ -309,20 +323,20 @@ class MainWindow():
             if self.selectcombobox.get() == "Google":
                 if googlenotttk:
                     result, allresult = gt.get_translate_nottk(
-                        text, self.combobox.get())
+                        text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
                 else:
                     if longttk and len(text.split(' ')) > 1:
                         result, allresult = gt.get_translate_nottk(
-                            text, self.combobox.get())
+                            text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
                     else:
                         result, allresult = gt.get_translate(
-                            text, self.combobox.get())
+                            text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
             else:
                 result, allresult = ct.get_translate(text)
             if result == "" and self.selectcombobox.get() != "Google":
                 self.selectcombobox.current(0)
                 self.combochangedic(None)
-                result, allresult = gt.get_translate(text, self.combobox.get())
+                result, allresult = gt.get_translate(text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
                     ("*"*int((self.linelength-16)/2)+"\n"))

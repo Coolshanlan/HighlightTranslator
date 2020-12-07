@@ -26,7 +26,7 @@ pytesseract == 0.3
 ### Automatic Resize
 在不同解析度下會自動調整視窗大小及字體大小
 ### Translation Method
-- Take screenshot for the text
+- Take screenshot for the text (Only support English and Chinese)
 - Copy
 - Highlight/Select (Not support PowerPoint)
 ### Top Checkbox
@@ -38,14 +38,16 @@ pytesseract == 0.3
 勾選後開啟選取自動翻譯功能
 ### Search Box Checkbox
 勾選後display InputBox and Translate Button
-### Change Language
-Only support Chinese to English and English to Chinese
 ### Change Dictionary
-Only support Google and Cambridge
+Only support Google and Cambridge Dictionary
+### Change Language
+You can change default language in config.json
+Cambridge Dictionary only support English to Chinese
+
 
 ## Config.json
 ``` json
-{"hide":5,"font":"Calibri","font-size":11,"inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
+{"hide":6,"font":"Calibri","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
 ```
 - hide -> 控制自動消失時間
   > default 6 sec
@@ -53,6 +55,10 @@ Only support Google and Cambridge
   > default Calibri
 - font-size -> 調整字體大小
   > default 11
+- sourcelanguage -> Default of  source language
+  > defalut Detect language
+- sourcelanguage -> Default of  target language
+  > defalut Chinese (Traditional)
 - inputboxcolor -> 調整輸入框背景顏色
   > defult #F2D8B3
 - resultboxcolor -> 調整輸出框背景顏色
