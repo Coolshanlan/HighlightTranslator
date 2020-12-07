@@ -42,6 +42,7 @@ pytesseract == 0.3
 Only support Google and Cambridge Dictionary
 ### Change Language
 You can change default language in config.json
+
 Cambridge Dictionary only support English to Chinese
 
 
