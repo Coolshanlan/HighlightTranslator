@@ -6,9 +6,9 @@ Translation resource: [Google Translate](https://translate.google.com.tw) and [C
 
 OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
-[Copy Translator Github](https://github.com/Coolshanlan/Copy-Translator)
+[Highlight Translator Github](https://github.com/Coolshanlan/Copy-Translator)
 
-![](https://github.com/Coolshanlan/Copy-Translator/blob/master/image/demo.gif)
+![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## Download
 [Download Zip File](https://bit.ly/36dLvlz)
 
