@@ -82,5 +82,5 @@ Cambridge Dictionary only support English to Chinese
 ## How to use
 ```
 pip install -r requirements.txt
-python Copy_Translator.py
+python Highlight_Translator.py
 ```
