@@ -1,4 +1,4 @@
-# Copy Translator
+# Highlight Translator
 You can copy or highlight/select sentence or word in anywhere or take screenshot for the text then this tool will automatic get Google Translate or Cambridge dictionary result and display to you.
 
 

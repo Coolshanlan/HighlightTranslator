@@ -111,7 +111,7 @@ class MainWindow():
         self.dotop = False
         self.topagain = False
         self.root.bind('<Motion>', self.motion)
-        self.root.title('Copy Translator')
+        self.root.title('Highlight Translator')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
         self.t = threading.Thread(target=(self.CheckWhile))
         self.clickstarttime = datetime.datetime.now()
