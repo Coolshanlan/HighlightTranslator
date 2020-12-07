@@ -81,8 +81,8 @@ class MainWindow():
         self.displayinputboxvalue.set(False)
         self.displayinputbox = tk.Checkbutton((self.root), text='Search Box', var=(self.displayinputboxvalue),command=self.changesearchbox)
         self.checkclick = tk.Checkbutton((self.root), text='selected', var=(self.checkvalueclick),command=(self.checkchangeclick))
-        self.sourcecombobox = ttk.Combobox(self.comboboxframe, state="readonly")
-        self.targetcombobox = ttk.Combobox(self.comboboxframe, state="readonly")
+        self.sourcecombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
+        self.targetcombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
         self.selectcombobox = ttk.Combobox(self.root, state="readonly")
         self.setuplanguageitem()
         self.selectcombobox["values"] = ["Google", "Cambridge"]
