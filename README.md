@@ -15,13 +15,17 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Download Zip File](https://bit.ly/2VNK7A7)
 
 ## Requirement
-``` python
 python == 3.6
+``` python
 pyinstaller == 4.1
-tk == 8.6
+Pillow == 8.0.1
 pynput == 1.6
 pyautogui == 0.9
 pytesseract == 0.3
+pywin32 == 227
+requests >= 2.24.0
+beautifulsoup4 >= 4.9.3
+numpy
 ```
 
 ## Features
