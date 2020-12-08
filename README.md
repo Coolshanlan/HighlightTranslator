@@ -29,7 +29,7 @@ numpy
 ```
 
 ## Features
-### Automatic Resize
+### Auto resizing
 在不同解析度下會自動調整視窗大小及字體大小
 ### Translation Method
 - Take screenshot for the text (Only support English and Chinese)
