@@ -449,3 +449,4 @@ class MainWindow():
         self.resultbox.delete(0.0, tk.END)
 
 app = MainWindow()
+app.closed =True
