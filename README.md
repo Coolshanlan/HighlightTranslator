@@ -1,5 +1,5 @@
 # Highlight Translator
-You can copy or highlight/select sentence or word in anywhere or take screenshot for the text then this tool will automatic get Google Translate or Cambridge dictionary result and display to you.
+You can highlight or copy sentence or word in anywhere or take a screenshot of the text then this tool will automatically get Google Translate or Cambridge dictionary result and display to you.
 
 **Only support in Windows, might add linux version in the future.**
 
