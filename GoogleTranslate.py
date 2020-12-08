@@ -34,7 +34,7 @@ def get_translate(inputtext, sourcelanguage,targetlanguage):
     sl = sourcelanguage
     tl = targetlanguage
     r = get(
-        f"https://translate.google.com.tw/translate_a/single?client=webapp&sl={sl}&tl={tl}&hl=zh-TW&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk={tkid}&q={urltext}")
+        f"https://translate.google.com/translate_a/single?client=webapp&sl={sl}&tl={tl}&hl={tl}&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk={tkid}&q={urltext}")
     a = r.text
     a = eval(a.replace('null', '""').replace('"""', '"').replace(
         'true', "True").replace('false', "False"))
@@ -48,4 +48,4 @@ def get_translate(inputtext, sourcelanguage,targetlanguage):
 
 
 if __name__ == '__main__':
-    print(get_translate_nottk("automaticchange and not", "To Chinese"))
+    print(get_translate("tamamen", "tr","en"))

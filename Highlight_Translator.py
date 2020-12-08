@@ -401,7 +401,7 @@ class MainWindow():
         for i in range(len(allresult)):
             allresult[i]['name'] = allresult[i]['name'].replace(
                 '動詞', '動  詞').replace('名詞', '名  詞').replace('代名  詞', '代名詞').replace('副詞', '副  詞')
-            self.resultbox.insert(tk.END, allresult[i]['name']+":")
+            self.resultbox.insert(tk.END, allresult[i]['name'].capitalize()+":"+"\n")
             v = allresult[i]['value'][:4]
             for j in range(len(v)):
                 self.resultbox.insert(tk.END, v[j])
@@ -411,6 +411,7 @@ class MainWindow():
                 self.resultbox.insert(tk.END, "\n")
             if self.selectcombobox.get() != "Google":
                 self.resultbox.insert(tk.END, "\n")
+            self.resultbox.insert(tk.END, "\n")
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
