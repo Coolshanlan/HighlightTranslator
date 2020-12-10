@@ -25,7 +25,7 @@ pytesseract == 0.3
 pywin32 == 227
 requests >= 2.24.0
 beautifulsoup4 >= 4.9.3
-numpy
+numpy == 1.19.3
 ```
 
 ## Features
