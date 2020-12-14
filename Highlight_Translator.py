@@ -7,6 +7,7 @@ from datetime import datetime
 import win32con
 import win32api
 import datetime
+import traceback
 import CambridgeTranslate as ct
 import pytesseract
 from PIL import ImageWin
@@ -30,7 +31,7 @@ with open("config.json") as f:
     config = json.loads(f.read())
 with open("language.txt") as f:
     languagelist = eval(f.read())
-
+tesseract_languages=["eng","chi_tra","kor","jpn"]
 fontt = config["font"]
 fontsize = config["font-size"]
 copychecktime = config["copycheck"]
@@ -184,7 +185,7 @@ class MainWindow():
         self.root.destroy()
 
     def printerror(self,e):
-        with open("log.txt","w") as f:
+        with open("log.txt","a") as f:
             now = date.today()
             current_time = now.strftime("%m/%d/%Y")
             now = datetime.datetime.now()
@@ -201,8 +202,18 @@ class MainWindow():
             f.writelines(str(current_time)+"\n")
             f.writelines(errMsg+"\n")
             f.writelines("-------------------------"+"\n")
-
-
+            self.resultbox.insert(tk.END, ("*"*3)+error_class +("*"*3+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+            self.resultbox.see(tk.END)
+            return error_class
+    def binarization(self, image,threshold = 200):
+        table = []
+        for i in range(256):
+            if i < threshold:
+                table.append(0)
+            else:
+                table.append(1)
+        return image.point(table, '1')
         # print(errMsg)
     def get_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
@@ -213,16 +224,34 @@ class MainWindow():
                 self.nowcopy = self.tmpcopy
                 return False
         else:
-            im = ImageGrab.grabclipboard()
+            try:
+                im = ImageGrab.grabclipboard()
+            except Exception as e:
+                self.printerror(e)
+                self.root.clipboard_clear()
+                self.root.clipboard_append('')
+                return
             if isinstance(im, Image.Image):
                 try:
                     im = ImageOps.grayscale(im)
-                    if self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
+                    # im = self.binarization(im,225)
+                    # im.save('tmp.png')
+                    if self.sourcecombobox.get() =="Detect language":
+                        self.nowcopy = pytesseract.image_to_string(im,
+                                                                   lang='+'.join(tesseract_languages))
+                    elif self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
                     elif self.sourcecombobox.get() == "Chinese":
-                        self.nowcopy = pytesseract.image_to_string(m,
+                        self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='chi_tra').replace(" ", "")
+                    elif self.sourcecombobox.get() == "Korean":
+                        self.nowcopy = pytesseract.image_to_string(im,
+                                                                   lang='kor+kor_vert').replace(" ", "")
+                    elif self.sourcecombobox.get() == "Japanese":
+                        self.nowcopy = pytesseract.image_to_string(im,
+                                                                   lang='jpn').replace(" ", "")
+
                     else:
                         tk.messagebox.showinfo(title=f"Not Support {self.sourcecombobox.get()}", message="Screenshot Translate only support English and Chinese")
                 except Exception as e:
@@ -293,6 +322,8 @@ class MainWindow():
         tmpsentence = textlist[0].strip()
         for i in range(1, len(textlist)):
             textlist[i] = textlist[i].strip()
+            if len(textlist[i]) == 0:
+                continue
             if textlist[i][-1] == "-":
                 textlist[i] = textlist[i][:-1]
             if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search('[0-9]:', textlist[i]) != None or tmpsentence[-1] == ":":
