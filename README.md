@@ -30,20 +30,19 @@ numpy == 1.19.3
 
 ## Features
 ### Auto resizing
-在不同解析度下會自動調整視窗大小及字體大小
+Under different resolutions, automatically adjust the window size and font size
 ### Translation Method
-- Take screenshot for the text (Only support English and Chinese)
+- Screenshot (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
 - Copy
-- Highlight/Select (Not support PowerPoint)
+- Highlight/Selected (Not support PowerPoint)
 ### Top Checkbox
-如果有勾選，程式會置頂，不會被其他程式蓋住
-
-如果沒有勾選，程式會在特訂時間後自動跑到最下層隱藏起來
+Window will be top
+if not checked, it will automatically hide after a few seconds.
 > default 6 sec, you can modify hide variable in config.json
-### Select Checkbox
-勾選後開啟選取自動翻譯功能
-### Search Box Checkbox
-勾選後display InputBox and Translate Button
+### Highlight Checkbox
+Enable automatic translation when you highlight some content
+### Result Box Checkbox
+Display InputBox and Translate Button
 ### Change Dictionary
 Only support Google and Cambridge Dictionary
 ### Change Language
@@ -56,21 +55,21 @@ Cambridge Dictionary only support English to Chinese
 ``` json
 {"hide":6,"font":"Calibri","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
 ```
-- hide -> 控制自動消失時間
+- hide: window automatically hide seconds
   > default 6 sec
-- font -> 字體
+- font
   > default Calibri
-- font-size -> 調整字體大小
+- font-size
   > default 11
-- sourcelanguage -> Default of  source language
+- sourcelanguage: Default source language
   > defalut Detect language
-- sourcelanguage -> Default of  target language
+- sourcelanguage -> Default target language
   > defalut Chinese (Traditional)
-- inputboxcolor -> 調整輸入框背景顏色
+- inputboxcolor -> input box bg color
   > defult #F2D8B3
-- resultboxcolor -> 調整輸出框背景顏色
+- resultboxcolor -> result box bg color
   > defult #FDF0C4
-- copycheck -> 查看剪貼簿頻率
+- copycheck -> Check clipboard frequency
   > default 0.3 sec
 - doubleclick -> 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
   > default 0.3 sec
@@ -78,11 +77,11 @@ Cambridge Dictionary only support English to Chinese
   > default 0.3 sec
 - googlenotttk -> google translate don't need ttk version
   > default 0
-- longttk -> 如果是翻譯整個句子使用非ttk版本
+- longttk -> If sentence too long, use not ttk version
   > default 0
-- automaticchange -> 如果是翻譯單字自動切換成劍橋字典
+- automaticchange -> if want to translate a word, automatic change to cambridge
   > default 0
-- restructureSentences -> 自動分辨上下句是否為同一句子
+- restructureSentences
   > default 1
 
 ## How to use
