@@ -238,7 +238,7 @@ class MainWindow():
                     # im.save('tmp.png')
                     if self.sourcecombobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
-                                                                   lang='+'.join(tesseract_languages))
+                                                                   lang='eng')
                     elif self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
