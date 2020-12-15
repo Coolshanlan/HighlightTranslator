@@ -15,7 +15,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Download Zip File](https://bit.ly/2VNK7A7)
 
 ## Requirement
-python == 3.6
+python 3.6
 ``` python
 pyinstaller == 4.1
 Pillow == 8.0.1
