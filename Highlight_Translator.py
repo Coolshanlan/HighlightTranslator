@@ -441,8 +441,8 @@ class MainWindow():
             if i != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n")
                 self.resultbox.insert(tk.END, "\n")
-            if self.selectcombobox.get() != "Google":
-                self.resultbox.insert(tk.END, "\n")
+            # if self.selectcombobox.get() != "Google":
+            #     self.resultbox.insert(tk.END, "\n")
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
