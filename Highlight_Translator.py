@@ -159,6 +159,7 @@ class MainWindow():
             self.targetcombobox.current(0)
         else:
             self.setuplanguageitem()
+        self.changeText(False)
 
 
     def changehighlightclick(self):
@@ -206,6 +207,8 @@ class MainWindow():
             self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             self.resultbox.see(tk.END)
             return error_class
+
+
     def binarization(self, image,threshold = 200):
         table = []
         for i in range(256):
@@ -215,6 +218,8 @@ class MainWindow():
                 table.append(1)
         return image.point(table, '1')
         # print(errMsg)
+
+
     def get_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
