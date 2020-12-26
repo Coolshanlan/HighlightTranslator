@@ -103,8 +103,8 @@ class MainWindow():
         self.button.pack_forget()
         self.movein = False
         self.tmpcopy = self.nowcopy
-        self.get_clipboard()
-        self.tmpcopy = self.nowcopy
+        # self.get_clipboard()
+        # self.tmpcopy = self.nowcopy
         self.closed = False
         self.dotop = False
         self.topagain = False

@@ -10,7 +10,7 @@ def get_translate(inputtext):
         'User-Agent': 'User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'}
     r = get(
         f"https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/{urltext}", headers=headers)
-    a = BeautifulSoup(r.content)
+    a = BeautifulSoup(r.content,"html.parser")
     a = a.find_all("div", class_="pr entry-body__el")
     if len(a) == 0:
         return "", ""
@@ -67,5 +67,5 @@ def get_translate(inputtext):
 #     result = allresult[0]["value"][: 1]
 #     return result, allresult
 
-
-# print(get_translate("good"))
+if __name__ == "__main__":
+    print(get_translate("good"))
