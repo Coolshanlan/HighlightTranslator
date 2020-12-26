@@ -1,5 +1,5 @@
-# Highlight Translator
-You can highlight or copy sentence or word in anywhere or take a screenshot of the text then this tool will automatically get Google Translate or Cambridge dictionary result and display to you.
+# Highlight Translate
+Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
 **Only support in Windows, might add linux version in the future.**
 
@@ -8,7 +8,7 @@ Translation resource: [Google Translate](https://translate.google.com.tw) and [C
 
 OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
-[Highlight Translator Github](https://github.com/Coolshanlan/Copy-Translator)
+[Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## Download
