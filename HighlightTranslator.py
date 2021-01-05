@@ -256,7 +256,7 @@ class MainWindow():
                 self.printerror(e)
                 self.nowcopy = self.tmpcopy
                 return False
-        else:
+        elif self.root.state() != 'iconic':
             try:
                 im = ImageGrab.grabclipboard()
             except Exception as e:

@@ -1,0 +1,1820 @@
+12/27/2020 23:31:59
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:31:59
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:48
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:48
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:48
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:49
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:49
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:49
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:50
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:50
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:50
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:51
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:51
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:51
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:52
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:52
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:52
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:52
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:53
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:53
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:53
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:54
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:54
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:54
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:55
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:55
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:55
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:56
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:56
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:56
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:56
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:57
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:57
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:57
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:58
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:58
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:58
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:59
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:59
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:32:59
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:00
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:01
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:02
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:03
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:04
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:06
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:07
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:08
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:09
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:10
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:11
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:12
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:13
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:14
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:15
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:16
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:17
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:18
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:19
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:21
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:22
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:23
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:24
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:25
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:26
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:27
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:28
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:29
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:30
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:31
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:32
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:33
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:34
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:35
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:36
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:37
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:38
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:42
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:43
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:44
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:45
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:46
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:47
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:33:48
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/27/2020 23:34:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\requests\adapters.py", line 516, in send:
+ [ConnectionError]
+HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /translate_a/single?client=webapp&sl=auto&tl=zh-TW&hl=zh-TW&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk=687184.831854&q=converting%0A (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002E37C54DBA8>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+-------------------------
+12/27/2020 23:36:20
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\requests\adapters.py", line 516, in send:
+ [ConnectionError]
+HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /translate_a/single?client=webapp&sl=auto&tl=zh-TW&hl=zh-TW&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk=830797.680051&q=T%20EnpsEmiEEs%20newsentenc%20e%20oYt%20P%0A (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002E31426DC18>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+-------------------------
+12/27/2020 23:37:05
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\requests\adapters.py", line 516, in send:
+ [ConnectionError]
+HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /translate_a/single?client=webapp&sl=auto&tl=zh-TW&hl=zh-TW&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t&source=bh&ssel=0&tsel=0&xid=1791807&kc=1&tk=922666.579860&q=learning-based%20methods%20typically%20run%20faster%20during%20test%20time%20and%20produce%20more%20realistic%20results%0A (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002E31426D710>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+-------------------------
+12/28/2020 00:01:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:39
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:40
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
+12/28/2020 00:01:41
+File "C:\Users\Joey\Anaconda3\envs\translator\lib\site-packages\PIL\ImageGrab.py", line 96, in grabclipboard:
+ [OSError]
+failed to open clipboard
+-------------------------
