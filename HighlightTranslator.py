@@ -25,6 +25,7 @@ import tkinter as tk
 import re
 import json
 import sys
+# import pyautogui
 # program setting
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
@@ -123,7 +124,7 @@ class MainWindow():
         self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
         self.nowcopy = ''
         self.tmpcopy = ''
-        # self.get_clipboard()
+        # self.check_clipboard()
         # self.tmpcopy = self.nowcopy
 
         #close threads when window closed
@@ -248,22 +249,26 @@ class MainWindow():
         # print(errMsg)
 
 
-    def get_clipboard(self):
+    def check_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
-                self.nowcopy = self.root.clipboard_get()
+                self.nowcopy = self.root.selection_get(selection="CLIPBOARD")#clipboard_get()
             except Exception as e:
                 self.printerror(e)
+                self.root.clipboard_append('')
                 self.nowcopy = self.tmpcopy
                 return False
         elif self.root.state() != 'iconic':
             try:
                 im = ImageGrab.grabclipboard()
+            except OSError:
+                return False
             except Exception as e:
+                print(e)
                 self.printerror(e)
                 self.root.clipboard_clear()
                 self.root.clipboard_append('')
-                return
+                return False
             if isinstance(im, Image.Image):
                 try:
                     im = ImageOps.grayscale(im)
@@ -295,12 +300,14 @@ class MainWindow():
                     self.resultbox.insert(
                         tk.END, "="*self.linelength+"\n")
                     self.resultbox.see(tk.END)
+                    return False
                 self.root.clipboard_clear()
                 self.root.clipboard_append('')
 
+        return True
 
     def CheckCopy(self):
-        self.get_clipboard()
+        if not self.check_clipboard(): return False
         if self.nowcopy == self.tmpcopy:
             return False
         if self.nowcopy.strip() == '':
@@ -359,7 +366,7 @@ class MainWindow():
                 continue
             if textlist[i][-1] == "-":
                 textlist[i] = textlist[i][:-1]
-            if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search('[0-9]:', textlist[i]) != None or tmpsentence[-1] == ":":
+            if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search("[0-9]+\.?:", textlist[i]) != None or tmpsentence[-1] == ":"or tmpsentence[-1] == "：":
                 newsentence.append(tmpsentence)
                 tmpsentence = textlist[i]
                 continue
