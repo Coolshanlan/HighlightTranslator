@@ -404,7 +404,7 @@ class MainWindow():
 
     def changeText(self, click=True):
         self.movein = False
-        self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
+        self.linelength = int((self.resultbox.winfo_width()/(self.fontsize)*1.2))
         text = self.inputbox.get(1.0, tk.END)
         try:
             # if not a word change to google because Cambridge can only translate a word
@@ -462,7 +462,7 @@ class MainWindow():
             self.top.start()
         self.resultbox.insert(tk.END, text)
         self.resultbox.insert(
-            tk.END, "-"*((int)(self.linelength*1.4))+"\n")
+            tk.END, "-"*((int)(self.linelength*1.8))+"\n")
         for i in result:
             self.resultbox.insert(tk.END, i)
             if allresult != []:

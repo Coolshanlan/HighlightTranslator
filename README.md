@@ -34,7 +34,7 @@ Under different resolutions, automatically adjust the window size and font size
 ### Translation Method
 - Screenshot (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
 - Copy
-- Highlight/Selected (Not support PowerPoint)
+- Highlight/Selected (Not support PowerPoint and Word)
 ### Top Checkbox
 Window will be top
 if not checked, it will automatically hide after a few seconds.
@@ -53,7 +53,7 @@ Cambridge Dictionary only support English to Chinese
 
 ## Config.json
 ``` json
-{"hide":6,"font":"Calibri","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
+{"hide":6,"font":"Arial","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
 ```
 - hide: window automatically hide seconds
   > default 6 sec
