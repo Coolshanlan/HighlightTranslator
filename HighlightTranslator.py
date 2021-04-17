@@ -252,7 +252,7 @@ class MainWindow():
     def check_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
-                self.nowcopy = self.root.selection_get(selection="CLIPBOARD")#clipboard_get()
+                self.nowcopy = self.root.clipboard_get()#self.root.selection_get(selection="CLIPBOARD")
             except Exception as e:
                 self.printerror(e)
                 self.root.clipboard_append('')

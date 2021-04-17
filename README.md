@@ -18,7 +18,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 python 3.6
 ``` python
 pyinstaller == 4.1
-Pillow == 8.0.1
+Pillow == 8.1.1
 pynput == 1.6
 pyautogui == 0.9
 pytesseract == 0.3
