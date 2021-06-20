@@ -116,6 +116,7 @@ class MainWindow():
 
         self.inputbox.pack_forget()
         self.translatebutton.pack_forget()
+
         # if mouse move in windowns, cancel auto hide windows function
         self.movein = False
         self.dotop = False
@@ -124,6 +125,8 @@ class MainWindow():
         self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
         self.nowcopy = ''
         self.tmpcopy = ''
+
+        # not translate the word already in clipboard when open the application
         # self.check_clipboard()
         # self.tmpcopy = self.nowcopy
 
@@ -238,17 +241,6 @@ class MainWindow():
             return error_class
 
 
-    def binarization(self, image,threshold = 200):
-        table = []
-        for i in range(256):
-            if i < threshold:
-                table.append(0)
-            else:
-                table.append(1)
-        return image.point(table, '1')
-        # print(errMsg)
-
-
     def check_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
@@ -272,12 +264,7 @@ class MainWindow():
             if isinstance(im, Image.Image):
                 try:
                     im = ImageOps.grayscale(im)
-                    # im = self.binarization(im,225)
-                    # im.save('tmp.png')
-                    if self.sourcecombobox.get() =="Detect language":
-                        self.nowcopy = pytesseract.image_to_string(im,
-                                                                   lang='eng')
-                    elif self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
+                    if self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
                     elif self.sourcecombobox.get() == "Chinese":
@@ -289,9 +276,8 @@ class MainWindow():
                     elif self.sourcecombobox.get() == "Japanese":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='jpn').replace(" ", "")
-
                     else:
-                        tk.messagebox.showinfo(title=f"Not Support {self.sourcecombobox.get()}", message="Screenshot Translate only support English and Chinese")
+                        tk.messagebox.showinfo(title=f"Not Support {self.sourcecombobox.get()}", message="Screenshot Translate only support English, Chinese, Korean and Japanese")
                 except Exception as e:
                     self.printerror(e)
                     self.resultbox.insert(
@@ -470,10 +456,10 @@ class MainWindow():
         if len(allresult) > 0:
             self.resultbox.insert(tk.END, "\n")
         for i in range(len(allresult)):
-            allresult[i]['name'] = allresult[i]['name'].replace(
+            allresult[i]['type'] = allresult[i]['type'].replace(
                 '動詞', '動  詞').replace('名詞', '名  詞').replace('代名  詞', '代名詞').replace('副詞', '副  詞')
-            self.resultbox.insert(tk.END, allresult[i]['name'].capitalize()+":"+"\n")
-            v = allresult[i]['value'][:4]
+            self.resultbox.insert(tk.END, allresult[i]['type'].capitalize()+":"+"\n")
+            v = allresult[i]['words'][:4]
             for j in range(len(v)):
                 self.resultbox.insert(tk.END, v[j])
                 if j != len(v)-1:
