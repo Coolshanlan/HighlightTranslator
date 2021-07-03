@@ -42,8 +42,7 @@ It can speak the input sentence or the result of translating
 ### Auto resizing
 Under different resolutions, automatically adjust the window size and font size
 ### Top Checkbox
-Window will be top
-if not checked, it will automatically hide after a few seconds.
+If not checked, window will automatically hide after a few seconds.
 > default 6 sec, you can modify hide variable in config.json
 ### Highlight Checkbox
 Enable automatic translation when you highlight some content
