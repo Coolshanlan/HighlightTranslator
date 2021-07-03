@@ -72,13 +72,19 @@ class MainWindow():
 
         self.translate_result=''
 
+        self.featureframe =tk.Frame(self.root)
+
         self.inputbox = tk.Text(height=3, font=("{} {}".format(str(fontt), str(self.fontsize))))
         self.inputbox.insert(tk.END, 'Try to copy/highlight some Text or take the screenshot for text')
         self.inputbox.configure(bg=inputboxcolor)#82A0C2#FDF0C4
 
         self.displayinputboxvalue = tk.BooleanVar()
         self.displayinputboxvalue.set(False)
-        self.displayinputbox = tk.Checkbutton((self.root), text='Input Box', var=(self.displayinputboxvalue),command=self.displayinputbox)
+        self.displayinputbox = tk.Checkbutton((self.featureframe), text='input', var=(self.displayinputboxvalue),command=self.displayinputbox)
+
+        self.screenshotvalue = tk.BooleanVar()
+        self.screenshotvalue.set(True)
+        self.screenshotbox = tk.Checkbutton((self.featureframe), text='screen', var=(self.screenshotvalue))
 
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
@@ -104,11 +110,11 @@ class MainWindow():
 
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
-        self.checktop = tk.Checkbutton((self.root), text='Top', var=(self.checkvalue),command=(self.checkchange))
+        self.checktop = tk.Checkbutton((self.featureframe), text='top', var=(self.checkvalue),command=(self.checkchange))
 
         self.highlightcheckvalue = tk.BooleanVar()
         self.highlightcheckvalue.set(True)
-        self.highlightcheckbox = tk.Checkbutton((self.root), text='highlight', var=(self.highlightcheckvalue),command=(self.changehighlightclick))
+        self.highlightcheckbox = tk.Checkbutton((self.featureframe), text='select', var=(self.highlightcheckvalue),command=(self.changehighlightclick))
 
         self.selectcombobox = ttk.Combobox(self.root, state="readonly")
         self.setuplanguageitem()
@@ -116,9 +122,12 @@ class MainWindow():
         self.selectcombobox.current(0)
         self.selectcombobox.bind("<<ComboboxSelected>>", self.combochangedict)
 
-        self.checktop.pack()
-        self.highlightcheckbox.pack()
-        self.displayinputbox.pack()
+
+        self.featureframe.pack()
+        self.checktop.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.highlightcheckbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.screenshotbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.displayinputbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
         self.selectcombobox.pack(fill=(tk.BOTH))
         self.sourcecombobox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
         self.targetcombobox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
@@ -181,7 +190,7 @@ class MainWindow():
         scaleX = originX/1280
         scaleY = originY/720
         self.fontsize = int(self.fontsize*scaleX)
-        self.root.geometry('{}x{}'.format((int)(200*scaleX),(int)(320*scaleY)))
+        self.root.geometry('{}x{}'.format((int)(210*scaleX),(int)(320*scaleY)))
 
 
     def setuplanguageitem(self):
@@ -308,7 +317,7 @@ class MainWindow():
                 self.root.clipboard_append('')
                 self.nowcopy = self.tmpcopy
                 return False
-        elif self.root.state() != 'iconic':
+        elif self.root.state() != 'iconic' and self.screenshotvalue.get():
             try:
                 im = ImageGrab.grabclipboard()
             except OSError:
