@@ -2,6 +2,7 @@
 Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
 **Only support in Windows, might add linux version in the future.**
+**I will restructure my code lately**
 
 
 Translation resource: [Google Translate](https://translate.google.com.tw) and [Cambridge dictionary](https://dictionary.cambridge.org)
@@ -25,16 +26,20 @@ pytesseract == 0.3
 pywin32 == 227
 requests >= 2.24.0
 beautifulsoup4 >= 4.9.3
-numpy == 1.19.3
+numpy
+pygame
+gTTS
 ```
 
 ## Features
+### Translation Method
+- **Screenshot** (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
+- **Copy**
+- **Highlight/Selected** (Not support PowerPoint and Word)
+### Text to Speech
+It can speak the input sentence or the result of translating
 ### Auto resizing
 Under different resolutions, automatically adjust the window size and font size
-### Translation Method
-- Screenshot (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
-- Copy
-- Highlight/Selected (Not support PowerPoint and Word)
 ### Top Checkbox
 Window will be top
 if not checked, it will automatically hide after a few seconds.

@@ -39,10 +39,14 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
         b = req[0][:-1]
     else:
         b = req[0]
+
     result = [i[0] for i in b]
     allresult = [{'type': i[0], 'words':i[1]} for i in req[1]]
-    return result, allresult
+
+    detect_language= req[2] if sl == 'auto' else None
+    return result, allresult,detect_language
 
 
 if __name__ == '__main__':
-    print(get_translate("工具", "zh-TW","en"))
+    # print(get_translate("工具", "zh-TW","en"))
+    print(get_translate("工具", "auto","en"))

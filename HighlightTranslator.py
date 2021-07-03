@@ -1,5 +1,8 @@
 # import pyautogui
 # -*- coding: utf-8 -*-
+from gtts import gTTS
+from pygame import mixer
+from os import remove
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
 from datetime import date
@@ -47,7 +50,9 @@ inputboxcolor = config["inputboxcolor"]
 resultboxcolor = config["resultboxcolor"]
 defaultsourcelanguage = config["sourcelanguage"]
 defaulttargetlanguage = config["targetlanguage"]
-
+speak_length_limit = config["auto_speak_length_limit"]
+detect_language=None
+MP3FILEPATH='speech_file/output.mp3'
 #Read language from language.txt
 sourcelanguagelist={}
 targetlanguagelist={}
@@ -64,6 +69,8 @@ class MainWindow():
         self.fontsize =fontsize
         self.setWindowsSize()# Auto resizing
         self.keyboard = Controller()# keyboard hook
+
+        self.translate_result=''
 
         self.inputbox = tk.Text(height=3, font=("{} {}".format(str(fontt), str(self.fontsize))))
         self.inputbox.insert(tk.END, 'Try to copy/highlight some Text or take the screenshot for text')
@@ -83,9 +90,17 @@ class MainWindow():
 
         self.clearbutton = tk.Button((self.root), text='Clear',command=(self.ClearText))
 
+        self.speakframe =tk.Frame(self.root)
+        self.speakbutton_t = tk.Button((self.speakframe), text='Speak T',command=(self.speak_t))
+        self.speakbutton_s = tk.Button((self.speakframe), text='Speak S',command=(self.speak))
+        self.speakcheckvalue = tk.BooleanVar()
+        self.speakcheckvalue.set(False)
+        self.speakcheckbox = tk.Checkbutton((self.speakframe), text='auto', var=(self.speakcheckvalue),command=(self.speak_change))
+
         self.comboboxframe =tk.Frame(self.root)
         self.sourcecombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
         self.targetcombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
+        self.targetcombobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
 
         self.checkvalue = tk.BooleanVar()
         self.checkvalue.set(False)
@@ -108,6 +123,10 @@ class MainWindow():
         self.sourcecombobox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
         self.targetcombobox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
         self.comboboxframe.pack(fill=(tk.BOTH))
+        self.speakframe.pack(fill=(tk.BOTH))
+        self.speakbutton_s.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.speakbutton_t.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.speakcheckbox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
         self.translatebutton.pack(fill=(tk.BOTH))
         self.clearbutton.pack(fill=(tk.BOTH))
         self.inputbox.pack(fill=(tk.BOTH))
@@ -194,6 +213,46 @@ class MainWindow():
         self.changeText(False)
 
 
+    def target_combobox_change(self, event):
+        self.changeText(False)
+
+    def speak_t(self):
+        # remove(MP3FILEPATH)
+        text = self.translate_result
+        language = targetlanguagelist[self.targetcombobox.get()]
+
+        myobj = gTTS(text=text, lang=language.lower(), slow=False)
+        mixer.init()
+        mixer.music.unload()
+        myobj.save(MP3FILEPATH)
+        self.run_speak_file()
+
+    def speak_change(self):
+        if self.speakcheckvalue.get() == True:
+            self.speak()
+
+    def speak(self):
+        def speak_func():
+            text = self.inputbox.get(1.0, tk.END)
+            language = sourcelanguagelist[self.sourcecombobox.get()]
+            if language == 'auto':
+                language = detect_language.lower()
+
+            myobj = gTTS(text=text, lang=language.lower(), slow=False)
+            mixer.init()
+            mixer.music.unload()
+            myobj.save(MP3FILEPATH)
+            self.run_speak_file()
+        speak_thread = threading.Thread(target = speak_func)
+        speak_thread.start()
+
+
+    def run_speak_file(self):
+        mixer.music.set_volume(0.2)
+        mixer.music.load(MP3FILEPATH)
+        mixer.music.play()
+
+
     def changehighlightclick(self):
         if self.highlightcheckvalue.get() == True:
             self.muls = Listener(on_click=self.mouseclick)
@@ -210,7 +269,6 @@ class MainWindow():
 
 
     def closewindows(self):
-
         self.closed = True
         if self.highlightcheckvalue.get() == True:
             self.muls.stop()
@@ -389,6 +447,7 @@ class MainWindow():
 
 
     def changeText(self, click=True):
+        global detect_language
         self.movein = False
         self.linelength = int((self.resultbox.winfo_width()/(self.fontsize)*1.2))
         text = self.inputbox.get(1.0, tk.END)
@@ -420,14 +479,14 @@ class MainWindow():
                         result, allresult = gt.get_translate_nottk(
                             text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
                     else:
-                        result, allresult = gt.get_translate(
+                        result, allresult, detect_language = gt.get_translate(
                             text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
             else:
                 result, allresult = ct.get_translate(text)
             if result == "" and self.selectcombobox.get() != "Google":
                 self.selectcombobox.current(0)
                 self.combochangedict(None)
-                result, allresult = gt.get_translate(text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
+                result, allresult, detect_language = gt.get_translate(text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
                     ("*"*int((self.linelength-16)/2)+"\n"))
@@ -447,6 +506,7 @@ class MainWindow():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
         self.resultbox.insert(tk.END, text)
+        self.translate_result += text
         self.resultbox.insert(
             tk.END, "-"*((int)(self.linelength*1.8))+"\n")
         for i in result:
@@ -455,14 +515,18 @@ class MainWindow():
                 self.resultbox.insert(tk.END, "\n")
         if len(allresult) > 0:
             self.resultbox.insert(tk.END, "\n")
+        self.translate_result=''
         for i in range(len(allresult)):
             allresult[i]['type'] = allresult[i]['type'].replace(
                 '動詞', '動  詞').replace('名詞', '名  詞').replace('代名  詞', '代名詞').replace('副詞', '副  詞')
+            self.translate_result += allresult[i]['type'].capitalize()+":"+"\n"
             self.resultbox.insert(tk.END, allresult[i]['type'].capitalize()+":"+"\n")
             v = allresult[i]['words'][:4]
             for j in range(len(v)):
                 self.resultbox.insert(tk.END, v[j])
+                self.translate_result+=v[j]
                 if j != len(v)-1:
+                    self.translate_result += ","
                     self.resultbox.insert(tk.END, ",")
             if i != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n")
@@ -472,6 +536,9 @@ class MainWindow():
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
+        if self.speakcheckvalue.get() == True:
+            if speak_length_limit >= len(text.split(' ')):
+                self.speak()
 
     def motion(self, event):
         self.movein = True

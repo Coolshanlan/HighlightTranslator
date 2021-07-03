@@ -7,3 +7,5 @@ pywin32 == 227
 requests >= 2.24.0
 beautifulsoup4 >= 4.9.3
 numpy
+pygame
+gTTS
