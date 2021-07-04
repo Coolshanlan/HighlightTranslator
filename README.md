@@ -1,7 +1,7 @@
 # :books: Highlight Translate :books:
 Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
-:warning: **Only support in Windows, might add linux version in the future.**
+:warning: **Only support in Windows, might add linux version in the future.** :warning:
 
 **I will restructure my code lately**
 
@@ -13,7 +13,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
-## :small_red_triangle_down: Download Executable File
+## :small_red_triangle_down: Download Executable File :small_red_triangle_down:
 [Download Zip File](https://bit.ly/37QQvgN)
 
 ## Requirement
@@ -43,18 +43,18 @@ It can speak the input sentence or the result of translating
 - **Highlight/Selected** (Not support PowerPoint and Word)
 ### :key: Text to Speech
 It can speak the input sentence or the result of translating
-### :round_pushpin: Auto resizing
+### :pushpin: Auto resizing
 Under different resolutions, automatically adjust the window size and font size
-### :round_pushpin: Top Checkbox
+### :pushpin: Top Checkbox
 If not checked, window will automatically hide after a few seconds.
 > default 6 sec, you can modify hide variable in config.json
-### :round_pushpin: Highlight Checkbox
+### :pushpin: Highlight Checkbox
 Enable automatic translation when you highlight some content
-### :round_pushpin: Result Box Checkbox
+### :pushpin: Result Box Checkbox
 Display InputBox and Translate Button
-### :round_pushpin: Change Dictionary
+### :pushpin: Change Dictionary
 Only support Google and Cambridge Dictionary
-### :round_pushpin: Change Language
+### :pushpin: Change Language
 You can change default language in config.json
 
 Cambridge Dictionary only support English to Chinese
