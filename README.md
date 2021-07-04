@@ -1,7 +1,7 @@
-# Highlight Translate
+# :books: Highlight Translate :books:
 Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
-**Only support in Windows, might add linux version in the future.**
+:warning: **Only support in Windows, might add linux version in the future.**
 
 **I will restructure my code lately**
 
@@ -13,7 +13,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
-## Download Executable File
+## :small_red_triangle_down: Download Executable File
 [Download Zip File](https://bit.ly/37QQvgN)
 
 ## Requirement
@@ -36,31 +36,31 @@ gTTS
 It can speak the input sentence or the result of translating
 > 2021/07/04 update
 
-## Features
-### Translation Method
+## :dart: Features
+### :key: Translation Method
 - **Screenshot** (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
 - **Copy**
 - **Highlight/Selected** (Not support PowerPoint and Word)
-### Text to Speech
+### :key: Text to Speech
 It can speak the input sentence or the result of translating
-### Auto resizing
+### :round_pushpin: Auto resizing
 Under different resolutions, automatically adjust the window size and font size
-### Top Checkbox
+### :round_pushpin: Top Checkbox
 If not checked, window will automatically hide after a few seconds.
 > default 6 sec, you can modify hide variable in config.json
-### Highlight Checkbox
+### :round_pushpin: Highlight Checkbox
 Enable automatic translation when you highlight some content
-### Result Box Checkbox
+### :round_pushpin: Result Box Checkbox
 Display InputBox and Translate Button
-### Change Dictionary
+### :round_pushpin: Change Dictionary
 Only support Google and Cambridge Dictionary
-### Change Language
+### :round_pushpin: Change Language
 You can change default language in config.json
 
 Cambridge Dictionary only support English to Chinese
 
 
-## Config.json
+## :bookmark_tabs: Config.json
 ``` json
 {"hide":6,"font":"Arial","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
 ```
