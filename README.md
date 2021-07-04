@@ -34,6 +34,7 @@ gTTS
 ## :loudspeaker: New Feature
 ### Text to Speech
 It can speak the input sentence or the result of translating
+> 2021/07/04 update
 
 ## Features
 ### Translation Method
