@@ -396,6 +396,7 @@ class MainWindow():
     def CheckCopyWhile(self):
         while not self.closed:
             if self.CheckCopy():
+                self.clearbutton.configure(text = 'Translating...')
                 self.changet = threading.Thread(
                     target=(self.changeText(False)))
                 self.changet.start()
@@ -548,6 +549,7 @@ class MainWindow():
         if self.speakcheckvalue.get() == True:
             if speak_length_limit >= len(text.split(' ')):
                 self.speak()
+        self.clearbutton.configure(text = 'Clear')
 
     def motion(self, event):
         self.movein = True
