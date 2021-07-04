@@ -31,7 +31,7 @@ numpy
 pygame
 gTTS
 ```
-## New Feature :loudspeaker:
+## :loudspeaker: New Feature
 ### Text to Speech
 It can speak the input sentence or the result of translating
 
