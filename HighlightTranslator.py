@@ -493,6 +493,7 @@ class MainWindow():
                             text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
             else:
                 result, allresult = ct.get_translate(text)
+                detect_language='en'
             if result == "" and self.selectcombobox.get() != "Google":
                 self.selectcombobox.current(0)
                 self.combochangedict(None)
