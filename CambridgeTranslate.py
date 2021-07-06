@@ -30,4 +30,4 @@ def get_translate(inputtext):
     return result, allresult
 
 if __name__ == "__main__":
-    print(get_translate("good"))
+    print(get_translate("regret"))

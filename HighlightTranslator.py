@@ -28,129 +28,127 @@ import tkinter as tk
 import re
 import json
 import sys
-# import pyautogui
-# program setting
+
+# tesseract setting
+# OCR only support these four languages now, you can add another language from tesseract and put it file in tesseract/tessdata
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
 pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
+tesseract_languages=["eng","chi_tra","kor","jpn"]
+
+# load config (detail in readme)
 with open("config.json") as f:
     config = json.loads(f.read())
-# Now, OCR only support these four languages, you can add another language from tesseract
-tesseract_languages=["eng","chi_tra","kor","jpn"]
-fontt = config["font"]
-fontsize = config["font-size"]
-copychecktime = config["copycheck"]
-hidetime = config["hide"]
-doubleclicktime = config["doubleclick"]
-selecttime = config["select"]
-googlenotttk = config["googlenotttk"]
-automaticchange = config["automaticchange"]
-longttk = config["longttk"]
-restructureSentences = config["restructureSentences"]
-inputboxcolor = config["inputboxcolor"]
-resultboxcolor = config["resultboxcolor"]
-defaultsourcelanguage = config["sourcelanguage"]
-defaulttargetlanguage = config["targetlanguage"]
-speak_length_limit = config["auto_speak_length_limit"]
+
 detect_language=None
 MP3FILEPATH='speech_file/output.mp3'
-#Read language from language.txt
-sourcelanguagelist={}
-targetlanguagelist={}
+
+#Load all language from language.txt
+source_languages={}
+target_languages={}
 with open("language.txt") as f:
     languagelist = eval(f.read())
 for i in range(len(languagelist[0])):
-    sourcelanguagelist[languagelist[0][i][1]] = languagelist[0][i][0]
+    source_languages[languagelist[0][i][1]] = languagelist[0][i][0]
 for i in range(len(languagelist[1])):
-    targetlanguagelist[languagelist[1][i][1]] = languagelist[1][i][0]
+    target_languages[languagelist[1][i][1]] = languagelist[1][i][0]
+
 class MainWindow():
 
     def __init__(self):
         self.root = tk.Tk()
-        self.fontsize =fontsize
-        self.setWindowsSize()# Auto resizing
+        self.set_WindowsSize()# Auto resizing
         self.keyboard = Controller()# keyboard hook
 
         self.translate_result=''
 
-        self.featureframe =tk.Frame(self.root)
+        # Top of feature checkboxes
+        self.checkbox_frame =tk.Frame(self.root)
 
-        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(fontt), str(self.fontsize))))
-        self.inputbox.insert(tk.END, 'Try to copy/highlight some Text or take the screenshot for text')
-        self.inputbox.configure(bg=inputboxcolor)#82A0C2#FDF0C4
+        self.top_value = tk.BooleanVar()
+        self.top_value.set(False)
+        self.top_checkbox = tk.Checkbutton((self.checkbox_frame), text='top', var=(self.top_value),command=(self.checkchange))
 
-        self.displayinputboxvalue = tk.BooleanVar()
-        self.displayinputboxvalue.set(False)
-        self.displayinputbox = tk.Checkbutton((self.featureframe), text='input', var=(self.displayinputboxvalue),command=self.displayinputbox)
+        self.select_value = tk.BooleanVar()
+        self.select_value.set(True)
+        self.select_checkbox = tk.Checkbutton((self.checkbox_frame), text='select', var=(self.select_value),command=(self.changehighlightclick))
 
-        self.screenshotvalue = tk.BooleanVar()
-        self.screenshotvalue.set(True)
-        self.screenshotbox = tk.Checkbutton((self.featureframe), text='screen', var=(self.screenshotvalue))
+        self.display_inputbox_value = tk.BooleanVar()
+        self.display_inputbox_value.set(False)
+        self.display_inputbox_checkbox = tk.Checkbutton((self.checkbox_frame), text='input', var=(self.display_inputbox_value),command=self.displayinputbox)
 
+        self.screenshot_value = tk.BooleanVar()
+        self.screenshot_value.set(True)
+        self.screenshot_checkbox = tk.Checkbutton((self.checkbox_frame), text='screen', var=(self.screenshot_value))
+
+        # Dictionary combobox
+        self.dictionary_combobox = ttk.Combobox(self.root, state="readonly")
+        self.dictionary_combobox["values"] = ["Google", "Cambridge"]
+        self.dictionary_combobox.current(0)
+        self.dictionary_combobox.bind("<<ComboboxSelected>>", self.dictionary_changed)
+
+        # Language region
+        self.language_frame =tk.Frame(self.root)
+        self.source_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
+        self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
+        self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
+        self.setup_language_item()
+
+        # Button
+        self.translate_button = tk.Button((self.root), text='Translate',command=(self.changeText))
+        self.clear_button = tk.Button((self.root), text='Clear',command=(self.ClearText))
+
+        # Speak button region
+        self.speak_frame =tk.Frame(self.root)
+        self.speak_target_button = tk.Button((self.speak_frame), text='Speak T',command=(self.speak_t))
+        self.speak_source_button = tk.Button((self.speak_frame), text='Speak S',command=(self.speak))
+
+        self.auto_speak_value = tk.BooleanVar()
+        self.auto_speak_value.set(False)
+        self.auto_speak_checkbox = tk.Checkbutton((self.speak_frame), text='auto', var=(self.auto_speak_value),command=(self.speak_change))
+
+        #scrollbar
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
+        # Inputbox
+        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        self.inputbox.insert(tk.END, 'Try to copy/highlight/select/screenshot contents that you want to translate')
+        self.inputbox.configure(bg=config["inputbox_color"])
+        #resultbox
+        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        self.resultbox.configure(bg=config["resultbox_color"])
 
-        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(fontt), str(self.fontsize))))
-        self.resultbox.configure(bg=resultboxcolor)#82A0C2#FDF0C4
+        self.checkbox_frame.pack()
+        self.top_checkbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.select_checkbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.screenshot_checkbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.display_inputbox_checkbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
 
-        self.translatebutton = tk.Button((self.root), text='Translate',command=(self.changeText))
+        self.dictionary_combobox.pack(fill=(tk.BOTH))
+        self.source_combobox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.target_combobox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
+        self.language_frame.pack(fill=(tk.BOTH))
 
-        self.clearbutton = tk.Button((self.root), text='Clear',command=(self.ClearText))
+        self.speak_frame.pack(fill=(tk.BOTH))
+        self.speak_source_button.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.speak_target_button.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.auto_speak_checkbox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
 
-        self.speakframe =tk.Frame(self.root)
-        self.speakbutton_t = tk.Button((self.speakframe), text='Speak T',command=(self.speak_t))
-        self.speakbutton_s = tk.Button((self.speakframe), text='Speak S',command=(self.speak))
-        self.speakcheckvalue = tk.BooleanVar()
-        self.speakcheckvalue.set(False)
-        self.speakcheckbox = tk.Checkbutton((self.speakframe), text='auto', var=(self.speakcheckvalue),command=(self.speak_change))
+        self.translate_button.pack(fill=(tk.BOTH))
+        self.clear_button.pack(fill=(tk.BOTH))
 
-        self.comboboxframe =tk.Frame(self.root)
-        self.sourcecombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
-        self.targetcombobox = ttk.Combobox(self.comboboxframe, state="readonly", width=10)
-        self.targetcombobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
-
-        self.checkvalue = tk.BooleanVar()
-        self.checkvalue.set(False)
-        self.checktop = tk.Checkbutton((self.featureframe), text='top', var=(self.checkvalue),command=(self.checkchange))
-
-        self.highlightcheckvalue = tk.BooleanVar()
-        self.highlightcheckvalue.set(True)
-        self.highlightcheckbox = tk.Checkbutton((self.featureframe), text='select', var=(self.highlightcheckvalue),command=(self.changehighlightclick))
-
-        self.selectcombobox = ttk.Combobox(self.root, state="readonly")
-        self.setuplanguageitem()
-        self.selectcombobox["values"] = ["Google", "Cambridge"]
-        self.selectcombobox.current(0)
-        self.selectcombobox.bind("<<ComboboxSelected>>", self.combochangedict)
-
-
-        self.featureframe.pack()
-        self.checktop.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.highlightcheckbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.screenshotbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.displayinputbox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.selectcombobox.pack(fill=(tk.BOTH))
-        self.sourcecombobox.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.targetcombobox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
-        self.comboboxframe.pack(fill=(tk.BOTH))
-        self.speakframe.pack(fill=(tk.BOTH))
-        self.speakbutton_s.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.speakbutton_t.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
-        self.speakcheckbox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
-        self.translatebutton.pack(fill=(tk.BOTH))
-        self.clearbutton.pack(fill=(tk.BOTH))
         self.inputbox.pack(fill=(tk.BOTH))
         self.resultbox.pack(fill=(tk.BOTH))
         self.scrollbar.config(command=(self.resultbox.yview))
 
         self.inputbox.pack_forget()
-        self.translatebutton.pack_forget()
+        self.translate_button.pack_forget()
 
-        # if mouse move in windowns, cancel auto hide windows function
+        # if your mouse move into windowns, it will not hide it-self
         self.movein = False
-        self.dotop = False
+        self.checktop = False
         self.topagain = False
 
-        self.linelength = int((self.resultbox.winfo_width()/(self.fontsize-4*(self.fontsize/11))-1))
+        self.linelength = int((self.resultbox.winfo_width()/(config["font_size"]-4*(config["font_size"]/11))-1))
         self.nowcopy = ''
         self.tmpcopy = ''
 
@@ -165,60 +163,57 @@ class MainWindow():
         self.root.title('Highlight Translator')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
 
-
         #check is it double click or not
         self.clickstarttime = datetime.datetime.now()
         self.clickendtime = datetime.datetime.now()
         self.clickstarttime_tmp = datetime.datetime.now()
         self.clickendtime_tmp = datetime.datetime.now()
         # check finction
-        self.muls = Listener(on_click=self.mouseclick)
-        self.muls.start()
+        self.mouse_listener = Listener(on_click=self.mouseclick)
+        self.mouse_listener.start()
 
         # check clipboard change or not
-        self.t = threading.Thread(target=(self.CheckCopyWhile))
-        self.t.start()
-
-
+        self.check_clipboard_thread = threading.Thread(target=(self.CheckCopyWhile))
+        self.check_clipboard_thread.start()
 
         self.root.mainloop()
 
 
-    def setWindowsSize(self):
+    def set_WindowsSize(self):
         originX = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
         originY =win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
         scaleX = originX/1280
         scaleY = originY/720
-        self.fontsize = int(self.fontsize*scaleX)
+        config["font_size"] = int(config["font_size"]*scaleX)
         self.root.geometry('{}x{}'.format((int)(210*scaleX),(int)(320*scaleY)))
 
 
-    def setuplanguageitem(self):
-         self.sourcecombobox["values"] = sorted(sourcelanguagelist.keys())
-         self.targetcombobox["values"] = sorted(targetlanguagelist.keys())
-         self.sourcecombobox.current(self.sourcecombobox["values"].index(defaultsourcelanguage))
-         self.targetcombobox.current(self.targetcombobox["values"].index(defaulttargetlanguage))
+    def setup_language_item(self):
+         self.source_combobox["values"] = sorted(source_languages.keys())
+         self.target_combobox["values"] = sorted(target_languages.keys())
+         self.source_combobox.current(self.source_combobox["values"].index(config["source_language"]))
+         self.target_combobox.current(self.target_combobox["values"].index(config["target_language"]))
 
 
     def displayinputbox(self):
-        if self.displayinputboxvalue.get() == True:
+        if self.display_inputbox_value.get() == True:
             self.resultbox.pack_forget()
-            self.translatebutton.pack(fill=(tk.BOTH))
+            self.translate_button.pack(fill=(tk.BOTH))
             self.inputbox.pack(fill=(tk.BOTH))
             self.resultbox.pack(fill=(tk.BOTH))
         else:
             self.inputbox.pack_forget()
-            self.translatebutton.pack_forget()
+            self.translate_button.pack_forget()
 
 
-    def combochangedict(self, event):
-        if self.selectcombobox.get() == "Cambridge":
-            self.sourcecombobox["values"] = ["English"]
-            self.targetcombobox["values"] = ["Chinese (Traditional)"]
-            self.sourcecombobox.current(0)
-            self.targetcombobox.current(0)
+    def dictionary_changed(self, event):
+        if self.dictionary_combobox.get() == "Cambridge":
+            self.source_combobox["values"] = ["English"]
+            self.target_combobox["values"] = ["Chinese (Traditional)"]
+            self.source_combobox.current(0)
+            self.target_combobox.current(0)
         else:
-            self.setuplanguageitem()
+            self.setup_language_item()
         self.changeText(False)
 
 
@@ -228,7 +223,7 @@ class MainWindow():
     def speak_t(self):
         # remove(MP3FILEPATH)
         text = self.translate_result
-        language = targetlanguagelist[self.targetcombobox.get()]
+        language = target_languages[self.target_combobox.get()]
 
         myobj = gTTS(text=text, lang=language.lower(), slow=False)
         mixer.init()
@@ -237,13 +232,13 @@ class MainWindow():
         self.run_speak_file()
 
     def speak_change(self):
-        if self.speakcheckvalue.get() == True:
+        if self.auto_speak_value.get() == True:
             self.speak()
 
     def speak(self):
         def speak_func():
             text = self.inputbox.get(1.0, tk.END)
-            language = sourcelanguagelist[self.sourcecombobox.get()]
+            language = source_languages[self.source_combobox.get()]
             if language == 'auto':
                 language = detect_language.lower()
 
@@ -263,15 +258,15 @@ class MainWindow():
 
 
     def changehighlightclick(self):
-        if self.highlightcheckvalue.get() == True:
-            self.muls = Listener(on_click=self.mouseclick)
-            self.muls.start()
+        if self.select_value.get() == True:
+            self.mouse_listener = Listener(on_click=self.mouseclick)
+            self.mouse_listener.start()
         else:
-            self.muls.stop()
+            self.mouse_listener.stop()
 
 
     def checkchange(self):
-        if self.checkvalue.get() == True:
+        if self.top_value.get() == True:
             self.root.wm_attributes('-topmost', 1)
         else:
             self.root.wm_attributes('-topmost', 0)
@@ -279,9 +274,9 @@ class MainWindow():
 
     def closewindows(self):
         self.closed = True
-        if self.highlightcheckvalue.get() == True:
-            self.muls.stop()
-        self.t.join()
+        if self.select_value.get() == True:
+            self.mouse_listener.stop()
+        self.check_clipboard_thread.join()
         self.root.destroy()
 
     def printerror(self,e):
@@ -317,7 +312,7 @@ class MainWindow():
                 self.root.clipboard_append('')
                 self.nowcopy = self.tmpcopy
                 return False
-        elif self.root.state() != 'iconic' and self.screenshotvalue.get():
+        elif self.root.state() != 'iconic' and self.screenshot_value.get():
             try:
                 im = ImageGrab.grabclipboard()
             except OSError:
@@ -331,20 +326,20 @@ class MainWindow():
             if isinstance(im, Image.Image):
                 try:
                     im = ImageOps.grayscale(im)
-                    if self.sourcecombobox.get() == "English" or self.sourcecombobox.get() =="Detect language":
+                    if self.source_combobox.get() == "English" or self.source_combobox.get() =="Detect language":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='eng')
-                    elif self.sourcecombobox.get() == "Chinese":
+                    elif self.source_combobox.get() == "Chinese":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='chi_tra').replace(" ", "")
-                    elif self.sourcecombobox.get() == "Korean":
+                    elif self.source_combobox.get() == "Korean":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='kor+kor_vert').replace(" ", "")
-                    elif self.sourcecombobox.get() == "Japanese":
+                    elif self.source_combobox.get() == "Japanese":
                         self.nowcopy = pytesseract.image_to_string(im,
                                                                    lang='jpn').replace(" ", "")
                     else:
-                        tk.messagebox.showinfo(title=f"Not Support {self.sourcecombobox.get()}", message="Screenshot Translate only support English, Chinese, Korean and Japanese")
+                        tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese, Korean and Japanese")
                 except Exception as e:
                     self.printerror(e)
                     self.resultbox.insert(
@@ -372,20 +367,20 @@ class MainWindow():
 
 
     def changetop(self):
-        if self.dotop:
+        if self.checktop:
             self.topagain = True
             return
-        self.dotop = True
+        self.checktop = True
         self.root.wm_attributes('-topmost', 1)
         l = True
         while l:
             l = False
-            sleep(hidetime)
+            sleep(config["hide"])
             if self.topagain:
                 l = True
             self.topagain = False
-        self.dotop = False
-        if self.checkvalue.get() == False:
+        self.checktop = False
+        if self.top_value.get() == False:
             self.root.wm_attributes('-topmost', 0)
             if self.movein == False:
                 self.root.lower()
@@ -396,16 +391,18 @@ class MainWindow():
     def CheckCopyWhile(self):
         while not self.closed:
             if self.CheckCopy():
-                self.clearbutton.configure(text = 'Translating...')
+                self.clear_button.configure(text = 'Translating...')
                 self.changet = threading.Thread(
                     target=(self.changeText(False)))
                 self.changet.start()
-            sleep(copychecktime)
+            sleep(config["copycheck"])
 
 
     def restructure_sentences(self, text):
         textlist = text.split('@')
         newsentence = []
+
+        # clear space
         i = 0
         while i < len(textlist):
             textlist[i] = textlist[i].strip()
@@ -413,7 +410,9 @@ class MainWindow():
                 del textlist[i]
                 i -= 1
             i += 1
-        tmpsentence = textlist[0].strip()
+        textlist[0] = textlist[0].strip()
+        tmpsentence = textlist[0]
+
         for i in range(1, len(textlist)):
             textlist[i] = textlist[i].strip()
             if len(textlist[i]) == 0:
@@ -426,13 +425,16 @@ class MainWindow():
                 continue
             tmpsentence += " "+textlist[i]
         newsentence.append(tmpsentence)
+
         if len(newsentence) > 50:
             self.resultbox.insert(
                 tk.END, ("*"*int((self.linelength-25)/2)) + "The number of sentences exceeds the limit(50)" +
                 ("*"*int((self.linelength-25)/2)+"\n"))
             self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
         newsentence = newsentence[:50]
         resultsentence = "\n".join(newsentence)
+
         return resultsentence
 
 
@@ -449,7 +451,7 @@ class MainWindow():
                 text = text[1:]
             else:
                 break
-        if restructureSentences:
+        if config["restructure_sentences"]:
             text = self.restructure_sentences(text)
         else:
             text = text.replace("@", "\n")
@@ -459,45 +461,47 @@ class MainWindow():
     def changeText(self, click=True):
         global detect_language
         self.movein = False
-        self.linelength = int((self.resultbox.winfo_width()/(self.fontsize)*1.2))
+        self.linelength = int((self.resultbox.winfo_width()/(config["font_size"])*1.2))
         text = self.inputbox.get(1.0, tk.END)
         try:
             # if not a word change to google because Cambridge can only translate a word
-            if len(text.split(' ')) > 1 and self.selectcombobox.get() != "Google":
-                self.selectcombobox.current(0)
-                self.combochangedict(None)
+            if len(text.split(' ')) > 1 and self.dictionary_combobox.get() != "Google":
+                self.dictionary_combobox.current(0)
+                self.dictionary_changed(None)
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
                     ("*"*int((self.linelength-16)/2)+"\n"))
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             # automatic change to google dictionary if input is a word
-            if automaticchange and not click and self.selectcombobox.get() != "Google" and len(text.split(' ')) == 1:
-                self.selectcombobox.current(1)
-                self.combochangedict(None)
+            if config["auto_change_dictionary"] and not click and self.dictionary_combobox.get() != "Google" and len(text.split(' ')) == 1:
+                self.dictionary_combobox.current(1)
+                self.dictionary_changed(None)
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
                     ("*"*int((self.linelength-18)/2)+"\n"))
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
 
             # Google Translate
-            if self.selectcombobox.get() == "Google":
-                if googlenotttk:
-                    result, allresult = gt.get_translate_nottk(
-                        text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
+            if self.dictionary_combobox.get() == "Google":
+                if config["google_nottk"]:
+                    result, allresult, detect_language, revise = gt.get_translate_nottk(
+                        text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
                 else:
-                    if longttk and len(text.split(' ')) > 1:
-                        result, allresult = gt.get_translate_nottk(
-                            text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
+                    if config["long_change_nottk"] and len(text.split(' ')) > 2:
+                        result, allresult, detect_language, revise = gt.get_translate_nottk(
+                            text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
                     else:
-                        result, allresult, detect_language = gt.get_translate(
-                            text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
+                        result, allresult, detect_language, revise = gt.get_translate(
+                            text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
+                        print(revise)
             else:
                 result, allresult = ct.get_translate(text)
+                revise=None
                 detect_language='en'
-            if result == "" and self.selectcombobox.get() != "Google":
-                self.selectcombobox.current(0)
-                self.combochangedict(None)
-                result, allresult, detect_language = gt.get_translate(text, sourcelanguagelist[self.sourcecombobox.get()],targetlanguagelist[self.targetcombobox.get()])
+            if result == "" and self.dictionary_combobox.get() != "Google":
+                self.dictionary_combobox.current(0)
+                self.dictionary_changed(None)
+                result, allresult, detect_language, revise = gt.get_translate(text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
                     ("*"*int((self.linelength-16)/2)+"\n"))
@@ -513,10 +517,13 @@ class MainWindow():
             self.top.start()
             return False
 
-        if not self.checkvalue.get():
+        if not self.top_value.get():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
         self.resultbox.insert(tk.END, text)
+        print(revise)
+        if revise:
+            self.resultbox.insert(tk.END, '({})\n'.format(revise))
         self.translate_result += text
         self.resultbox.insert(
             tk.END, "-"*((int)(self.linelength*1.8))+"\n")
@@ -542,15 +549,14 @@ class MainWindow():
             if i != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n")
                 self.resultbox.insert(tk.END, "\n")
-            # if self.selectcombobox.get() != "Google":
-            #     self.resultbox.insert(tk.END, "\n")
+
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
-        if self.speakcheckvalue.get() == True:
-            if speak_length_limit >= len(text.split(' ')):
+        if self.auto_speak_value.get() == True:
+            if config["auto_speak_length_limit"] >= len(text.split(' ')):
                 self.speak()
-        self.clearbutton.configure(text = 'Clear')
+        self.clear_button.configure(text = 'Clear')
 
     def motion(self, event):
         self.movein = True
@@ -568,10 +574,10 @@ class MainWindow():
             self.clickstarttime = datetime.datetime.now()
         if button == Button.left and pressed == False:
             self.clickendtime_tmp = datetime.datetime.now()
-            if (self.clickendtime_tmp - self.clickendtime).total_seconds() < doubleclicktime:
+            if (self.clickendtime_tmp - self.clickendtime).total_seconds() < config["doubleclickcheck"]:
                 self.clickendtime = self.clickendtime_tmp
                 self.copyclick()
-            elif (self.clickendtime_tmp - self.clickstarttime).total_seconds() > selecttime:
+            elif (self.clickendtime_tmp - self.clickstarttime).total_seconds() > config["selectcheck"]:
                 self.clickendtime = self.clickendtime_tmp
                 self.copyclick()
             else:
