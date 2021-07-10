@@ -32,6 +32,9 @@ pygame
 gTTS
 ```
 ## :loudspeaker: New Feature
+### Setting Interface
+You can set the config on the menu
+> 2021/07/10 update
 ### Text to Speech
 It can speak the input sentence or the result of translating
 > 2021/07/04 update

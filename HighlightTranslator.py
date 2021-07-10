@@ -1,8 +1,9 @@
 # import pyautogui
 # -*- coding: utf-8 -*-
+from tkinter.constants import RIGHT
 from gtts import gTTS
 from pygame import mixer
-from os import remove
+from os import remove,system
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
 from datetime import date
@@ -36,9 +37,12 @@ pytesseract.pytesseract.tesseract_cmd = 'tesseract/tesseract.exe'
 tesseract_languages=["eng","chi_tra","kor","jpn"]
 
 # load config (detail in readme)
-with open("config.json") as f:
-    config = json.loads(f.read())
-
+config={}
+def load_config():
+    global config
+    with open("config.json") as f:
+        config = json.loads(f.read())
+load_config()
 detect_language=None
 MP3FILEPATH='speech_file/output.mp3'
 
@@ -63,6 +67,12 @@ class MainWindow():
 
         # Top of feature checkboxes
         self.checkbox_frame =tk.Frame(self.root)
+
+        # Menu
+        self.menubar =tk.Menu(self.root)
+        self.menubar.add_cascade(label="Setting",command=self.open_setting)
+        self.menubar.add_cascade(label="How to use",command=self.open_website)
+        self.root.config(menu=self.menubar)
 
         self.top_value = tk.BooleanVar()
         self.top_value.set(False)
@@ -91,6 +101,7 @@ class MainWindow():
         self.source_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
         self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
         self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
+        self.source_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.setup_language_item()
 
         # Button
@@ -110,11 +121,11 @@ class MainWindow():
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
         # Inputbox
-        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(config["font"]), str(self.font_size))))
         self.inputbox.insert(tk.END, 'Try to copy/highlight/select/screenshot contents that you want to translate')
         self.inputbox.configure(bg=config["inputbox_color"])
         #resultbox
-        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(config["font"]), str(self.font_size))))
         self.resultbox.configure(bg=config["resultbox_color"])
 
         self.checkbox_frame.pack()
@@ -148,7 +159,7 @@ class MainWindow():
         self.checktop = False
         self.topagain = False
 
-        self.linelength = int((self.resultbox.winfo_width()/(config["font_size"]-4*(config["font_size"]/11))-1))
+        self.linelength = int((self.resultbox.winfo_width()/(self.font_size-4*(self.font_size/11))-1))
         self.nowcopy = ''
         self.tmpcopy = ''
 
@@ -178,13 +189,18 @@ class MainWindow():
 
         self.root.mainloop()
 
+    def open_setting(self):
+        self.setting_windows=SettingWindow(self.root)
+
+    def open_website(self):
+        system('start {}'.format('https://github.com/Coolshanlan/HighlightTranslator'))
 
     def set_WindowsSize(self):
         originX = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
         originY =win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
         scaleX = originX/1280
         scaleY = originY/720
-        config["font_size"] = int(config["font_size"]*scaleX)
+        self.font_size=int(config["font_size"]*scaleX)
         self.root.geometry('{}x{}'.format((int)(210*scaleX),(int)(320*scaleY)))
 
 
@@ -252,7 +268,7 @@ class MainWindow():
 
 
     def run_speak_file(self):
-        mixer.music.set_volume(0.2)
+        mixer.music.set_volume(config['audio_volume'])
         mixer.music.load(MP3FILEPATH)
         mixer.music.play()
 
@@ -309,8 +325,8 @@ class MainWindow():
                 self.nowcopy = self.root.clipboard_get()#self.root.selection_get(selection="CLIPBOARD")
             except Exception as e:
                 self.printerror(e)
-                self.root.clipboard_append('')
-                self.nowcopy = self.tmpcopy
+                #self.root.clipboard_append('')
+                #self.nowcopy = self.tmpcopy
                 return False
         elif self.root.state() != 'iconic' and self.screenshot_value.get():
             try:
@@ -461,7 +477,7 @@ class MainWindow():
     def changeText(self, click=True):
         global detect_language
         self.movein = False
-        self.linelength = int((self.resultbox.winfo_width()/(config["font_size"])*1.2))
+        self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         text = self.inputbox.get(1.0, tk.END)
         try:
             # if not a word change to google because Cambridge can only translate a word
@@ -473,7 +489,9 @@ class MainWindow():
                     ("*"*int((self.linelength-16)/2)+"\n"))
                 self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             # automatic change to google dictionary if input is a word
-            if config["auto_change_dictionary"] and not click and self.dictionary_combobox.get() != "Google" and len(text.split(' ')) == 1:
+
+            if config["auto_change_dictionary"] and not click and self.dictionary_combobox.get() == "Google" and len(text.split(' ')) == 1:
+                print('haha')
                 self.dictionary_combobox.current(1)
                 self.dictionary_changed(None)
                 self.resultbox.insert(
@@ -493,7 +511,6 @@ class MainWindow():
                     else:
                         result, allresult, detect_language, revise = gt.get_translate(
                             text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
-                        print(revise)
             else:
                 result, allresult = ct.get_translate(text)
                 revise=None
@@ -521,7 +538,6 @@ class MainWindow():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
         self.resultbox.insert(tk.END, text)
-        print(revise)
         if revise:
             self.resultbox.insert(tk.END, '({})\n'.format(revise))
         self.translate_result += text
@@ -589,6 +605,82 @@ class MainWindow():
 
     def ClearText(self):
         self.resultbox.delete(0.0, tk.END)
+
+class SettingWindow():
+
+    def __init__(self,root):
+        self.root = tk.Tk()
+        self.root.wm_attributes('-topmost', 1)
+        self.root.title='Setting'
+        self.textlist = []
+        self.maxlen = max([len(str(v)) for v in config.values()])
+        tk.Label(self.root,text='Some setting need to reload the application', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size']))), fg='#FF0000').pack()
+
+        language_frame = tk.Frame(self.root)
+        language_frame.pack(fill=(tk.BOTH))
+        tk.Label(language_frame,text='Source Language', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size'])))).pack( side=tk.LEFT)
+        self.source_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format(str(config["font"]), str(config['font_size']))),width=self.maxlen-2)
+        self.source_combobox.pack(side=tk.RIGHT)
+
+        language_frame = tk.Frame(self.root)
+        language_frame.pack(fill=(tk.BOTH))
+        tk.Label(language_frame,text='Target Language', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size'])))).pack( side=tk.LEFT)
+        self.target_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format(str(config["font"]), str(config['font_size']))), width=self.maxlen-2)
+        self.target_combobox.pack(side=tk.RIGHT)
+
+        self.setup_language_item()
+
+        for k,v in config.items():
+            if k in ['source_language','target_language']:
+                continue
+            self.textlist.append(self.create_line(k,v))
+        self.root.protocol('WM_DELETE_WINDOW', self.close_windows)
+
+    def close_windows(self):
+        self.save_config()
+        self.root.destroy()
+
+    def setup_language_item(self):
+         self.source_combobox["values"] = sorted(source_languages.keys())
+         self.target_combobox["values"] = sorted(target_languages.keys())
+         self.source_combobox.current(self.source_combobox["values"].index(config["source_language"]))
+         self.target_combobox.current(self.target_combobox["values"].index(config["target_language"]))
+
+
+    def save_config(self):
+        new_config={}
+        new_config['source_language']=self.source_combobox.get().replace('\n','')
+        new_config['target_language']=self.target_combobox.get().replace('\n','')
+        reduce=0
+        for idx,key in enumerate(config.keys()):
+            if key in ['source_language','target_language']:
+                reduce+=1
+                continue
+            tmp_value = self.textlist[idx-reduce].get(1.0, tk.END)
+            try:
+                tmp_value = float(tmp_value)
+                if tmp_value - tmp_value//1 == 0:
+                    tmp_value = int(tmp_value)
+            except:
+                tmp_value = str(tmp_value).replace('\n','').strip()
+            new_config[key]=tmp_value
+
+        with open('config.json', 'w') as fp:
+            json.dump(new_config, fp)
+        load_config()
+
+    def create_line(self,key,value):
+        frame = tk.Frame(self.root)
+        frame.pack(fill=(tk.BOTH))
+
+        tk.Label(frame,text=key, justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config["font_size"])))).pack( side=tk.LEFT)
+        textbox=tk.Text(frame,height=1,width=self.maxlen, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        textbox.insert(tk.END, str(value))
+        textbox.pack( side=tk.RIGHT)
+
+        return textbox
+
+
 
 app = MainWindow()
 app.closed =True
