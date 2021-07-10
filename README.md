@@ -1,4 +1,4 @@
-# :books: Highlight Translate :books:
+# :books: Highlight Translator :books:
 Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
 :warning: **Only support in Windows, might add linux version in the future.** :warning:
