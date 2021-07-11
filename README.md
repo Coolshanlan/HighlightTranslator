@@ -3,8 +3,6 @@ Highlight Translator can help you quickly translate, just highlight, copy or scr
 
 :warning: **Only support in Windows, might add linux version in the future.** :warning:
 
-**I will restructure my code lately**
-
 
 Translation resource: [Google Translate](https://translate.google.com.tw) and [Cambridge dictionary](https://dictionary.cambridge.org)
 
