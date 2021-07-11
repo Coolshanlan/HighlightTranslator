@@ -222,12 +222,13 @@ class MainWindow():
 
     def dictionary_change(self):
         if self.dictionary_combobox.get() == "Google":
+            self.setup_language_item()
+        else:
             self.source_combobox["values"] = ["English"]
             self.target_combobox["values"] = ["Chinese (Traditional)"]
             self.source_combobox.current(0)
             self.target_combobox.current(0)
-        else:
-            self.setup_language_item()
+
 
 
     def dictionary_change_event(self,event):
