@@ -17,7 +17,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 ### Step 1. Download Executable File
 [Download Zip File](https://bit.ly/37QQvgN)
 ### Step 2. Execute
-Find the HighlightTranslator.exe in the folder and then double click
+Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## Requirement
@@ -68,22 +68,22 @@ Cambridge Dictionary only support English to Chinese
 
 
 ## :bookmark_tabs: Config.json
-``` json
+``` python
 {
-  "source_language":"Detect language",
-  "target_language":"Chinese (Traditional)",
-  "hide":6,
-  "auto_speak_length_limit":10,
-  "font":"Arial",
-  "font_size":11,
-  "audio_volume":0.95,
-  "auto_change_dictionary":0,
-  "restructure_sentences":1,
-  "inputbox_color":"#F2D8B3",
-  "resultbox_color":"#FDF0C4",
-  "copycheck":0.3,
-  "doubleclickcheck":0.3,
-  "selectcheck":0.3
+  "source_language": "Detect language",
+  "target_language": "Chinese (Traditional)",
+  "hide": 6,
+  "auto_speak_length_limit": 10,
+  "font": "Arial",
+  "font_size": 11,
+  "audio_volume": 0.95,
+  "auto_change_dictionary": 0,
+  "restructure_sentences": 1,
+  "inputbox_color": "#F2D8B3",
+  "resultbox_color": "#FDF0C4",
+  "copycheck": 0.3,
+  "doubleclickcheck": 0.3,
+  "selectcheck": 0.3
 }
 ```
 - source_language: Default source language
