@@ -226,18 +226,16 @@ class MainWindow():
             self.target_combobox["values"] = ["Chinese (Traditional)"]
             self.source_combobox.current(0)
             self.target_combobox.current(0)
-            self.dictionary_combobox.current(1)
         else:
             self.setup_language_item()
-            self.dictionary_combobox.current(0)
 
 
     def dictionary_change_event(self,event):
         self.dictionary_change()
-        self.changeText(False)
+        self.changeText(True)
 
     def target_combobox_change(self, event):
-        self.changeText(False)
+        self.changeText(True)
 
     def speak_t(self):
         # remove(MP3FILEPATH)
@@ -489,6 +487,7 @@ class MainWindow():
         try:
             # if not a word change to google because Cambridge can only translate a word
             if len(text.split(' ')) > 1 and self.dictionary_combobox.get() != "Google":
+                self.dictionary_combobox.current(0)
                 self.dictionary_change()
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
@@ -497,6 +496,7 @@ class MainWindow():
 
             # automatic change to google dictionary if input is a word
             elif config["auto_change_dictionary"] and not click and self.dictionary_combobox.get() == "Google" and len(text.split(' ')) == 1:
+                self.dictionary_combobox.current(1)
                 self.dictionary_change()
                 self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
@@ -513,6 +513,7 @@ class MainWindow():
                 revise=None
                 detect_language='en'
                 if result == "":
+                    self.dictionary_combobox.current(0)
                     self.dictionary_change()
                     result, allresult, detect_language, revise = gt.get_translate(text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
                     self.resultbox.insert(
