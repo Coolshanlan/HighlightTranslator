@@ -86,33 +86,33 @@ Cambridge Dictionary only support English to Chinese
   "selectcheck": 0.3
 }
 ```
-- source_language: Default source language
+- **source_language**: Default source language
   > defalut Detect language
-- sourcelanguage -> Default target language
+- **sourcelanguage**: Default target language
   > defalut Chinese (Traditional)
-- hide: The window will automatically hide after few seconds
+- **hide**: The window will automatically hide after few seconds
   > default 6 sec
-- auto_speak_length_limit: When the input length is less than the limit, the automatic speaking function will be triggered
+- **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
   > default 10
-- font
+- **font**
   > default Calibri
-- font_size
+- **font_size**
   > default 11
-- audio_volume: Speaking volume (0~1)
+- **audio_volume**: Speaking volume (0~1)
   > default 0.95
-- auto_change_dictionary -> When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
+- **auto_change_dictionary**: When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
   > default 0
-- restructure_sentences: It will restructure your input sentence (0 or 1)
+- **restructure_sentences**: It will restructure your input sentence (0 or 1)
   > default 1
-- inputbox_color -> The background color of input box
+- **inputbox_color**: The background color of input box
   > defult #F2D8B3
-- resultbox_color -> The background color of result box
+- **resultbox_color**: The background color of result box
   > defult #FDF0C4
-- copycheck -> Check clipboard frequency
+- **copycheck**: Check clipboard frequency
   > default 0.3 sec
-- doubleclick -> 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
+- **doubleclick**: 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
   > default 0.3 sec
-- select -> 長壓幾秒判斷為選取
+- **select**: 長壓幾秒判斷為選取
   > default 0.3 sec
 
 
