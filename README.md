@@ -13,9 +13,12 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
-## :small_red_triangle_down: Download Executable File :small_red_triangle_down:
+## :small_red_triangle_down: How to ues :small_red_triangle_down:
+### Step 1. Download Executable File
 [Download Zip File](https://bit.ly/37QQvgN)
-
+### Step 2. Execute
+Find the HighlightTranslator.exe in the folder and then double click
+![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## Requirement
 python 3.6
 ``` python
@@ -65,21 +68,44 @@ Cambridge Dictionary only support English to Chinese
 
 ## :bookmark_tabs: Config.json
 ``` json
-{"hide":6,"font":"Arial","font-size":11,"sourcelanguage":"Detect language","targetlanguage":"Chinese (Traditional)","inputboxcolor":"#F2D8B3","resultboxcolor":"#FDF0C4","copycheck":0.3,"doubleclick":0.3,"select":0.3,"googlenotttk":0,"longttk":0,"automaticchange":0,"restructureSentences":1}
+{
+  "source_language":"Detect language",
+  "target_language":"Chinese (Traditional)",
+  "hide":6,
+  "auto_speak_length_limit":10,
+  "font":"Arial",
+  "font_size":11,
+  "audio_volume":0.95,
+  "auto_change_dictionary":0,
+  "restructure_sentences":1,
+  "inputbox_color":"#F2D8B3",
+  "resultbox_color":"#FDF0C4",
+  "copycheck":0.3,
+  "doubleclickcheck":0.3,
+  "selectcheck":0.3
+}
 ```
-- hide: window automatically hide seconds
-  > default 6 sec
-- font
-  > default Calibri
-- font-size
-  > default 11
-- sourcelanguage: Default source language
+- source_language: Default source language
   > defalut Detect language
 - sourcelanguage -> Default target language
   > defalut Chinese (Traditional)
-- inputboxcolor -> input box bg color
+- hide: The window will automatically hide after few seconds
+  > default 6 sec
+- auto_speak_length_limit: When the input length is less than the limit, the automatic speaking function will be triggered
+  > default 10
+- font
+  > default Calibri
+- font_size
+  > default 11
+- audio_volume: Speaking volume (0~1)
+  > default 0.95
+- auto_change_dictionary -> When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
+  > default 0
+- restructure_sentences: It will restructure your input sentence (0 or 1)
+  > default 1
+- inputbox_color -> The background color of input box
   > defult #F2D8B3
-- resultboxcolor -> result box bg color
+- resultbox_color -> The background color of result box
   > defult #FDF0C4
 - copycheck -> Check clipboard frequency
   > default 0.3 sec
@@ -87,16 +113,9 @@ Cambridge Dictionary only support English to Chinese
   > default 0.3 sec
 - select -> 長壓幾秒判斷為選取
   > default 0.3 sec
-- googlenotttk -> google translate don't need ttk version
-  > default 0
-- longttk -> If sentence too long, use not ttk version
-  > default 0
-- automaticchange -> if want to translate a word, automatic change to cambridge
-  > default 0
-- restructureSentences
-  > default 1
 
-## How to use
+
+## How to install
 ```
 pip install -r requirements.txt
 python Highlight_Translator.py
