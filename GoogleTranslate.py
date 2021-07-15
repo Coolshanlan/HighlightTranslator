@@ -20,12 +20,14 @@ class GoogleTranslator():
 
     def __call__(self,input_text, sourcelanguage='auto',targetlanguage='tr',ttk_enable=False):
 
-        text = self.convert_qtext(input_text)
+        #text = self.convert_qtext(input_text)
         self.parames=general_params
         self.parames['sl']=sourcelanguage
         self.parames['tl']=targetlanguage
         self.parames['hl']=targetlanguage
         self.parames['q']=input_text
+        self.parames['ie']='UTF-8'
+        self.parames['oe']='UTF-8'
 
         if self.name == 'clients5':
             self.parames['client']=self.client_list[-1]
@@ -50,9 +52,10 @@ class GoogleTranslator():
         req = eval(request_text.replace('null', '""').replace('"""', '"').replace(
             'true', "True").replace('false', "False"))
 
-        detect_language = req['ld_result']['extended_srclangs']#req['src']
-        result = [req['sentences'][0]['trans']]
-
+        detect_language = req['ld_result']['extended_srclangs'][0]#req['src']
+        if self.name  == 'clients5':
+            req['sentences']=req['sentences'][:-1]
+        result = [ trans['trans'] for trans in req['sentences']]
         if 'spell' in req and 'spell_res' in req['spell']:
             revise=req['spell']['spell_res']
         else:
@@ -68,8 +71,8 @@ class GoogleTranslator():
 
 #service
 service_dict={
-    'clients5':'https://clients5.google.com/translate_a/t',
     'com_apis':'https://translate.googleapis.com/translate_a/single',
+    'clients5':'https://clients5.google.com/translate_a/t',
     'com':'https://translate.google.com/translate_a/single',
     'tw':'https://translate.google.com.tw/translate_a/single',
     'cn':'https://translate.google.cn/translate_a/single',
@@ -80,7 +83,7 @@ service_dict={
 general_params = {"dt": ["t", "bd", "qca","t", "at"],"dj": "1"}
 translator_list = [GoogleTranslator(name,url,general_params) for name,url in service_dict.items()]
 
-translator_idx=4
+translator_idx=0
 ttk_enable=False
 
 RETRY_TIME=60*5

@@ -575,7 +575,7 @@ class MainWindow():
         if self.auto_speak_value.get() == True:
             if len(text.split(' ')) <= config["auto_speak_length_limit"]:
                 text_max_length = max([len(str(t)) for t in text.split(' ')])
-                print(text_max_length)
+
                 if text_max_length <= config['auto_speak_length_limit']:
                     self.speak()
 
