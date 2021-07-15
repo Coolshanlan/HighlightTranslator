@@ -53,7 +53,7 @@ for i in range(len(languagelist[0])):
     source_languages[languagelist[0][i][1]] = languagelist[0][i][0]
 for i in range(len(languagelist[1])):
     target_languages[languagelist[1][i][1]] = languagelist[1][i][0]
-
+# add language exchange function
 class MainWindow():
 
     def __init__(self):
@@ -487,7 +487,7 @@ class MainWindow():
 
         try:
             # if not a word change to google because Cambridge can only translate a word
-            if len(text.split(' ')) > 1 and self.dictionary_combobox.get() != "Google":
+            if len(text.split(' ')) > 1 and not click and self.dictionary_combobox.get() != "Google":
                 self.dictionary_combobox.current(0)
                 self.dictionary_change()
                 self.resultbox.insert(
@@ -556,9 +556,9 @@ class MainWindow():
         self.translate_result=''
         # print all result
         for i in range(len(allresult)):
-            self.translate_result += allresult[i]['type'].capitalize()+":"+"\n"
-            self.resultbox.insert(tk.END, allresult[i]['type'].capitalize()+":"+"\n")
-            v = allresult[i]['words'][:4]
+            self.translate_result += allresult[i]['pos'].capitalize()+":"+"\n"
+            self.resultbox.insert(tk.END, allresult[i]['pos'].capitalize()+":"+"\n")
+            v = allresult[i]['terms'][:4]
             for j in range(len(v)):
                 self.resultbox.insert(tk.END, v[j])
                 self.translate_result+=v[j]
@@ -573,8 +573,11 @@ class MainWindow():
 
         # auto speak
         if self.auto_speak_value.get() == True:
-            if config["auto_speak_length_limit"] >= len(text.split(' ')):
-                self.speak()
+            if len(text.split(' ')) <= config["auto_speak_length_limit"]:
+                text_max_length = max([len(str(t)) for t in text.split(' ')])
+                print(text_max_length)
+                if text_max_length <= config['auto_speak_length_limit']:
+                    self.speak()
 
         self.clear_button.configure(text = 'Clear')
 
@@ -615,7 +618,7 @@ class SettingWindow():
     def __init__(self,root):
         self.root = tk.Tk()
         self.root.wm_attributes('-topmost', 1)
-        self.root.title='Setting'
+        self.root.title('Setting')
         self.textlist = []
         self.maxlen = max([len(str(v)) for v in config.values()])
         tk.Label(self.root,text='Some setting need to reload the application', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size']))), fg='#FF0000').pack()

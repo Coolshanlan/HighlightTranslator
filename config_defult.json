@@ -2,7 +2,7 @@
   "source_language":"Detect language",
   "target_language":"Chinese (Traditional)",
   "hide":6,
-  "auto_speak_length_limit":10,
+  "auto_speak_length_limit":15,
   "font":"Arial",
   "font_size":11,
   "audio_volume":0.95,
