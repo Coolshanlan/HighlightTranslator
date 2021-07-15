@@ -1,5 +1,0 @@
-07/15/2021 15:53:28
-File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 94, in get_translate:
- [ValueError]
-too many values to unpack (expected 2)
--------------------------
