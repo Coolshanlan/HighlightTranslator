@@ -53,6 +53,7 @@ for i in range(len(languagelist[0])):
     source_languages[languagelist[0][i][1]] = languagelist[0][i][0]
 for i in range(len(languagelist[1])):
     target_languages[languagelist[1][i][1]] = languagelist[1][i][0]
+
 # add language exchange function
 class MainWindow():
 
@@ -100,6 +101,7 @@ class MainWindow():
         self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
         self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.source_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
+        self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchagne_language))
         self.setup_language_item()
 
         # Button
@@ -140,6 +142,7 @@ class MainWindow():
         self.speak_frame.pack(fill=(tk.BOTH))
         self.speak_source_button.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
         self.speak_target_button.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
+        self.exchange_button.pack(fill=(tk.BOTH),expand=True, side=tk.LEFT)
         self.auto_speak_checkbox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
 
         self.translate_button.pack(fill=(tk.BOTH))
@@ -186,6 +189,21 @@ class MainWindow():
         self.check_clipboard_thread.start()
 
         self.root.mainloop()
+
+    def exchagne_language(self):
+        tmp_source = self.source_combobox.get()
+        tmp_target = self.target_combobox.get()
+        if self.source_combobox.get() in target_languages.keys():
+            tmp_target = self.source_combobox.get()
+        elif self.source_combobox.get() == 'Chinese':
+            tmp_target = 'Chinese (Traditional)'
+        if self.target_combobox.get() in source_languages.keys():
+            tmp_source = self.target_combobox.get()
+        elif 'Chinese' in self.target_combobox.get():
+            tmp_source='Chinese'
+
+        self.source_combobox.current(self.source_combobox['values'].index(tmp_source))
+        self.target_combobox.current(self.target_combobox['values'].index(tmp_target))
 
     def open_setting(self):
         self.setting_windows=SettingWindow(self.root)
@@ -241,6 +259,7 @@ class MainWindow():
     def speak_t(self):
         # remove(MP3FILEPATH)
         text = self.translate_result
+
         language = target_languages[self.target_combobox.get()]
 
         myobj = gTTS(text=text, lang=language.lower(), slow=False)
@@ -542,19 +561,21 @@ class MainWindow():
         self.resultbox.insert(tk.END, text)
         if revise:
             self.resultbox.insert(tk.END, '({})\n'.format(revise))
-        self.translate_result += text
+
         self.resultbox.insert(
             tk.END, "-"*((int)(self.linelength*1.8))+"\n")
 
         # print result
+        self.translate_result=''
         for i in result:
             self.resultbox.insert(tk.END, i)
+            self.translate_result += i+'\n'
             if allresult != []:
                 self.resultbox.insert(tk.END, "\n")
         if len(allresult) > 0:
             self.resultbox.insert(tk.END, "\n")
-        self.translate_result=''
         # print all result
+
         for i in range(len(allresult)):
             self.translate_result += allresult[i]['pos'].capitalize()+":"+"\n"
             self.resultbox.insert(tk.END, allresult[i]['pos'].capitalize()+":"+"\n")
@@ -567,6 +588,7 @@ class MainWindow():
                     self.resultbox.insert(tk.END, ",")
             if i != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n\n")
+                self.translate_result+="\n\n"
 
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
