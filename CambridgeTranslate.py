@@ -15,6 +15,7 @@ def get_translate(inputtext):
     if len(a) == 0:
         return "", ""
     allresult = []
+    print(a)
 
     for i in a:
         allresult.append({'pos': "", 'terms': []})
@@ -30,4 +31,4 @@ def get_translate(inputtext):
     return result, allresult
 
 if __name__ == "__main__":
-    print(get_translate("regret"))
+    print(get_translate("make-up"))

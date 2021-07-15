@@ -117,7 +117,7 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
 if __name__ == '__main__':
     #print(get_translate("And say mean things", "en","zh-TW"))
-    print(get_translate("regret", "auto","zh-TW"))
+    print(get_translate("選項", "en","zh-TW"))
 
 
 '''

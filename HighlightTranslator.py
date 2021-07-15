@@ -124,6 +124,7 @@ class MainWindow():
         self.inputbox = tk.Text(height=3, font=("{} {}".format(str(config["font"]), str(self.font_size))))
         self.inputbox.insert(tk.END, 'Try to copy/highlight/select/screenshot contents that you want to translate')
         self.inputbox.configure(bg=config["inputbox_color"])
+        self.inputbox.bind('<Return>', self.input_press)
         #resultbox
         self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(config["font"]), str(self.font_size))))
         self.resultbox.configure(bg=config["resultbox_color"])
@@ -170,6 +171,7 @@ class MainWindow():
 
         #close threads when window closed
         self.closed = False
+        self.changed_language=False
 
         self.root.bind('<Motion>', self.motion)
         self.root.title('Highlight Translator')
@@ -189,6 +191,9 @@ class MainWindow():
         self.check_clipboard_thread.start()
 
         self.root.mainloop()
+
+    def input_press(self,event):
+        self.changeText(True)
 
     def exchagne_language(self):
         tmp_source = self.source_combobox.get()
@@ -289,9 +294,12 @@ class MainWindow():
 
 
     def run_speak_file(self):
-        mixer.music.set_volume(config['audio_volume'])
-        mixer.music.load(MP3FILEPATH)
-        mixer.music.play()
+        try:
+            mixer.music.set_volume(config['audio_volume'])
+            mixer.music.load(MP3FILEPATH)
+            mixer.music.play()
+        except:
+            pass
 
 
     def changehighlightclick(self):
@@ -377,7 +385,7 @@ class MainWindow():
             except Exception as e:
                 self.printerror(e)
                 self.root.clipboard_append('')
-                self.now_copy = self.previous_copy
+                # self.now_copy = self.previous_copy
                 return False
         elif self.root.state() != 'iconic' and self.screenshot_value.get():
             try:
@@ -388,7 +396,7 @@ class MainWindow():
                 print(e)
                 self.printerror(e)
                 self.root.clipboard_append('')
-                self.now_copy = self.previous_copy
+                # self.now_copy = self.previous_copy
                 return False
             if isinstance(im, Image.Image):
                 return self.image_OCR(im)
@@ -552,7 +560,6 @@ class MainWindow():
             self.top.start()
             return False
 
-
         if not self.top_value.get():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
@@ -601,6 +608,16 @@ class MainWindow():
                 if text_max_length <= config['auto_speak_length_limit']:
                     self.speak()
 
+        if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto':
+            self.changed_language=True
+            self.resultbox.insert(
+                    tk.END, ("*"*int((self.linelength-15)/2))+"Exchange Language" +
+                    ("*"*int((self.linelength-15)/2)+"\n"))
+            self.resultbox.insert(tk.END,"="*self.linelength+"\n")
+            self.exchagne_language()
+            self.changeText(False)
+
+        self.changed_language=False
         self.clear_button.configure(text = 'Clear')
 
     def motion(self, event):
