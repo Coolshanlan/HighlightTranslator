@@ -11,7 +11,7 @@ class GoogleTranslator():
         self.name=name
         self.url = base_url
         self.base_parames=general_params
-        self.client_list=['gtx','at','webapp','dict-chrome-ex']
+        self.client_list={'nottk':['gtx','at'],'ttk':['webapp'],'clients5':['dict-chrome-ex']}
     def convert_qtext(self,text):
         return quote(text)
 
@@ -28,22 +28,29 @@ class GoogleTranslator():
         self.parames['q']=input_text
         self.parames['ie']='UTF-8'
         self.parames['oe']='UTF-8'
-
+        mode=''
         if self.name == 'clients5':
-            self.parames['client']=self.client_list[-1]
+            mode='clients5'
         elif ttk_enable:
+            mode = 'ttk'
             tkid = self.calculate_tkid(input_text)
             self.parames['tk']=tkid
-            self.parames['client']=self.client_list[2]
         else:
-            self.parames['client']=self.client_list[0]
+            mode='nottk'
+
+        self.parames['client']=self.client_list[mode][0]
 
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'}
         req = get(self.url,params=self.parames,headers=headers)
         status_code = req.status_code
 
-        if status_code != 200:
-            return False,None,None,None,None
+        while  status_code != 200:
+            self.client_list[mode].pop(0)
+            if self.client_list[mode] == []:
+                return False,(None,None,None,None)
+            self.parames['client']=self.client_list[mode][0]
+            req = get(self.url,params=self.parames,headers=headers)
+            status_code = req.status_code
 
         return True,self.parser(req.text)
 
