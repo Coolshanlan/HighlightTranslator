@@ -84,8 +84,7 @@ service_dict={
     'tw':'https://translate.google.com.tw/translate_a/single',
     'cn':'https://translate.google.cn/translate_a/single',
 }
-#dt_parames = 'dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=sos&dt=ss&dt=t'
-#dt_parames = 'dt=at&dt=bd&dt=t&dt=qca&dj=1'
+
 #params = {"dt": ["t", "bd", "ex", "ld", "md", "qca", "rw", "rm", "ss", "t", "at"], "client": "gtx", "q": text, "hl": destination_language, "sl": source_language, "tl": destination_language, "dj": "1", "source": "bubble"}
 general_params = {"dt": ["t", "bd", "qca","t", "at"],"dj": "1"}
 translator_list = [GoogleTranslator(name,url,general_params) for name,url in service_dict.items()]
