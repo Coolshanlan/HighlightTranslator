@@ -34,6 +34,9 @@ pygame
 gTTS
 ```
 ## :loudspeaker: New Feature
+### Exchange Language Button
+It can exchange source and target language
+> 2021/07/15 update
 ### Setting Interface
 You can set the config on the menu
 > 2021/07/10 update
