@@ -558,7 +558,7 @@ class MainWindow():
         for i in range(len(allresult)):
             self.translate_result += allresult[i]['pos'].capitalize()+":"+"\n"
             self.resultbox.insert(tk.END, allresult[i]['pos'].capitalize()+":"+"\n")
-            v = allresult[i]['terms'][:4]
+            v = allresult[i]['terms'][:config['number_of_terms']]
             for j in range(len(v)):
                 self.resultbox.insert(tk.END, v[j])
                 self.translate_result+=v[j]
