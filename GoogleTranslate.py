@@ -5,7 +5,13 @@ from urllib.parse import quote
 import tk as tk
 tk = tk.Token()
 class GoogleTranslator():
+
     def __init__(self,name,base_url,general_params):
+        """
+        name: domain name
+        base_url: domain url
+        general_params: general parames
+        """
         self.name=name
         self.url = base_url
         self.base_parames=general_params

@@ -74,5 +74,3 @@ for (var i = 0; i < 20; i++) {
 // input = input.replace('\\n', '\n')
 var tk = calcHash(input, '409837.2120040981');
 
-console.log(tk);
-// OUTPUT: 'tk=70528.480109'
