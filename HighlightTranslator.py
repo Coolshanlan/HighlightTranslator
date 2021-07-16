@@ -243,11 +243,20 @@ class MainWindow():
     def dictionary_change(self):
         if self.dictionary_combobox.get() == "Google":
             self.setup_language_item()
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
+                ("*"*int((self.linelength-16)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
         else:
             self.source_combobox["values"] = ["English"]
             self.target_combobox["values"] = ["Chinese (Traditional)"]
             self.source_combobox.current(0)
             self.target_combobox.current(0)
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
+                ("*"*int((self.linelength-18)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
 
 
 
@@ -514,10 +523,7 @@ class MainWindow():
                     self.dictionary_combobox.current(0)
                     self.dictionary_change()
                     result, allresult, detect_language, revise = gt.get_translate(text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
-                    self.resultbox.insert(
-                        tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
-                        ("*"*int((self.linelength-16)/2)+"\n"))
-                    self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
             return True,(result,allresult,revise,detect_language)
         except Exception as e:
             self.printerror(self.record_error(e))
@@ -536,19 +542,13 @@ class MainWindow():
         if len(text.split(' ')) > 1  and self.dictionary_combobox.get() != "Google":
             self.dictionary_combobox.current(0)
             self.dictionary_change()
-            self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
-                ("*"*int((self.linelength-16)/2)+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
 
         # automatic change to google dictionary if input is a word
         elif config["auto_change_dictionary"]  and self.dictionary_combobox.get() == "Google" and len(text.split(' ')) == 1:
             self.dictionary_combobox.current(1)
             self.dictionary_change()
-            self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
-                ("*"*int((self.linelength-18)/2)+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
+
 
 
     def changeText(self, click=True):
