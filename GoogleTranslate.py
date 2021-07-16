@@ -1,17 +1,13 @@
 from requests import get
 from time import sleep
 from urllib.parse import quote
-
+from json import loads
 import tk as tk
 tk = tk.Token()
 class GoogleTranslator():
 
     def __init__(self,name,base_url,general_params):
-        """
-        name: domain name
-        base_url: domain url
-        general_params: general parames
-        """
+        """Google Translator can support multiple source"""
         self.name=name
         self.url = base_url
         self.base_parames=general_params
@@ -63,8 +59,7 @@ class GoogleTranslator():
 
 
     def parser(self,request_text):
-        req = eval(request_text.replace('null', '""').replace('"""', '"').replace(
-            'true', "True").replace('false', "False"))
+        req = loads(request_text)
 
         detect_language = req['ld_result']['extended_srclangs'][0]#req['src']
         if self.name  == 'clients5':
@@ -124,27 +119,27 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
 if __name__ == '__main__':
     #print(get_translate("And say mean things", "en","zh-TW"))
-    print(get_translate("選項", "en","zh-TW"))
+    print(get_translate("good", "en","zh-TW"))
 
 
-'''
-目前了解：
-client: gtx, at 都不需要 ttk (容易被檔)
-client: webapp, t 需要 ttk (目前沒被檔過)
-t, webapp 翻譯類似
-gtx, at 翻譯類似
-目前對於整句翻譯結果 webapp, t  與 網頁上不同步，我比較喜歡 gtx, at 翻譯版本感覺比較精確
-dt: 決定回傳結果的種類 t 單一翻譯 等等
-hl: 目前看起來沒用
 
-dt parameter:
+# 目前了解：
+# client: gtx, at 都不需要 ttk (容易被檔)
+# client: webapp, t 需要 ttk (目前沒被檔過)
+# t, webapp 翻譯類似
+# gtx, at 翻譯類似
+# 目前對於整句翻譯結果 webapp, t  與 網頁上不同步，我比較喜歡 gtx, at 翻譯版本感覺比較精確
+# dt: 決定回傳結果的種類 t 單一翻譯 等等
+# hl: 目前看起來沒用
 
-t - translation of source text
-at - alternate translations
-rm - transcription / transliteration of source and translated texts
-bd - dictionary, in case source text is one word (you get translations with articles, reverse translations, etc.)
-md - definitions of source text, if it's one word
-ss - synonyms of source text, if it's one word
-ex - examples
-rw - See also list.
-dj - Json response with names. (dj=1)'''
+# dt parameter:
+
+# t - translation of source text
+# at - alternate translations
+# rm - transcription / transliteration of source and translated texts
+# bd - dictionary, in case source text is one word (you get translations with articles, reverse translations, etc.)
+# md - definitions of source text, if it's one word
+# ss - synonyms of source text, if it's one word
+# ex - examples
+# rw - See also list.
+# dj - Json response with names. (dj=1)
