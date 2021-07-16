@@ -1,5 +1,5 @@
 # https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/good
-from requests import get, post
+from requests import get
 from urllib.parse import quote
 from bs4 import BeautifulSoup
 
@@ -15,7 +15,6 @@ def get_translate(inputtext):
     if len(a) == 0:
         return "", ""
     allresult = []
-    print(a)
 
     for i in a:
         allresult.append({'pos': "", 'terms': []})

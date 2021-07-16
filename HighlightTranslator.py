@@ -5,17 +5,12 @@ from pygame import mixer
 from os import system
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
-from datetime import date
-from datetime import datetime
+import datetime
 import win32con
 import win32api
-import datetime
-import traceback
 import CambridgeTranslate as ct
 import pytesseract
-from PIL import ImageGrab
-from PIL import Image, ImageOps
-import sys
+from PIL import Image, ImageOps,ImageGrab
 import traceback
 import GoogleTranslate as gt
 from time import sleep
@@ -101,7 +96,7 @@ class MainWindow():
         self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
         self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.source_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
-        self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchagne_language))
+        self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchange_language))
         self.setup_language_item()
 
         # Button
@@ -195,7 +190,7 @@ class MainWindow():
     def input_press(self,event):
         self.changeText(True)
 
-    def exchagne_language(self):
+    def exchange_language(self):
         tmp_source = self.source_combobox.get()
         tmp_target = self.target_combobox.get()
         if self.source_combobox.get() in target_languages.keys():
@@ -213,7 +208,8 @@ class MainWindow():
     def open_setting(self):
         self.setting_windows=SettingWindow(self.root)
 
-    def open_website(self):
+    @staticmethod
+    def open_website():
         system('start {}'.format('https://github.com/Coolshanlan/HighlightTranslator'))
 
     def set_WindowsSize(self):
@@ -292,8 +288,8 @@ class MainWindow():
         speak_thread = threading.Thread(target = speak_func)
         speak_thread.start()
 
-
-    def run_speak_file(self):
+    @staticmethod
+    def run_speak_file():
         try:
             mixer.music.set_volume(config['audio_volume'])
             mixer.music.load(MP3FILEPATH)
@@ -326,14 +322,14 @@ class MainWindow():
 
     def printerror(self,e):
         with open("log.txt","a") as f:
-            now = date.today()
+            now = datetime.date.today()
             current_time = now.strftime("%m/%d/%Y")
             now = datetime.datetime.now()
             current_time += " "+ now.strftime("%H:%M:%S")
             print(current_time)
             error_class = e.__class__.__name__ #取得錯誤類型
             detail = e.args[0] #取得詳細內容
-            cl, exc, tb = sys.exc_info() #取得Call Stack
+            _, _, tb = sys.exc_info() #取得Call Stack
             lastCallStack = traceback.extract_tb(tb)[-1] #取得Call Stack的最後一筆資料
             fileName = lastCallStack[0] #取得發生的檔案名稱
             lineNum = lastCallStack[1] #取得發生的行號
@@ -434,7 +430,7 @@ class MainWindow():
             if self.movein == False:
                 self.root.lower()
             else:
-                self.movein == False
+                self.movein = False
 
 
     def CheckCopyWhile(self):
@@ -489,48 +485,19 @@ class MainWindow():
     def textprocessing(self, inptext):
         text = inptext.replace(
             '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
-        for i in range(len(text)):
-            if text[-1] == "@" or text[-1] == ' ':
-                text = text[:-1]
-            else:
-                break
-        for i in range(len(text)):
-            if text[0] == "@" or text[0] == ' ':
-                text = text[1:]
-            else:
-                break
+        while text[-1] == "@" or text[-1] == ' ':
+            text = text[:-1]
+        while text[0] == "@" or text[0] == ' ':
+            text = text[1:]
+
         if config["restructure_sentences"]:
             text = self.restructure_sentences(text)
         else:
             text = text.replace("@", "\n")
         return text
 
-
-    def changeText(self, click=True):
-        global detect_language
-        self.movein = False
-        self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
-        text = self.inputbox.get(1.0, tk.END)
-
+    def get_translation(self,text):
         try:
-            # if not a word change to google because Cambridge can only translate a word
-            if len(text.split(' ')) > 1 and not click and self.dictionary_combobox.get() != "Google":
-                self.dictionary_combobox.current(0)
-                self.dictionary_change()
-                self.resultbox.insert(
-                    tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
-                    ("*"*int((self.linelength-16)/2)+"\n"))
-                self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-
-            # automatic change to google dictionary if input is a word
-            elif config["auto_change_dictionary"] and not click and self.dictionary_combobox.get() == "Google" and len(text.split(' ')) == 1:
-                self.dictionary_combobox.current(1)
-                self.dictionary_change()
-                self.resultbox.insert(
-                    tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
-                    ("*"*int((self.linelength-18)/2)+"\n"))
-                self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-
             # Google Translate
             if self.dictionary_combobox.get() == "Google":
                 result, allresult, detect_language, revise = gt.get_translate(
@@ -548,7 +515,7 @@ class MainWindow():
                         tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
                         ("*"*int((self.linelength-16)/2)+"\n"))
                     self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-
+            return True,(result,allresult,revise,detect_language)
         except Exception as e:
             self.printerror(e)
             self.resultbox.insert(
@@ -558,11 +525,42 @@ class MainWindow():
             self.resultbox.see(tk.END)
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
-            return False
+            return False,(None,None,None,None)
 
-        if not self.top_value.get():
-            self.top = threading.Thread(target=self.changetop)
-            self.top.start()
+
+    def autochange_dictionary(self,text):
+        # if not a word change to google because Cambridge can only translate a word
+        if len(text.split(' ')) > 1  and self.dictionary_combobox.get() != "Google":
+            self.dictionary_combobox.current(0)
+            self.dictionary_change()
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
+                ("*"*int((self.linelength-16)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
+        # automatic change to google dictionary if input is a word
+        elif config["auto_change_dictionary"]  and self.dictionary_combobox.get() == "Google" and len(text.split(' ')) == 1:
+            self.dictionary_combobox.current(1)
+            self.dictionary_change()
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
+                ("*"*int((self.linelength-18)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
+
+    def changeText(self, click=True):
+        global detect_language
+        self.movein = False
+        self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
+        text = self.inputbox.get(1.0, tk.END)
+
+        if not click:
+            self.autochange_dictionary(text)
+
+        status,(result,allresult,revise,detect_language) = self.get_translation(text)
+
+        if not status:
+            return False
 
         # print input
         self.resultbox.insert(tk.END, text)
@@ -574,51 +572,57 @@ class MainWindow():
 
         # print result
         self.translate_result=''
-        for i in result:
-            self.resultbox.insert(tk.END, i)
-            self.translate_result += i+'\n'
+        for iter_result in result:
+            self.resultbox.insert(tk.END, iter_result)
+            self.translate_result += iter_result+'\n'
             if allresult != []:
                 self.resultbox.insert(tk.END, "\n")
         if len(allresult) > 0:
             self.resultbox.insert(tk.END, "\n")
-        # print all result
 
-        for i in range(len(allresult)):
-            self.translate_result += allresult[i]['pos'].capitalize()+":"+"\n"
-            self.resultbox.insert(tk.END, allresult[i]['pos'].capitalize()+":"+"\n")
-            v = allresult[i]['terms'][:config['number_of_terms']]
-            for j in range(len(v)):
-                self.resultbox.insert(tk.END, v[j])
-                self.translate_result+=v[j]
-                if j != len(v)-1:
+        # print all result
+        for r_idx,iter_result in enumerate(allresult):
+            self.translate_result += iter_result['pos'].capitalize()+":"+"\n"
+            self.resultbox.insert(tk.END, iter_result['pos'].capitalize()+":"+"\n")
+            terms = iter_result['terms'][:config['number_of_terms']]
+            for t_idx,iter_terms in enumerate(terms):
+                self.resultbox.insert(tk.END, iter_terms)
+                self.translate_result+=iter_terms
+                if t_idx != len(terms)-1:
                     self.translate_result += ","
                     self.resultbox.insert(tk.END, ",")
-            if i != len(allresult)-1:
+            if r_idx != len(allresult)-1:
                 self.resultbox.insert(tk.END, "\n\n")
                 self.translate_result+="\n\n"
 
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
+        self.clear_button.configure(text = 'Clear')
+
+        # Let window top
+        if not self.top_value.get():
+            self.top = threading.Thread(target=self.changetop)
+            self.top.start()
 
         # auto speak
         if self.auto_speak_value.get() == True:
             if len(text.split(' ')) <= config["auto_speak_length_limit"]:
                 text_max_length = max([len(str(t)) for t in text.split(' ')])
-
-                if text_max_length <= config['auto_speak_length_limit']:
+                if text_max_length <= config['auto_speak_length_limit']*1.5:
                     self.speak()
 
+        #auto exchange dictionary
         if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto':
             self.changed_language=True
             self.resultbox.insert(
                     tk.END, ("*"*int((self.linelength-15)/2))+"Exchange Language" +
                     ("*"*int((self.linelength-15)/2)+"\n"))
             self.resultbox.insert(tk.END,"="*self.linelength+"\n")
-            self.exchagne_language()
+            self.exchange_language()
             self.changeText(False)
 
         self.changed_language=False
-        self.clear_button.configure(text = 'Clear')
+
 
     def motion(self, event):
         self.movein = True

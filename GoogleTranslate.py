@@ -1,9 +1,7 @@
-import re
 from requests import get
 from time import sleep
 from urllib.parse import quote
 
-from requests.api import request
 import tk as tk
 tk = tk.Token()
 class GoogleTranslator():
@@ -12,10 +10,13 @@ class GoogleTranslator():
         self.url = base_url
         self.base_parames=general_params
         self.client_list={'nottk':['gtx','at'],'ttk':['webapp'],'clients5':['dict-chrome-ex']}
-    def convert_qtext(self,text):
+
+    @staticmethod
+    def convert_qtext(text):
         return quote(text)
 
-    def calculate_tkid(self,text):
+    @staticmethod
+    def calculate_tkid(text):
         return tk.calculate_token(text)
 
     def __call__(self,input_text, sourcelanguage='auto',targetlanguage='tr',ttk_enable=False):
@@ -140,5 +141,4 @@ md - definitions of source text, if it's one word
 ss - synonyms of source text, if it's one word
 ex - examples
 rw - See also list.
-dj - Json response with names. (dj=1)
-'''
+dj - Json response with names. (dj=1)'''
