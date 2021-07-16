@@ -7,7 +7,7 @@ tk = tk.Token()
 class GoogleTranslator():
 
     def __init__(self,name,base_url,general_params):
-        """Google Translator can support multiple source"""
+        """Google Translator can support multiple source."""
         self.name=name
         self.url = base_url
         self.base_parames=general_params

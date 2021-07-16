@@ -43,7 +43,7 @@ MP3FILEPATH='speech_file/output.mp3'
 source_languages={}
 target_languages={}
 with open("language.txt") as f:
-    languagelist = eval(f.read())
+    languagelist = json.loads(f.read())
 for i in range(len(languagelist[0])):
     source_languages[languagelist[0][i][1]] = languagelist[0][i][0]
 for i in range(len(languagelist[1])):
@@ -53,6 +53,7 @@ for i in range(len(languagelist[1])):
 class MainWindow():
 
     def __init__(self):
+        """The Main Window."""
         self.root = tk.Tk()
         self.set_WindowsSize()# Auto resizing
         self.keyboard = Controller()# keyboard hook
@@ -206,7 +207,7 @@ class MainWindow():
         self.target_combobox.current(self.target_combobox['values'].index(tmp_target))
 
     def open_setting(self):
-        self.setting_windows=SettingWindow(self.root)
+        self.setting_windows=SettingWindow()
 
     @staticmethod
     def open_website():
@@ -294,8 +295,8 @@ class MainWindow():
             mixer.music.set_volume(config['audio_volume'])
             mixer.music.load(MP3FILEPATH)
             mixer.music.play()
-        except:
-            pass
+        except Exception as e:
+            MainWindow.record_error(e)
 
 
     def changehighlightclick(self):
@@ -320,7 +321,13 @@ class MainWindow():
         self.check_clipboard_thread.join()
         self.root.destroy()
 
-    def printerror(self,e):
+    def printerror(self,error_class):
+        self.resultbox.insert(tk.END, ("*"*3)+error_class +("*"*3+"\n"))
+        self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+        self.resultbox.see(tk.END)
+
+    @staticmethod
+    def record_error(e):
         with open("log.txt","a") as f:
             now = datetime.date.today()
             current_time = now.strftime("%m/%d/%Y")
@@ -338,9 +345,6 @@ class MainWindow():
             f.writelines(str(current_time)+"\n")
             f.writelines(errMsg+"\n")
             f.writelines("-------------------------"+"\n")
-            self.resultbox.insert(tk.END, ("*"*3)+error_class +("*"*3+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-            self.resultbox.see(tk.END)
             return error_class
 
 
@@ -362,9 +366,9 @@ class MainWindow():
             else:
                 tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese, Korean and Japanese")
         except Exception as e:
-            self.printerror(e)
+            self.printerror(self.record_error(e))
             self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-18)/2))+"Psytesseract Error" +
+                tk.END, ("*"*int((self.linelength-18)/2))+"OCR Error" +
                 ("*"*int((self.linelength-18)/2)+"\n"))
             self.resultbox.insert(
                 tk.END, "="*self.linelength+"\n")
@@ -379,7 +383,7 @@ class MainWindow():
             try:
                 self.now_copy = self.root.clipboard_get()#self.root.selection_get(selection="CLIPBOARD")
             except Exception as e:
-                self.printerror(e)
+                self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
                 # self.now_copy = self.previous_copy
                 return False
@@ -389,8 +393,7 @@ class MainWindow():
             except OSError:
                 return False
             except Exception as e:
-                print(e)
-                self.printerror(e)
+                self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
                 # self.now_copy = self.previous_copy
                 return False
@@ -517,7 +520,7 @@ class MainWindow():
                     self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             return True,(result,allresult,revise,detect_language)
         except Exception as e:
-            self.printerror(e)
+            self.printerror(self.record_error(e))
             self.resultbox.insert(
                 tk.END, ("*"*int((self.linelength-21)/2))+"Check WIFI and try again" +
                 ("*"*int((self.linelength-21)/2)+"\n"))
@@ -658,7 +661,8 @@ class MainWindow():
 
 class SettingWindow():
 
-    def __init__(self,root):
+    def __init__(self):
+        """Setting Interface."""
         self.root = tk.Tk()
         self.root.wm_attributes('-topmost', 1)
         self.root.title('Setting')
