@@ -192,19 +192,25 @@ class MainWindow():
         self.changeText(True)
 
     def exchange_language(self):
+        can_change=True
         tmp_source = self.source_combobox.get()
         tmp_target = self.target_combobox.get()
         if self.source_combobox.get() in target_languages.keys():
             tmp_target = self.source_combobox.get()
         elif self.source_combobox.get() == 'Chinese':
             tmp_target = 'Chinese (Traditional)'
+        else:
+            can_change=False
+
         if self.target_combobox.get() in source_languages.keys():
             tmp_source = self.target_combobox.get()
         elif 'Chinese' in self.target_combobox.get():
             tmp_source='Chinese'
-
-        self.source_combobox.current(self.source_combobox['values'].index(tmp_source))
-        self.target_combobox.current(self.target_combobox['values'].index(tmp_target))
+        else:
+            can_change=False
+        if can_change:
+            self.source_combobox.current(self.source_combobox['values'].index(tmp_source))
+            self.target_combobox.current(self.target_combobox['values'].index(tmp_target))
 
     def open_setting(self):
         self.setting_windows=SettingWindow()
