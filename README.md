@@ -1,4 +1,7 @@
 # :books: Highlight Translator :books:
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a3b9eee944e45c1804137d24675ff84)](https://app.codacy.com/gh/Coolshanlan/HighlightTranslator?utm_source=github.com&utm_medium=referral&utm_content=Coolshanlan/HighlightTranslator&utm_campaign=Badge_Grade_Settings)
+
 Highlight Translator can help you quickly translate, just highlight, copy or screenshot the content you want to translate anywhere on your computer (ex. pdf, ppt, etc.), and it will automatically display the translation results to you
 
 :warning: **Only support in Windows, might add linux version in the future.** :warning:
