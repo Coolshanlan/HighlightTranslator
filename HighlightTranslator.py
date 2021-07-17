@@ -621,14 +621,15 @@ class MainWindow():
                     self.speak()
 
         #auto exchange dictionary
-        if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto':
-            self.changed_language=True
-            self.resultbox.insert(
-                    tk.END, ("*"*int((self.linelength-15)/2))+"Exchange Language" +
-                    ("*"*int((self.linelength-15)/2)+"\n"))
-            self.resultbox.insert(tk.END,"="*self.linelength+"\n")
-            self.exchange_language()
-            self.changeText(False)
+        if config['auto_switch_language']:
+            if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto':
+                self.changed_language=True
+                self.resultbox.insert(
+                        tk.END, ("*"*int((self.linelength-15)/2))+"Exchange Language" +
+                        ("*"*int((self.linelength-15)/2)+"\n"))
+                self.resultbox.insert(tk.END,"="*self.linelength+"\n")
+                self.exchange_language()
+                self.changeText(False)
 
         self.changed_language=False
 

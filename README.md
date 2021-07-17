@@ -84,6 +84,7 @@ Cambridge Dictionary only support English to Chinese
   "font_size":11,
   "audio_volume":0.95,
   "number_of_terms":4,
+  "auto_switch_language":1,
   "auto_change_dictionary":0,
   "restructure_sentences":1,
   "inputbox_color":"#F2D8B3",
@@ -106,6 +107,9 @@ Cambridge Dictionary only support English to Chinese
 - **font_size**
   > default 11
 - **audio_volume**: Speaking volume (0~1)
+  > default 0.95
+- **auto_switch_language**: Enable automatically switch language
+- **number_or_terms**: Control the number of display translation result terms (>0)
   > default 0.95
 - **auto_change_dictionary**: When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
   > default 0
