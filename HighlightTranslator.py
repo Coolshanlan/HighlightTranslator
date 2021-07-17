@@ -368,18 +368,18 @@ class MainWindow():
             im = ImageOps.grayscale(im)
             if self.source_combobox.get() == "English" or self.source_combobox.get() =="Detect language":
                 self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='eng')
+                                                            lang='eng+osd+equ')
             elif self.source_combobox.get() == "Chinese":
                 self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='chi_tra').replace(" ", "")
-            elif self.source_combobox.get() == "Korean":
-                self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='kor+kor_vert').replace(" ", "")
-            elif self.source_combobox.get() == "Japanese":
-                self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='jpn').replace(" ", "")
+                                                            lang='chi_tra+eng+osd+equ').replace(" ", "")
+            # elif self.source_combobox.get() == "Korean":
+            #     self.now_copy = pytesseract.image_to_string(im,
+            #                                                 lang='kor+kor_vert').replace(" ", "")
+            # elif self.source_combobox.get() == "Japanese":
+            #     self.now_copy = pytesseract.image_to_string(im,
+            #                                                 lang='jpn').replace(" ", "")
             else:
-                tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese, Korean and Japanese")
+                tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese")
         except Exception as e:
             self.printerror(self.record_error(e))
             self.resultbox.insert(
