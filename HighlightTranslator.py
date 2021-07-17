@@ -1,7 +1,7 @@
 # import pyautogui
 # -*- coding: utf-8 -*-
 from gtts import gTTS
-from pygame import mixer
+from pygame import error, mixer
 from os import system
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
@@ -17,7 +17,7 @@ from time import sleep
 import threading
 from win32con import CF_TEXT
 import win32clipboard
-from tkinter import ttk
+from tkinter import TclError, ttk
 import tkinter as tk
 import re
 import json
@@ -276,32 +276,31 @@ class MainWindow():
     def speak_t(self):
         # remove(MP3FILEPATH)
         text = self.translate_result
-
         language = target_languages[self.target_combobox.get()]
-
-        myobj = gTTS(text=text, lang=language.lower(), slow=False)
-        mixer.init()
-        mixer.music.unload()
-        myobj.save(MP3FILEPATH)
-        self.run_speak_file()
+        speak_thread = threading.Thread(target = self.speak_func,args=(language,text))
+        speak_thread.start()
 
     def speak_change(self):
         if self.auto_speak_value.get() == True:
             self.speak()
 
-    def speak(self):
-        def speak_func():
-            text = self.inputbox.get(1.0, tk.END)
-            language = source_languages[self.source_combobox.get()]
+    def speak_func(self,language,text):
             if language == 'auto':
                 language = detect_language.lower()
+            try:
+                myobj = gTTS(text=text, lang=language.lower(), slow=False)
+            except Exception:
+                return
 
-            myobj = gTTS(text=text, lang=language.lower(), slow=False)
             mixer.init()
             mixer.music.unload()
             myobj.save(MP3FILEPATH)
             self.run_speak_file()
-        speak_thread = threading.Thread(target = speak_func)
+
+    def speak(self):
+        text = self.inputbox.get(1.0, tk.END)
+        language = source_languages[self.source_combobox.get()]
+        speak_thread = threading.Thread(target = self.speak_func,args=(language,text))
         speak_thread.start()
 
     @staticmethod
@@ -310,6 +309,8 @@ class MainWindow():
             mixer.music.set_volume(config['audio_volume'])
             mixer.music.load(MP3FILEPATH)
             mixer.music.play()
+        except error:
+            return
         except Exception as e:
             MainWindow.record_error(e)
 
@@ -397,11 +398,14 @@ class MainWindow():
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
                 self.now_copy = self.root.clipboard_get()#self.root.selection_get(selection="CLIPBOARD")
+            except TclError:
+                # self.printerror(self.record_error(te))
+                return False
             except Exception as e:
                 self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
-                # self.now_copy = self.previous_copy
                 return False
+
         elif self.root.state() != 'iconic' and self.screenshot_value.get():
             try:
                 im = ImageGrab.grabclipboard()
@@ -410,7 +414,6 @@ class MainWindow():
             except Exception as e:
                 self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
-                # self.now_copy = self.previous_copy
                 return False
             if isinstance(im, Image.Image):
                 return self.image_OCR(im)
