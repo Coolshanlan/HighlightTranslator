@@ -36,6 +36,9 @@ pygame
 gTTS
 ```
 ## :loudspeaker: New Feature
+### Automatically Switch Language
+If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
+> 2021/07/17 update
 ### Exchange Language Button
 It can exchange source and target language
 > 2021/07/15 update
