@@ -51,7 +51,7 @@ It can speak the input sentence or the result of translating
 
 ## :dart: Features
 ### :key: Translation Method
-- **Screenshot** (Only support English, Chinese, Japanese and Korean, you can add new language by your self)
+- **Screenshot** (Only support English and Chinese, you can add new language by your self)
 - **Copy**
 - **Highlight/Selected** (Not support PowerPoint and Word)
 ### :key: Text to Speech
