@@ -274,7 +274,6 @@ class MainWindow():
         self.changeText(True)
 
     def speak_t(self):
-        # remove(MP3FILEPATH)
         text = self.translate_result
         language = target_languages[self.target_combobox.get()]
         speak_thread = threading.Thread(target = self.speak_func,args=(language,text))
@@ -373,12 +372,6 @@ class MainWindow():
             elif self.source_combobox.get() == "Chinese":
                 self.now_copy = pytesseract.image_to_string(im,
                                                             lang='chi_tra+eng+osd+equ').replace(" ", "")
-            # elif self.source_combobox.get() == "Korean":
-            #     self.now_copy = pytesseract.image_to_string(im,
-            #                                                 lang='kor+kor_vert').replace(" ", "")
-            # elif self.source_combobox.get() == "Japanese":
-            #     self.now_copy = pytesseract.image_to_string(im,
-            #                                                 lang='jpn').replace(" ", "")
             else:
                 tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese")
         except Exception as e:
@@ -566,7 +559,7 @@ class MainWindow():
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         text = self.inputbox.get(1.0, tk.END)
 
-        if not click:
+        if not click and not self.changed_language:
             self.autochange_dictionary(text)
 
         status,(result,allresult,revise,detect_language) = self.get_translation(text)
