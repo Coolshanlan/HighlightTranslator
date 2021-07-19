@@ -72,6 +72,23 @@ You can change default language in config.json
 
 Cambridge Dictionary only support English to Chinese
 
+## :bookmark: Google Translate API
+can get the translation result from google translate
+### How to use
+```python
+import GoogleTranslate as gt
+print(get_translate("good", "en","zh-TW"))
+```
+### Parameters
+1. inputtext: The text that you want to translate
+2. sourcelanguage: Input text language
+3. targetlanguage: Output result language
+> You can see al of the supportive languages in language.txt
+### Return
+1. result: The most common result
+2. allresult: All of the results
+3. detect_language: Detecting language of the input text
+4. revise: Revising suggest of the input text that is misspelled
 
 ## :bookmark_tabs: Config.json
 ``` python
@@ -83,7 +100,7 @@ Cambridge Dictionary only support English to Chinese
   "font":"Arial",
   "font_size":11,
   "audio_volume":0.95,
-  "number_of_terms":4,
+  "number_of_terms":5,
   "auto_switch_language":1,
   "auto_change_dictionary":0,
   "restructure_sentences":1,
