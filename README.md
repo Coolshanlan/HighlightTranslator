@@ -15,7 +15,7 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## :small_red_triangle_down: How To Use :small_red_triangle_down:
 ### Step 1. Download Executable File
-[Download Zip File](https://rebrand.ly/HighlightTranslator)
+[Download Zip File](https://bit.ly/37QQvgN)
 ### Step 2. Execute
 Find the `HighlightTranslator.exe` in the folder and then double click
 
