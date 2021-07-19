@@ -112,8 +112,10 @@ print(get_translate("good", "en","zh-TW"))
 }
 ```
 - **source_language**:
+
   Default source language
 - **sourcelanguage**:
+
   Default target language
 - **hide**: The window will automatically hide after few seconds
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
