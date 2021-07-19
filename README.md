@@ -20,29 +20,18 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
-## Requirement
-python 3.6
-``` python
-pyinstaller == 4.1
-Pillow == 8.2.0
-pynput == 1.6
-pyautogui == 0.9
-pytesseract == 0.3
-pywin32 == 227
-requests >= 2.24.0
-beautifulsoup4 >= 4.9.3
-numpy
-pygame
-gTTS
-```
 ## :loudspeaker: New Feature
 ### Automatically Switch Language
+If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
 > 2021/07/17 update
 ### Exchange Language Button
+It can exchange source and target language
 > 2021/07/15 update
 ### Setting Interface
+You can set the config on the menu
 > 2021/07/10 update
 ### Text to Speech
+It can speak the input sentence or the result of translating
 > 2021/07/04 update
 
 ## :dart: Features
@@ -135,4 +124,19 @@ print(get_translate("good", "en","zh-TW"))
 ```
 pip install -r requirements.txt
 python Highlight_Translator.py
+```
+## Requirement
+python 3.6
+``` python
+pyinstaller == 4.1
+Pillow == 8.2.0
+pynput == 1.6
+pyautogui == 0.9
+pytesseract == 0.3
+pywin32 == 227
+requests >= 2.24.0
+beautifulsoup4 >= 4.9.3
+numpy
+pygame
+gTTS
 ```
