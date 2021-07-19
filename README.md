@@ -60,7 +60,6 @@ You can set the config on the menu
 Only support Google and Cambridge Dictionary, Cambridge only support English to Chinese
 ### :pushpin: Checkbox of top
 If not checked, window will automatically hide after a few seconds.
-> default 6 sec, you can modify hide variable in config.json
 ### :pushpin: Checkbox of select
 Enable automatic translation when you highlight some content
 ### :pushpin: Checkbox of input
