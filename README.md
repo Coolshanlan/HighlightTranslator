@@ -36,9 +36,10 @@ It can speak the input sentence or the result of translating
 
 ## :dart: Features
 ### :key: Translation Method
+- **Highlight/Selected** (This methon not support on PowerPoint and Word)
 - **Screenshot** (Only support English and Chinese, you can add new language by your self)
 - **Copy**
-- **Highlight/Selected** (Not support PowerPoint and Word)
+
 ### :key: Text to Speech
 It can speak the input sentence or the result of translating
 ### :pushpin: Setting Interface
