@@ -37,16 +37,12 @@ gTTS
 ```
 ## :loudspeaker: New Feature
 ### Automatically Switch Language
-If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
 > 2021/07/17 update
 ### Exchange Language Button
-It can exchange source and target language
 > 2021/07/15 update
 ### Setting Interface
-You can set the config on the menu
 > 2021/07/10 update
 ### Text to Speech
-It can speak the input sentence or the result of translating
 > 2021/07/04 update
 
 ## :dart: Features
@@ -114,9 +110,11 @@ print(get_translate("good", "en","zh-TW"))
 - **source_language**:
 
   Default source language
+
 - **sourcelanguage**:
 
   Default target language
+
 - **hide**: The window will automatically hide after few seconds
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
 - **font**
