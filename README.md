@@ -46,6 +46,7 @@ It can speak the input sentence or the result of translating
 You can set the config on the menu
 ### :pushpin: Automatically Switch Language
 If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
+![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif =300x)
 ### :pushpin: Exchange Language Button
 It can exchange source and target language
 ### :pushpin: Change Dictionary
