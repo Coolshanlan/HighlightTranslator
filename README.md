@@ -1,9 +1,9 @@
 # :books: Highlight Translator :books:
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/895ab53151cc4734ab63da3abaf25b82)](https://www.codacy.com/gh/Coolshanlan/HighlightTranslator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Coolshanlan/HighlightTranslator&amp;utm_campaign=Badge_Grade)
 
-Highlight Translator can help you to **translate quickly**, just `highlight`, `copy` or `screenshot` the content you want to translate anywhere on your computer (ex. `PDF`, `PPT`, `WORD` etc.), and it will automatically display the translation results to you
+Highlight Translator can help you **translate the words quickly and accurately**. By only `highlighting`, `copying`, or `screenshoting` the content you want to translate anywhere on your computer (ex. `PDF`, `PPT`, `WORD` etc.), the translated results will then be automatically displayed before you.
 
-:warning: **Only support in Windows, might add linux version in the future.** :warning:
+:warning: **The software is only supported in Windows. Mac OS version might be added in the future.** :warning:
 
 
 Translation resource: [Google Translate](https://translate.google.com.tw) and [Cambridge dictionary](https://dictionary.cambridge.org)
@@ -14,59 +14,59 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## :small_red_triangle_down: How To Use :small_red_triangle_down:
-### Step 1. Download Executable File
-[Download Zip File](https://rebrand.ly/HighlightTranslator)
-### Step 2. Execute
+### Step 1. Download the software in the Executable File
+[Download Zip File](https://bit.ly/37QQvgN)
+### Step 2. Decompress the Zip file and Execute the file
 Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## :loudspeaker: New Feature
-### Automatically Switch Language
-If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
+### Automatically Switch between Languages
+If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 > 2021/07/17 update
-### Exchange Language Button
-It can exchange source and target language
+### Switch Language Button
+It can switch the source and target language to each other
 > 2021/07/15 update
 ### Setting Interface
 You can set the config on the menu
 > 2021/07/10 update
 ### Text to Speech
-It can speak the input sentence or the result of translating
+It can speak the input sentences or the result of translating
 > 2021/07/04 update
 
 ## :dart: Features
-### :key: Translation Method
-- **Highlight/Selected** (This methon not support on PowerPoint and Word)
-- **Screenshot** (Only support English and Chinese, you can add new language by your self)
+### :key: Methods of getting your source texts
+- **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
+- **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
 - **Copy**
 ### :key: Text to Speech
-It can speak the input sentence or the result of translating
-### :pushpin: Automatically hide windows
-The window will automatically hide after few seconds if you don't use it.
-If you don't want window automatically disappear, you can move your mouse into window to trigger out cancel event or just checked the checkbox of top
+It can speak the input sentences or the translated results
+### :pushpin: Automatically hide window
+The window will be automatically hidden after a few seconds if you don't use it.
+If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window to stop or just clicking the checkbox on the top
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
 
-### :pushpin: Automatically Switch Language
-If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
+### :pushpin: Automatically Switch between Languages
+If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_switch_language.gif" width="700">
 
-### :pushpin: Exchange Language Button
-It can exchange source and target language
+### :pushpin: Switch Language Button
+It can switch between source and target languages
 ### :pushpin: Setting Interface
 You can set the config on the menu
 ### :pushpin: Change Dictionary
-Only support Google and Cambridge Dictionary, Cambridge only support English to Chinese
-### :pushpin: Checkbox of top
-If not checked, window will automatically hide after a few seconds.
-### :pushpin: Checkbox of select
-Enable automatic translation when you highlight some content
-### :pushpin: Checkbox of input
+Only Google and Cambridge Dictionary supported for now. For Cambridge Dictionary, only "English to Chinese" supported
+### :pushpin: Checkbox "top"
+If the checkbox is checked, the window will always be kept on top.
+### :pushpin: Checkbox "select"
+When you highlight some content, the translation will be automatically displayed.
+### :pushpin: Checkbox "input"
 Display InputBox and Translate Button
 
 ## :notebook_with_decorative_cover: Google Translate API
-This API can get the translation result from google translate
+This API can get the translation result from Google Translate
 ### How to use
 ```python
 import GoogleTranslate as gt
@@ -74,14 +74,14 @@ print(get_translate("good", "en","zh-TW"))
 ```
 ### Parameters
 1. inputtext: The text that you want to translate
-2. sourcelanguage: Input text language
-3. targetlanguage: Output result language
-> You can see all of the supportive languages in language.txt
+2. sourcelanguage: The language of the input text language
+3. targetlanguage: The language of the output result language
+> You can refer to `language.txt` for all the languages supported.
 ### Return
 1. result: The most common result
 2. allresult: All of the results
-3. detect_language: Detecting language of the input text
-4. revise: Revising suggest of the input text that is misspelled
+3. detect_language: Detecting the language of the input text
+4. revise: Suggestion when the text is seemingly misspelled
 
 ## :bookmark_tabs: Config.json
 ``` python
@@ -106,21 +106,21 @@ print(get_translate("good", "en","zh-TW"))
 ```
 - **source_language**: Default source language
 
-- **sourcelanguage**: Default target language
-- **hide**: The window will automatically hide after few seconds
+- **target_language**: Default target language
+- **hide**: The window will be automatically hidden after a few seconds
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
 - **font**
 - **font_size**
 - **audio_volume**: Speaking volume (0~1)
-- **auto_switch_language**: Enable automatically switch language (0 or 1)
-- **number_or_terms**: Control the number of display translation result terms (>0)
-- **auto_change_dictionary**: When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
-- **restructure_sentences**: It will restructure your input sentence (0 or 1)
+- **auto_switch_language**: Enable the source and target languages to be swtiched automatically (0 or 1)
+- **number_of_terms**: Control the number of displayed translation results (terms) (>0)
+- **auto_change_dictionary**: When the input is a word, the dictionary will be automaticlly switched to cambridge dictionary (0 or 1)
+- **restructure_sentences**: It will restructure your input sentences (0 or 1)
 - **inputbox_color**: The background color of input box
 - **resultbox_color**: The background color of result box
 - **copycheck**: Check clipboard frequency (sec)
-- **doubleclick**: 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊) (sec)
-- **select**: 長壓幾秒判斷為選取 (sec)
+- **doubleclick**: the time between the two clicks that will make them viewed as a "doublecklick" (sec)
+- **select**: The time of the press to make the press viewed as a "long press" (sec)
 
 
 ## How To Install
