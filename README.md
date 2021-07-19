@@ -96,28 +96,23 @@ print(get_translate("good", "en","zh-TW"))
   "selectcheck":0.3
 }
 ```
-- **source_language**:
+- **source_language**: Default source language
 
-  Default source language
-
-- **sourcelanguage**:
-
-  Default target language
-
+- **sourcelanguage**: Default target language
 - **hide**: The window will automatically hide after few seconds
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
 - **font**
 - **font_size**
 - **audio_volume**: Speaking volume (0~1)
-- **auto_switch_language**: Enable automatically switch language
+- **auto_switch_language**: Enable automatically switch language (0 or 1)
 - **number_or_terms**: Control the number of display translation result terms (>0)
 - **auto_change_dictionary**: When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
 - **restructure_sentences**: It will restructure your input sentence (0 or 1)
 - **inputbox_color**: The background color of input box
 - **resultbox_color**: The background color of result box
-- **copycheck**: Check clipboard frequency
-- **doubleclick**: 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
-- **select**: 長壓幾秒判斷為選取
+- **copycheck**: Check clipboard frequency (sec)
+- **doubleclick**: 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊) (sec)
+- **select**: 長壓幾秒判斷為選取 (sec)
 
 
 ## How To Install
