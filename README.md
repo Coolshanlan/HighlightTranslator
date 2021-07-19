@@ -60,10 +60,8 @@ It can speak the input sentence or the result of translating
 You can set the config on the menu
 ### :pushpin: Automatically Switch Language
 If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
-> 2021/07/17 update
 ### :pushpin: Exchange Language Button
 It can exchange source and target language
-> 2021/07/15 update
 ### :pushpin: Change Dictionary
 Only support Google and Cambridge Dictionary, Cambridge only support English to Chinese
 ### :pushpin: Checkbox of top
@@ -74,10 +72,8 @@ Enable automatic translation when you highlight some content
 ### :pushpin: Checkbox of input
 Display InputBox and Translate Button
 
-
-
 ## :notebook_with_decorative_cover: Google Translate API
-can get the translation result from google translate
+This API can get the translation result from google translate
 ### How to use
 ```python
 import GoogleTranslate as gt
