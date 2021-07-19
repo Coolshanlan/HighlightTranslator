@@ -56,23 +56,27 @@ It can speak the input sentence or the result of translating
 - **Highlight/Selected** (Not support PowerPoint and Word)
 ### :key: Text to Speech
 It can speak the input sentence or the result of translating
-### :pushpin: Auto resizing
-Under different resolutions, automatically adjust the window size and font size
-### :pushpin: Top Checkbox
+### :pushpin: Setting Interface
+You can set the config on the menu
+### :pushpin: Automatically Switch Language
+If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
+> 2021/07/17 update
+### :pushpin: Exchange Language Button
+It can exchange source and target language
+> 2021/07/15 update
+### :pushpin: Change Dictionary
+Only support Google and Cambridge Dictionary, Cambridge only support English to Chinese
+### :pushpin: Checkbox of top
 If not checked, window will automatically hide after a few seconds.
 > default 6 sec, you can modify hide variable in config.json
-### :pushpin: Highlight Checkbox
+### :pushpin: Checkbox of select
 Enable automatic translation when you highlight some content
-### :pushpin: Result Box Checkbox
+### :pushpin: Checkbox of input
 Display InputBox and Translate Button
-### :pushpin: Change Dictionary
-Only support Google and Cambridge Dictionary
-### :pushpin: Change Language
-You can change default language in config.json
 
-Cambridge Dictionary only support English to Chinese
 
-## :bookmark: Google Translate API
+
+## :notebook_with_decorative_cover: Google Translate API
 can get the translation result from google translate
 ### How to use
 ```python
@@ -83,7 +87,7 @@ print(get_translate("good", "en","zh-TW"))
 1. inputtext: The text that you want to translate
 2. sourcelanguage: Input text language
 3. targetlanguage: Output result language
-> You can see al of the supportive languages in language.txt
+> You can see all of the supportive languages in language.txt
 ### Return
 1. result: The most common result
 2. allresult: All of the results
@@ -107,41 +111,26 @@ print(get_translate("good", "en","zh-TW"))
   "inputbox_color":"#F2D8B3",
   "resultbox_color":"#FDF0C4",
   "copycheck":0.3,
-  "doubleclickcheck":0.3,
+  "doubleclickcheck":0.5,
   "selectcheck":0.3
 }
 ```
 - **source_language**: Default source language
-  > defalut Detect language
 - **sourcelanguage**: Default target language
-  > defalut Chinese (Traditional)
 - **hide**: The window will automatically hide after few seconds
-  > default 6 sec
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
-  > default 10
 - **font**
-  > default Calibri
 - **font_size**
-  > default 11
 - **audio_volume**: Speaking volume (0~1)
-  > default 0.95
 - **auto_switch_language**: Enable automatically switch language
 - **number_or_terms**: Control the number of display translation result terms (>0)
-  > default 0.95
 - **auto_change_dictionary**: When the input is a word, automaticlly change to cambridge dictionary (0 or 1)
-  > default 0
 - **restructure_sentences**: It will restructure your input sentence (0 or 1)
-  > default 1
 - **inputbox_color**: The background color of input box
-  > defult #F2D8B3
 - **resultbox_color**: The background color of result box
-  > defult #FDF0C4
 - **copycheck**: Check clipboard frequency
-  > default 0.3 sec
 - **doubleclick**: 判斷是否為雙擊的時間間隔(幾秒內點兩下算是雙擊)
-  > default 0.3 sec
 - **select**: 長壓幾秒判斷為選取
-  > default 0.3 sec
 
 
 ## How To Install
