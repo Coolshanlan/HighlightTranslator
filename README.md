@@ -39,11 +39,14 @@ It can speak the input sentence or the result of translating
 - **Highlight/Selected** (This methon not support on PowerPoint and Word)
 - **Screenshot** (Only support English and Chinese, you can add new language by your self)
 - **Copy**
-
 ### :key: Text to Speech
 It can speak the input sentence or the result of translating
-### :pushpin: Setting Interface
-You can set the config on the menu
+### :pushpin: Automatically hide windows
+The window will automatically hide after few seconds if you don't use it.
+If you don't want window automatically disappear, you can move your mouse into window to trigger out cancel event or just checked the checkbox of top
+
+<img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
+
 ### :pushpin: Automatically Switch Language
 If your **language of input text** as same as target language, source language and target language will be automatically switched to each other.
 
@@ -51,6 +54,8 @@ If your **language of input text** as same as target language, source language a
 
 ### :pushpin: Exchange Language Button
 It can exchange source and target language
+### :pushpin: Setting Interface
+You can set the config on the menu
 ### :pushpin: Change Dictionary
 Only support Google and Cambridge Dictionary, Cambridge only support English to Chinese
 ### :pushpin: Checkbox of top
