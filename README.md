@@ -70,7 +70,7 @@ This API can get the translation result from Google Translate
 ### How to use
 ```python
 import GoogleTranslate as gt
-print(get_translate("good", "en","zh-TW"))
+print(gt.get_translate("good", "en","zh-TW"))
 ```
 ### Parameters
 1. inputtext: The text that you want to translate
