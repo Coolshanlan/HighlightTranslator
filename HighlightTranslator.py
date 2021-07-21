@@ -83,7 +83,7 @@ class MainWindow():
 
         self.screenshot_value = tk.BooleanVar()
         self.screenshot_value.set(True)
-        self.screenshot_checkbox = tk.Checkbutton((self.checkbox_frame), text='screen', var=(self.screenshot_value))
+        self.screenshot_checkbox = tk.Checkbutton((self.checkbox_frame), text='shot', var=(self.screenshot_value))
 
         # Dictionary combobox
         self.dictionary_combobox = ttk.Combobox(self.root, state="readonly")
@@ -225,7 +225,7 @@ class MainWindow():
         scaleX = originX/1280
         scaleY = originY/720
         self.font_size=int(config["font_size"]*scaleX)
-        self.root.geometry('{}x{}+{}+{}'.format((int)(210*scaleX),(int)(320*scaleY),0,100))
+        self.root.geometry('{}x{}+{}+{}'.format((int)(190*scaleX),(int)(320*scaleY),0,100))
 
 
     def setup_language_item(self):
