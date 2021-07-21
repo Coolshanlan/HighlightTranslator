@@ -434,10 +434,9 @@ class MainWindow():
         self.checktop = True
         self.root.wm_attributes('-topmost', 1)
 
-        text = self.inputbox.get(1.0, tk.END)
-        sleeptime = config["appear_time"]+(len(text.split(' '))//3)*config['dynamic_adjust_appear_time']
-
         while True:
+            text = self.inputbox.get(1.0, tk.END)
+            sleeptime = config["appear_time"]+(len(text.split(' '))//3)*config['dynamic_adjust_appear_time']
             self.topagain = False
             for _ in range(sleeptime):
                 sleep(1)
