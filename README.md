@@ -21,7 +21,9 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## :loudspeaker: New Feature
-### [Automatically Switch between Languages](#:key: Automatically Appear Window)
+
+- [Automatically Switch between Languages](#:key:AutomaticallyAppear Window)
+
 If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 > 2021/07/17 update
 ### Switch Language Button
