@@ -22,7 +22,7 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## :loudspeaker: New Feature
 
-- [Automatically Switch between Languages](#:key:AutomaticallyAppear Window)
+### [Automatically Switch between Languages](#AutomaticallyAppearWindow)
 
 If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 > 2021/07/17 update
@@ -43,6 +43,7 @@ It can speak the input sentences or the result of translating
 - **Copy**
 ### :key: Text to Speech
 It can speak the input sentences or the translated results
+<a name=AutomaticallyAppearWindow></a>
 ### :key: Automatically Appear Window
 The window will be automatically appear when you copy/highlight/screenshot some content and then automatically be hidden after a few seconds if you don't use it.
 If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window or just clicking the checkbox on the top
