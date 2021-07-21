@@ -84,6 +84,7 @@ print(gt.get_translate("good", "en","zh-TW"))
 4. revise: Suggestion when the text is seemingly misspelled
 
 ## :bookmark_tabs: Config.json
+You can adjust these parameters in Setting Interface.
 ``` python
 {
   "source_language":"Detect language",
