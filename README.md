@@ -21,7 +21,7 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
 ## :loudspeaker: Highlight Features
-### [Methods of getting source texts](#GettingMethods)
+### [Methods of Getting Source Texts](#GettingMethods)
 - Highlight/Selected
 - Screenshot
 - Copy
