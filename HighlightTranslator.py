@@ -407,6 +407,7 @@ class MainWindow():
             except Exception as e:
                 self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
+                self.previous_copy=''
                 return False
             if isinstance(im, Image.Image):
                 return self.image_OCR(im)
@@ -530,12 +531,14 @@ class MainWindow():
         except Exception as e:
             self.printerror(self.record_error(e))
             self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-21)/2))+"Check WIFI and try again" +
+                tk.END, ("*"*int((self.linelength-21)/2))+"Checking WIFI and try again" +
                 ("*"*int((self.linelength-21)/2)+"\n"))
             self.resultbox.insert(tk.END, "="*self.linelength+"\n")
             self.resultbox.see(tk.END)
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
+            self.root.clipboard_append('')
+            self.previous_copy=''
             return False,(None,None,None,None)
 
 
@@ -565,6 +568,7 @@ class MainWindow():
         status,(result,allresult,revise,detect_language) = self.get_translation(text)
 
         if not status:
+            self.clear_button.configure(text = 'Clear')
             return False
 
         # print input
