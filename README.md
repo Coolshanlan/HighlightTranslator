@@ -112,7 +112,7 @@ You can adjust these parameters in Setting Interface.
 - **source_language**: Default source language
 - **target_language**: Default target language
 - **appear_time**: The window will be automatically appear when you copy/highlight/screenshot some content and then automatically be hidden after a few seconds.
-- **dynamic_adjust_appear_time**: The time of Window automatic appearance will be extended according to the length of input text(0 will close this feature, if >=1, every three words will extend  `dynamic_adjust_appear_time` seconds)
+- **dynamic_adjust_appear_time**: The time of Window automatic appearance will be extended according to the length of input text(0 will close this feature, if >0, every three words will extend  `dynamic_adjust_appear_time` seconds)
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
 - **font**
 - **font_size**
