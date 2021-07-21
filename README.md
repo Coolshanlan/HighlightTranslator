@@ -41,9 +41,9 @@ It can speak the input sentences or the result of translating
 - **Copy**
 ### :key: Text to Speech
 It can speak the input sentences or the translated results
-### :pushpin: Automatically hide window
-The window will be automatically hidden after a few seconds if you don't use it.
-If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window to stop or just clicking the checkbox on the top
+### :pushpin: Automatically Appear Window
+The window will be automatically appear when you copy/highlight/screenshot some content and then automatically be hidden after a few seconds if you don't use it.
+If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window or just clicking the checkbox on the top
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
 
@@ -88,7 +88,8 @@ print(gt.get_translate("good", "en","zh-TW"))
 {
   "source_language":"Detect language",
   "target_language":"Chinese (Traditional)",
-  "hide":6,
+  "appear_time":6,
+  "dynamic_adjust_appear_time":1,
   "auto_speak_length_limit":15,
   "font":"Arial",
   "font_size":11,
@@ -105,9 +106,9 @@ print(gt.get_translate("good", "en","zh-TW"))
 }
 ```
 - **source_language**: Default source language
-
 - **target_language**: Default target language
-- **hide**: The window will be automatically hidden after a few seconds
+- **appear_time**: The window will be automatically appear when you copy/highlight/screenshot some content and then automatically be hidden after a few seconds.
+- **dynamic_adjust_appear_time**: The time of Window automatic appearance will be extended according to the length of input text
 - **auto_speak_length_limit**: When the input length is less than the limit, the automatic speaking function will be triggered
 - **font**
 - **font_size**

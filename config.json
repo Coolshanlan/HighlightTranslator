@@ -1,8 +1,8 @@
 {
   "source_language":"Detect language",
   "target_language":"Chinese (Traditional)",
-  "hide":6,
-  "dynamic_hide_time":1,
+  "appear_time":6,
+  "dynamic_adjust_appear_time":1,
   "auto_speak_length_limit":15,
   "font":"Arial",
   "font_size":11,
