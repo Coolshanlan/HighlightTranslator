@@ -20,38 +20,33 @@ OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
-## :loudspeaker: New Feature
-
-### [Automatically Switch between Languages](#AutomaticallyAppearWindow)
-
+## :loudspeaker: Highlight Features
+### [Methods of getting source texts](#GettingMethods)
+- Highlight/Selected
+- Screenshot
+- Copy
+### [Automatically Appear Window](#AutomaticallyAppearWindow)
+The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
+### [Automatically Switch between Languages](#AutomaticallySwitchbetweenLanguages)
 If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
-> 2021/07/17 update
-### Switch Language Button
-It can switch the source and target language to each other
-> 2021/07/15 update
-### Setting Interface
-You can set the config on the menu
-> 2021/07/10 update
-### Text to Speech
-It can speak the input sentences or the result of translating
-> 2021/07/04 update
-
+### [Text to Speak](#Speak)
+It can speak the input sentences or the translated results, and also can be automatic.
+**It will be helpful to learning languages**
 ## :dart: Features
-### :key: Methods of getting your source texts
+### :key: Methods of getting your source texts<a name="GettingMethods"></a>
 - **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
 - **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
 - **Copy**
-### :key: Text to Speech
-It can speak the input sentences or the translated results
-<a name=AutomaticallyAppearWindow></a>
-### :key: Automatically Appear Window
-The window will be automatically appear when you copy/highlight/screenshot some content and then automatically be hidden after a few seconds if you don't use it.
+### :key: Text to Speech<a name="Speak"></a>
+It can speak the input sentences or the translated results, and also can be automatic.
+### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
+The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
 If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window or just clicking the checkbox on the top
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
 
-### :key: Automatically Switch between Languages
-If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
+### :key: Automatically Switch between Languages<a name="AutomaticallySwitchbetweenLanguages"></a>
+If **the language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_switch_language.gif" width="700">
 
