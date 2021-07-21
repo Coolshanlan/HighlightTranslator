@@ -225,7 +225,7 @@ class MainWindow():
         scaleX = originX/1280
         scaleY = originY/720
         self.font_size=int(config["font_size"]*scaleX)
-        self.root.geometry('{}x{}'.format((int)(210*scaleX),(int)(320*scaleY)))
+        self.root.geometry('{}x{}+{}+{}'.format((int)(210*scaleX),(int)(320*scaleY),0,100))
 
 
     def setup_language_item(self):
