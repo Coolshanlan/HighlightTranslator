@@ -47,7 +47,7 @@ The window will be automatically appear **when you copy/highlight/screenshot som
   If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window or just clicking the checkbox on the top
 - Disappear early
 
-  If you want the window disappear early, you can click the window first and then click any where out of the window
+  If you want the window disappear early, you can move your mouse on the window first and then click any where out of the window
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
 
 ### :key: Automatically Switch between Languages<a name="AutomaticallySwitchbetweenLanguages"></a>
