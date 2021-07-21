@@ -26,9 +26,9 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 - Screenshot
 - Copy
 ### [Automatically Appear Window](#AutomaticallyAppearWindow)
-The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
+The window will be automatically appear **when you `copy`/`highlight`/`screenshot` some content** and then automatically be hidden after a few seconds if you don't use it.
 ### [Automatically Switch between Languages](#AutomaticallySwitchbetweenLanguages)
-If the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
+When the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 ### [Text to Speak](#Speak)
 It can speak the input sentences or the translated results, and also can be automatic.
 
