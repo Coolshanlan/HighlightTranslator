@@ -430,16 +430,25 @@ class MainWindow():
         if self.checktop:
             self.topagain = True
             return
+
         self.checktop = True
         self.root.wm_attributes('-topmost', 1)
-        l = True
-        while l:
-            l = False
-            sleep(config["hide"])
-            if self.topagain:
-                l = True
+
+        text = self.inputbox.get(1.0, tk.END)
+        sleeptime = config["hide"]+(len(text.split(' '))//3)*config['dynamic_adjust_appear_time']
+
+        while True:
             self.topagain = False
+            for _ in range(sleeptime):
+                sleep(1)
+                if self.movein:
+                    break
+            if not self.topagain:
+                break
+
+        self.topagain = False
         self.checktop = False
+
         if self.top_value.get() == False:
             self.root.wm_attributes('-topmost', 0)
             if self.movein == False:
@@ -500,9 +509,9 @@ class MainWindow():
     def textprocessing(self, inptext):
         text = inptext.replace(
             '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
-        while text[-1] == "@" or text[-1] == ' ':
+        while text[-1] == "@" or text[-1] == ' ' or text[-1]=='\n':
             text = text[:-1]
-        while text[0] == "@" or text[0] == ' ':
+        while text[0] == "@" or text[0] == ' ' or text[0]=='\n':
             text = text[1:]
 
         if config["restructure_sentences"]:
