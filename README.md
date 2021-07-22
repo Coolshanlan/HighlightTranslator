@@ -38,8 +38,6 @@ It can speak the input sentences or the translated results, and also can be auto
 - **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
 - **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
 - **Copy**
-### :key: Text to Speech<a name="Speak"></a>
-It can speak the input sentences or the translated results, and also can be automatic.
 ### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
 The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
 - Cancel disappearance
@@ -54,7 +52,8 @@ The window will be automatically appear **when you copy/highlight/screenshot som
 If **the language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_switch_language.gif" width="700">
-
+### :key: Text to Speech<a name="Speak"></a>
+It can speak the input sentences or the translated results, and also can be automatic.
 ### :pushpin: Switch Language Button
 It can switch between source and target languages
 ### :pushpin: Setting Interface
@@ -66,7 +65,8 @@ If the checkbox is checked, the window will always be kept on top.
 ### :pushpin: Checkbox "select"
 When you highlight some content, the translation will be automatically displayed.
 ### :pushpin: Checkbox "input"
-Display InputBox and Translate Button
+Display InputBox and Translate Button.<br>
+You can type the texts in Input Box and then `press Enter` or `click Translate Button` to get the result.
 
 ## :notebook_with_decorative_cover: Google Translate API
 This API can get the translation result from Google Translate
