@@ -42,10 +42,10 @@ It can speak the input sentences or the translated results, and also can be auto
 It can speak the input sentences or the translated results, and also can be automatic.
 ### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
 The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
-- Cancel disappear
+- Cancel disappearance
 
   If you don't want the window to automatically disappear, you can stop it by moving your mouse on the window or just clicking the checkbox on the top
-- Disappear early
+- Early Disappear
 
   If you want the window disappear early, you can move your mouse on the window first and then click any where out of the window
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
