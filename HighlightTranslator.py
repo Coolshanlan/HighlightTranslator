@@ -189,6 +189,13 @@ class MainWindow():
         self.root.mainloop()
 
     def input_press(self,event):
+        text = self.inputbox.get(1.0, tk.END)
+        while text[-1] == ' ' or text[-1]=='\n':
+            text = text[:-1]
+        while text[0] == ' ' or text[0]=='\n':
+            text = text[1:]
+        self.inputbox.delete(1.0, tk.END)
+        self.inputbox.insert(1.0, text)
         self.changeText(True)
 
     def exchange_language(self):
