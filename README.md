@@ -53,6 +53,7 @@ The window will be automatically appear **when you copy/highlight/screenshot som
 If **the language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_switch_language.gif" width="700">
+
 ### :key: Text to Speech<a name="Speak"></a>
 It can speak the input sentences or the translated results, and also can be automatic.
 ### :pushpin: Switch Language Button
