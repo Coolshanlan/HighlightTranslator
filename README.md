@@ -38,6 +38,7 @@ It can speak the input sentences or the translated results, and also can be auto
 - **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
 - **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
 - **Copy**
+
 ### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
 The window will be automatically appear **when you copy/highlight/screenshot some content** and then automatically be hidden after a few seconds if you don't use it.
 - Cancel disappearance
