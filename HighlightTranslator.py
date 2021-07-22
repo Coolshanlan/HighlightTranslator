@@ -554,6 +554,8 @@ class MainWindow():
             self.top.start()
             self.root.clipboard_append('')
             self.previous_copy=''
+            self.now_copy=''
+            self.clear_button.configure(text = 'Clear')
             return False,(None,None,None,None)
 
 
