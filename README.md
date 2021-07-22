@@ -56,19 +56,19 @@ If **the language of input texts** is the same as the target language, source la
 
 ### :key: Text to Speech<a name="Speak"></a>
 It can speak the input sentences or the translated results, and also can be automatic.
-### :pushpin: Switch Language Button
-It can switch between source and target languages
-### :pushpin: Setting Interface
-You can set the config on the menu
-### :pushpin: Change Dictionary
-Only Google and Cambridge Dictionary supported for now. For Cambridge Dictionary, only "English to Chinese" supported
+### :pushpin: Checkbox "input"
+Display InputBox and Translate Button.<br>
+You can type the texts in InputBox and then `press Enter` or `click the Translate Button` to get the translation result.
 ### :pushpin: Checkbox "top"
 If the checkbox is checked, the window will always be kept on top.
 ### :pushpin: Checkbox "select"
 When you highlight some content, the translation will be automatically displayed.
-### :pushpin: Checkbox "input"
-Display InputBox and Translate Button.<br>
-You can type the texts in Input Box and then `press Enter` or `click Translate Button` to get the result.
+### :pushpin: Setting Interface
+You can set the config on the menu
+### :pushpin: Change Dictionary
+Only Google and Cambridge Dictionary supported for now. For Cambridge Dictionary, only "English to Chinese" supported
+### :pushpin: Switch Language Button
+It can switch between source and target languages
 
 ## :notebook_with_decorative_cover: Google Translate API
 This API can get the translation result from Google Translate
