@@ -3,6 +3,7 @@ from time import sleep
 from urllib.parse import quote
 from json import loads
 import tk as tk
+import pyuseragents
 tk = tk.Token()
 class GoogleTranslator():
 
@@ -12,6 +13,7 @@ class GoogleTranslator():
         self.url = base_url
         self.base_parames=general_params
         self.client_list={'nottk':['gtx','at'],'ttk':['webapp'],'clients5':['dict-chrome-ex']}
+        self.client_list_state=self.client_list.copy()
 
     @staticmethod
     def convert_qtext(text):
@@ -22,7 +24,14 @@ class GoogleTranslator():
         return tk.calculate_token(text)
 
     def __call__(self,input_text, sourcelanguage='auto',targetlanguage='tr',ttk_enable=False):
-
+        HEADERS = {
+            "User-Agent": pyuseragents.random(),
+            "Accept": "*/*",
+            "Accept-Language": "en-US,en-GB; q=0.5",
+            "Accept-Encoding": "gzip, deflate",
+            "Content-Type": "application/x-www-form-urlencoded; application/json; charset=UTF-8",
+            "Connection": "keep-alive"
+        }
         #text = self.convert_qtext(input_text)
         self.parames=general_params
         self.parames['sl']=sourcelanguage
@@ -32,7 +41,7 @@ class GoogleTranslator():
         self.parames['ie']='UTF-8'
         self.parames['oe']='UTF-8'
         mode=''
-        if self.name == 'clients5':
+        if self.name == 'clients5' and not ttk_enable:
             mode='clients5'
         elif ttk_enable:
             mode = 'ttk'
@@ -40,22 +49,27 @@ class GoogleTranslator():
             self.parames['tk']=tkid
         else:
             mode='nottk'
-
+        #print(mode,self.client_list[mode])
         self.parames['client']=self.client_list[mode][0]
 
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'}
-        req = get(self.url,params=self.parames,headers=headers)
-        status_code = req.status_code
+        try:
+            req = get(self.url,params=self.parames,headers=HEADERS)
+            status_code = req.status_code
+        except Exception :
+            return status_code,(None,None,None,None)
+
+        if status_code == 400:
+            return status_code,(None,None,None,None)
 
         while  status_code != 200:
             self.client_list[mode].pop(0)
             if self.client_list[mode] == []:
                 return False,(None,None,None,None)
             self.parames['client']=self.client_list[mode][0]
-            req = get(self.url,params=self.parames,headers=headers)
+            req = get(self.url,params=self.parames,headers=HEADERS)
             status_code = req.status_code
 
-        return True,self.parser(req.text)
+        return status_code,self.parser(req.text)
 
 
     def parser(self,request_text):
@@ -101,8 +115,10 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
     status,(result, allresult,detect_language,revise)=translator_list[translator_idx](inputtext, sourcelanguage,targetlanguage,ttk_enable)
 
-    if status:
+    if status == 200:
         return result, allresult,detect_language,revise
+    elif status == 400:
+        return None, None,None,None
     else:
         translator_idx +=1
         if translator_idx < len(translator_list):
@@ -119,7 +135,7 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
 if __name__ == '__main__':
     #print(get_translate("And say mean things", "en","zh-TW"))
-    print(get_translate("good", "en","zh-TW"))
+    print(get_translate("And say mean things", "en","zh-TW"))
 
 
 

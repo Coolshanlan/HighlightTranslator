@@ -9,10 +9,11 @@ import datetime
 import win32con
 import win32api
 import CambridgeTranslate as ct
+#import TranslatecomTranslate as tt
+import GoogleTranslate as gt
 import pytesseract
 from PIL import Image, ImageOps,ImageGrab
 import traceback
-import GoogleTranslate as gt
 from time import sleep
 import threading
 from win32con import CF_TEXT
@@ -49,6 +50,10 @@ for i in range(len(languagelist[0])):
 for i in range(len(languagelist[1])):
     target_languages[languagelist[1][i][1]] = languagelist[1][i][0]
 
+Translators={'Google':gt,
+             'Cambridge':ct,
+             #'Transcom':tt,
+             }
 # add language exchange function
 class MainWindow():
 
@@ -87,7 +92,7 @@ class MainWindow():
 
         # Dictionary combobox
         self.dictionary_combobox = ttk.Combobox(self.root, state="readonly")
-        self.dictionary_combobox["values"] = ["Google", "Cambridge"]
+        self.dictionary_combobox["values"] = list(Translators.keys())
         self.dictionary_combobox.current(0)
         self.dictionary_combobox.bind("<<ComboboxSelected>>", self.dictionary_change_event)
 
@@ -254,22 +259,19 @@ class MainWindow():
 
 
     def dictionary_change(self):
-        if self.dictionary_combobox.get() == "Google":
+        if self.dictionary_combobox.get() != "Cambridge":
             self.setup_language_item()
-            self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-16)/2))+"Change to google" +
-                ("*"*int((self.linelength-16)/2)+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-
         else:
             self.source_combobox["values"] = ["English"]
             self.target_combobox["values"] = ["Chinese (Traditional)"]
             self.source_combobox.current(0)
             self.target_combobox.current(0)
-            self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-18)/2))+"Change to cambridge" +
-                ("*"*int((self.linelength-18)/2)+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
+        self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-16)/2))+"Change Dictionary" +
+                ("*"*int((self.linelength-16)/2)+"\n"))
+        self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+
 
 
 
@@ -348,6 +350,11 @@ class MainWindow():
         self.resultbox.insert(tk.END, "="*self.linelength+"\n")
         self.resultbox.see(tk.END)
 
+    def reset_clip_event(self):
+        self.root.clipboard_append('')
+        self.previous_copy=''
+        self.now_copy=''
+
     @staticmethod
     def record_error(e):
         with open("log.txt","a") as f:
@@ -389,7 +396,7 @@ class MainWindow():
             self.resultbox.insert(
                 tk.END, "="*self.linelength+"\n")
             self.resultbox.see(tk.END)
-            #self.root.clipboard_append('')
+            self.root.clipboard_append('')
             return False
         #self.root.clipboard_append('')
         return True
@@ -404,6 +411,7 @@ class MainWindow():
             except Exception as e:
                 self.printerror(self.record_error(e))
                 self.root.clipboard_append('')
+                self.reset_clip_event()
                 return False
 
         elif self.root.state() != 'iconic' and self.screenshot_value.get():
@@ -413,8 +421,7 @@ class MainWindow():
                 return False
             except Exception as e:
                 self.printerror(self.record_error(e))
-                self.root.clipboard_append('')
-                self.previous_copy=''
+                self.reset_clip_event()
                 return False
             if isinstance(im, Image.Image):
                 return self.image_OCR(im)
@@ -529,20 +536,18 @@ class MainWindow():
     def get_translation(self,text):
         try:
             # Google Translate
-            if self.dictionary_combobox.get() == "Google":
-                result, allresult, detect_language, revise = gt.get_translate(
-                    text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
-            # Cambridge Translate
-            else:
-                result, allresult = ct.get_translate(text)
-                revise=None
-                detect_language='en'
-                if result == "":
-                    self.dictionary_combobox.current(0)
-                    self.dictionary_change()
-                    result, allresult, detect_language, revise = gt.get_translate(text, source_languages[self.source_combobox.get()],target_languages[self.target_combobox.get()])
+            result, allresult, detect_language, revise = Translators[self.dictionary_combobox.get()].get_translate(
+                    inputtext=text, sourcelanguage=source_languages[self.source_combobox.get()],targetlanguage=target_languages[self.target_combobox.get()])
+
+            if result == None and self.dictionary_combobox.get() != 'Google' :
+                self.dictionary_combobox.current(0)
+                self.dictionary_change()
+                return self.get_translation(text)
+            elif result == None:
+                return False,(None,None,None,None)
 
             return True,(result,allresult,revise,detect_language)
+
         except Exception as e:
             self.printerror(self.record_error(e))
             self.resultbox.insert(
@@ -552,10 +557,7 @@ class MainWindow():
             self.resultbox.see(tk.END)
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
-            self.root.clipboard_append('')
-            self.previous_copy=''
-            self.now_copy=''
-            self.clear_button.configure(text = 'Clear')
+            self.reset_clip_event()
             return False,(None,None,None,None)
 
 
@@ -603,23 +605,23 @@ class MainWindow():
             self.translate_result += iter_result+'\n'
             if allresult != []:
                 self.resultbox.insert(tk.END, "\n")
-        if len(allresult) > 0:
-            self.resultbox.insert(tk.END, "\n")
 
-        # print all result
-        for r_idx,iter_result in enumerate(allresult):
-            self.translate_result += iter_result['pos'].capitalize()+":"+"\n"
-            self.resultbox.insert(tk.END, iter_result['pos'].capitalize()+":"+"\n")
-            terms = iter_result['terms'][:config['number_of_terms']]
-            for t_idx,iter_terms in enumerate(terms):
-                self.resultbox.insert(tk.END, iter_terms)
-                self.translate_result+=iter_terms
-                if t_idx != len(terms)-1:
-                    self.translate_result += ","
-                    self.resultbox.insert(tk.END, ",")
-            if r_idx != len(allresult)-1:
-                self.resultbox.insert(tk.END, "\n\n")
-                self.translate_result+="\n\n"
+        if  allresult != None and len(allresult) > 0:
+            self.resultbox.insert(tk.END, "\n")
+            # print all result
+            for r_idx,iter_result in enumerate(allresult):
+                self.translate_result += iter_result['pos'].capitalize()+":"+"\n"
+                self.resultbox.insert(tk.END, iter_result['pos'].capitalize()+":"+"\n")
+                terms = iter_result['terms'][:config['number_of_terms']]
+                for t_idx,iter_terms in enumerate(terms):
+                    self.resultbox.insert(tk.END, iter_terms)
+                    self.translate_result+=iter_terms
+                    if t_idx != len(terms)-1:
+                        self.translate_result += ","
+                        self.resultbox.insert(tk.END, ",")
+                if r_idx != len(allresult)-1:
+                    self.resultbox.insert(tk.END, "\n\n")
+                    self.translate_result+="\n\n"
 
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)
@@ -632,8 +634,9 @@ class MainWindow():
 
         # auto speak
         if self.auto_speak_value.get() == True:
-            if len(text.split(' ')) <= config["auto_speak_length_limit"]:
-                text_max_length = max([len(str(t)) for t in text.split(' ')])
+            audio_text = text.replace('\n',' ')
+            if len(audio_text.split(' ')) <= config["auto_speak_length_limit"]:
+                text_max_length = max([len(str(t)) for t in audio_text.split(' ')])
                 if text_max_length <= config['auto_speak_length_limit']*1.5:
                     self.speak()
 
