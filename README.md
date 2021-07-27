@@ -37,7 +37,7 @@ It can speak the input sentences or the translated results, and also can be auto
 ### :key: Methods of getting your source texts<a name="GettingMethods"></a>
 - **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
 - **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
-  > (keyboard shortcut: `Windows + Shift + S`)
+  > Keyboard shortcut: `Windows + Shift + S`
 - **Copy**
 
 ### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
