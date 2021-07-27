@@ -23,7 +23,7 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 ## :loudspeaker: Highlight Features
 ### [Methods of Getting Source Texts](#GettingMethods)
 - Highlight/Selected
-- Screenshot
+- Screenshot (keyboard shortcut: `Windows+Shift+S`)
 - Copy
 ### [Automatically Appear Window](#AutomaticallyAppearWindow)
 The window will be automatically appear **when you `copy`/`highlight`/`screenshot` some content** and then automatically be hidden after a few seconds if you don't use it.
@@ -37,6 +37,7 @@ It can speak the input sentences or the translated results, and also can be auto
 ### :key: Methods of getting your source texts<a name="GettingMethods"></a>
 - **Highlight/Selected** (This method does not support Microsoft Office, but you can copy the words/sentences instead)
 - **Screenshot** (Only English and Chinese supported currently, but feel free to add new languages by yourself)
+  > (keyboard shortcut: `Windows+Shift+S`)
 - **Copy**
 
 ### :key: Automatically Appear Window<a name="AutomaticallyAppearWindow"></a>
