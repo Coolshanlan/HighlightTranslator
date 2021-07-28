@@ -63,60 +63,63 @@ class MainWindow():
         self.set_WindowsSize()# Auto resizing
         self.keyboard = Controller()# keyboard hook
 
+        self.button_size_scale=1.25
+        self.font_config=("{} {}".format(str(config["font"]), str(int(self.font_size//self.button_size_scale))))
+
         self.translate_result=''
 
         # Top of feature checkboxes
         self.checkbox_frame =tk.Frame(self.root)
 
         # Menu
-        self.menubar =tk.Menu(self.root)
-        self.menubar.add_cascade(label="Setting",command=self.open_setting)
-        self.menubar.add_cascade(label="How to use",command=self.open_website)
+        self.menubar =tk.Menu(self.root,font=self.font_config)
+        self.menubar.add_cascade(label="Setting",command=self.open_setting,font=self.font_config)
+        self.menubar.add_cascade(label="How to use",command=self.open_website,font=self.font_config)
         self.root.config(menu=self.menubar)
 
         self.top_value = tk.BooleanVar()
         self.top_value.set(False)
-        self.top_checkbox = tk.Checkbutton((self.checkbox_frame), text='top', var=(self.top_value),command=(self.checkchange))
+        self.top_checkbox = tk.Checkbutton((self.checkbox_frame), text='top', var=(self.top_value),command=(self.checkchange),font=self.font_config)
 
         self.select_value = tk.BooleanVar()
         self.select_value.set(True)
-        self.select_checkbox = tk.Checkbutton((self.checkbox_frame), text='select', var=(self.select_value),command=(self.changehighlightclick))
+        self.select_checkbox = tk.Checkbutton((self.checkbox_frame), text='select', var=(self.select_value),command=(self.changehighlightclick),font=self.font_config)
 
         self.display_inputbox_value = tk.BooleanVar()
         self.display_inputbox_value.set(False)
-        self.display_inputbox_checkbox = tk.Checkbutton((self.checkbox_frame), text='input', var=(self.display_inputbox_value),command=self.displayinputbox)
+        self.display_inputbox_checkbox = tk.Checkbutton((self.checkbox_frame), text='input', var=(self.display_inputbox_value),command=self.displayinputbox,font=self.font_config)
 
         self.screenshot_value = tk.BooleanVar()
         self.screenshot_value.set(True)
-        self.screenshot_checkbox = tk.Checkbutton((self.checkbox_frame), text='shot', var=(self.screenshot_value))
+        self.screenshot_checkbox = tk.Checkbutton((self.checkbox_frame), text='shot', var=(self.screenshot_value),font=self.font_config)
 
         # Dictionary combobox
-        self.dictionary_combobox = ttk.Combobox(self.root, state="readonly")
+        self.dictionary_combobox = ttk.Combobox(self.root, state="readonly",font=self.font_config)
         self.dictionary_combobox["values"] = list(Translators.keys())
         self.dictionary_combobox.current(0)
         self.dictionary_combobox.bind("<<ComboboxSelected>>", self.dictionary_change_event)
 
         # Language region
         self.language_frame =tk.Frame(self.root)
-        self.source_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
-        self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10)
+        self.source_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10, font=self.font_config)
+        self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10, font=self.font_config)
         self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.source_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchange_language))
         self.setup_language_item()
 
         # Button
-        self.translate_button = tk.Button((self.root), text='Translate',command=(self.changeText))
-        self.clear_button = tk.Button((self.root), text='Clear',command=(self.ClearText))
+        self.translate_button = tk.Button((self.root), text='Translate',command=(self.changeText),font=self.font_config)
+        self.clear_button = tk.Button((self.root), text='Clear',command=(self.ClearText),font=self.font_config)
 
         # Speak button region
         self.speak_frame =tk.Frame(self.root)
-        self.speak_target_button = tk.Button((self.speak_frame), text='Speak T',command=(self.speak_t))
-        self.speak_source_button = tk.Button((self.speak_frame), text='Speak S',command=(self.speak))
+        self.speak_target_button = tk.Button((self.speak_frame), text='Speak T',command=(self.speak_t),font=self.font_config)
+        self.speak_source_button = tk.Button((self.speak_frame), text='Speak S',command=(self.speak),font=self.font_config)
 
         self.auto_speak_value = tk.BooleanVar()
         self.auto_speak_value.set(False)
-        self.auto_speak_checkbox = tk.Checkbutton((self.speak_frame), text='auto', var=(self.auto_speak_value),command=(self.speak_change))
+        self.auto_speak_checkbox = tk.Checkbutton((self.speak_frame), text='auto', var=(self.auto_speak_value),command=(self.speak_change),font=self.font_config)
 
         #scrollbar
         self.scrollbar = tk.Scrollbar(self.root)
