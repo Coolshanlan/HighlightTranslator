@@ -10,6 +10,8 @@ Translation resource: [Google Translate](https://translate.google.com.tw) and [C
 
 OCR technology: [Tesseract](https://github.com/tesseract-ocr/tesseract)
 
+Virtual Desktop Control DLL: [Ciantic/VirtualDesktopAccessor Github](https://github.com/Ciantic/VirtualDesktopAccessor)
+
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
@@ -27,6 +29,9 @@ Find the `HighlightTranslator.exe` in the folder and then double click
 - Copy
 ### [Automatically Appear Window](#AutomaticallyAppearWindow)
 The window will be automatically appear **when you `copy`/`highlight`/`screenshot` some content** and then automatically be hidden after a few seconds if you don't use it.
+### [Automatically Switch to Current Virtual Desktop](#AutomaticallySwitchtoCurrentVirtualDesktop)
+You can use it on different virtual desktop without manually switch by yourself, it will automatic switch to current virtual desktop
+
 ### [Automatically Switch between Languages](#AutomaticallySwitchbetweenLanguages)
 When the **language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 ### [Text to Speak](#Speak)
@@ -49,7 +54,8 @@ The window will be automatically appear **when you copy/highlight/screenshot som
 
   If you want the window disappear early, you can move your mouse on the window first and then click any where out of the window
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
-
+### :key: Automatically Switch to Current Virtual Desktop<name="AutomaticallySwitchtoCurrentVirtualDesktop"></a>
+You can use it on different virtual desktop without manually switch by yourself, it will automatic switch to current virtual desktop
 ### :key: Automatically Switch between Languages<a name="AutomaticallySwitchbetweenLanguages"></a>
 If **the language of input texts** is the same as the target language, source language and target language will be automatically switched to each other.
 

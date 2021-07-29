@@ -54,7 +54,32 @@ Translators={'Google':gt,
              'Cambridge':ct,
              #'Transcom':tt,
              }
-# add language exchange function
+
+# Automatic change virtual desktop
+import ctypes
+import os
+from ctypes.wintypes import *
+from ctypes import windll, byref
+
+def get_windows(pid):
+    current_window = 0
+    pid_local = DWORD()
+    while True:
+        current_window = windll.User32.FindWindowExA(0, current_window, 0, 0)
+        windll.user32.GetWindowThreadProcessId(current_window, byref(pid_local))
+        if pid == pid_local.value:
+            yield current_window
+
+        if current_window == 0:
+            return
+
+def Move_window_to_current_desktop():
+    virtual_desktop_accessor = ctypes.WinDLL("VirtualDesktopAccessor.dll")
+    pid = os.getpid()
+    current_number = virtual_desktop_accessor.GetCurrentDesktopNumber()
+    for window in get_windows(pid):
+        window = HWND(window)
+        virtual_desktop_accessor.MoveWindowToDesktopNumber(window, current_number)
 class MainWindow():
 
     def __init__(self):
@@ -176,6 +201,9 @@ class MainWindow():
         #close threads when window closed
         self.closed = False
         self.changed_language=False
+
+        # # get current desktop number
+        # self.vd_number = Move_window_to_current_desktop()
 
         self.root.bind('<Motion>', self.motion)
         self.root.title('Highlight Translator')
@@ -580,6 +608,8 @@ class MainWindow():
 
     def changeText(self, click=True):
         global detect_language
+        Move_window_to_current_desktop()
+
         self.movein = False
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         text = self.inputbox.get(1.0, tk.END)
