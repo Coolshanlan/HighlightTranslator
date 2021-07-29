@@ -481,7 +481,7 @@ class MainWindow():
 
         while True:
             text = self.inputbox.get(1.0, tk.END)
-            sleeptime = config["appear_time"]+(len(text.split(' '))//3)*config['dynamic_adjust_appear_time']
+            sleeptime = config["appear_time"]+int((len(text.split(' '))//3)*config['dynamic_adjust_appear_time'])
             self.topagain = False
             for _ in range(sleeptime):
                 sleep(1)
@@ -557,7 +557,6 @@ class MainWindow():
             text = text[:-1]
         while text[0] == "@" or text[0] == ' ' or text[0]=='\n':
             text = text[1:]
-
         if config["restructure_sentences"]:
             text = self.restructure_sentences(text)
         else:
@@ -624,6 +623,18 @@ class MainWindow():
         if not status:
             self.clear_button.configure(text = 'Clear')
             return False
+
+        # modify text, if the final letter is 's' or 'es', it will be remove, this feature can get more result
+        if len(text.split(' ')) == 1 and (allresult == None or allresult==[]) and text[-2] == 's':
+            if text[-3] == 'e' and text[-4] in ['s','o','x','z'] or text[-5:-3] in ['sh','ch']:
+                revise_text = text[:-3]+'\n'
+                print(text)
+            else:
+                revise_text=text[:-2]+'\n'
+            _status,(_result,_allresult,_revise,_detect_language) = self.get_translation(revise_text)
+            if (_revise == None or _revise=='') and( _allresult != [] and _allresult != None):
+                status,(result,allresult,revise,detect_language) = _status,(_result,_allresult,_revise,_detect_language)
+
 
         # print input
         self.resultbox.insert(tk.END, text)
