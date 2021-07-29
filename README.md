@@ -56,7 +56,7 @@ The window will be automatically appear **when you copy/highlight/screenshot som
   If you want the window disappear early, you can move your mouse on the window first and then click any where out of the window
 <img src="https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo_automaticlly_hide.gif" width="700">
 
-### :key: Automatically Switch to Current Virtual Desktop<name="AutomaticallySwitchtoCurrentVirtualDesktop"></a>
+### :key: Automatically Switch to Current Virtual Desktop<a name="AutomaticallySwitchtoCurrentVirtualDesktop"></a>
 You can use it on different virtual desktop without manually switch by yourself, it will automatic switch to current virtual desktop.
 
 ### :key: Automatically Switch between Languages<a name="AutomaticallySwitchbetweenLanguages"></a>
