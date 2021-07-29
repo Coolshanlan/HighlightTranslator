@@ -625,15 +625,17 @@ class MainWindow():
             return False
 
         # modify text, if the final letter is 's' or 'es', it will be remove, this feature can get more result
-        if len(text.split(' ')) == 1 and (allresult == None or allresult==[]) and text[-2] == 's':
-            if text[-3] == 'e' and text[-4] in ['s','o','x','z'] or text[-5:-3] in ['sh','ch']:
-                revise_text = text[:-3]+'\n'
-                print(text)
-            else:
-                revise_text=text[:-2]+'\n'
-            _status,(_result,_allresult,_revise,_detect_language) = self.get_translation(revise_text)
-            if (_revise == None or _revise=='') and( _allresult != [] and _allresult != None):
-                status,(result,allresult,revise,detect_language) = _status,(_result,_allresult,_revise,_detect_language)
+        if (detect_language == 'en' or source_languages[self.source_combobox.get()] == 'en') and not click:
+            if len(text.split(' ')) == 1 and (allresult == None or allresult==[]) and text[-2] == 's':
+                if text[-3] == 'e' and text[-4] in ['s','o','x','z'] or text[-5:-3] in ['sh','ch']:
+                    revise_text = text[:-3]+'\n'
+                elif text[-4:-1] == 'ies':
+                    revise_text = text[:-4]+'y\n'
+                else:
+                    revise_text=text[:-2]+'\n'
+                _status,(_result,_allresult,_revise,_detect_language) = self.get_translation(revise_text)
+                if (_revise == None or _revise=='') and( _allresult != [] and _allresult != None):
+                    status,(result,allresult,revise,detect_language) = _status,(_result,_allresult,_revise,_detect_language)
 
 
         # print input
