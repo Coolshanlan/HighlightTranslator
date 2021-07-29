@@ -608,7 +608,9 @@ class MainWindow():
 
     def changeText(self, click=True):
         global detect_language
-        Move_window_to_current_desktop()
+        move_virtual_desktop_thread = threading.Thread(target=(Move_window_to_current_desktop()))
+        move_virtual_desktop_thread.start()
+
 
         self.movein = False
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
