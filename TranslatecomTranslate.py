@@ -43,7 +43,36 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
 
 translator=Translatecom()
+def detect_language_transcom(input_text):
+    url_language='https://www.translate.com/translator/ajax_lang_auto_detect'
+    req=post(url_language, data={"text_to_translate": input_text})
+    req.raise_for_status()
+    detect_language = req.json()['language']
+    return detect_language
+
+def detect_language_bing(input_text):
+    request = post(
+            "https://api.reverso.net/translate/v1/translation",
+            json={
+                "input": input_text,
+                "from": "zh",
+                "to": "fra",
+                "format": "text",
+                "options": {
+                    "origin": "reversodesktop",
+                    "sentenceSplitter": False,
+                    "contextResults": False,
+                    "languageDetection": True
+                }
+            },
+            headers={"Content-Type": "application/json; charset=UTF-8"}
+        )
+    # response = request.json()
+    print(request.text)
+    if request.status_code < 400:
+        return response["languageDetection"]["detectedLanguage"]
 
 if __name__ == '__main__':
   translator=Translatecom()
-  print(get_translate('蘋果','zh','en'))
+  print(detect_language_transcom('大家好'))
+  print(get_translate('apply','auto','en'))

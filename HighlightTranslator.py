@@ -18,12 +18,13 @@ from time import sleep
 import threading
 from win32con import CF_TEXT
 import win32clipboard
-from tkinter import TclError, ttk
+from tkinter import TclError, ttk, font
 import tkinter as tk
 import re
 import json
 import sys
-
+# root = tk.Tk()
+# print(font.families())
 # tesseract setting
 # OCR only support these four languages now, you can add another language from tesseract and put it file in tesseract/tessdata
 sys.setrecursionlimit(sys.getrecursionlimit() * 5)
@@ -88,8 +89,8 @@ class MainWindow():
         self.set_WindowsSize()# Auto resizing
         self.keyboard = Controller()# keyboard hook
 
-        self.button_size_scale=1.25
-        self.font_config=("{} {}".format(str(config["font"]), str(int(self.font_size//self.button_size_scale))))
+        self.button_size_scale=config['button_font_size_scale']
+        self.font_config=("{} {}".format(str('Arial'), str(int(self.font_size*self.button_size_scale))))
 
         self.translate_result=''
 
@@ -130,7 +131,7 @@ class MainWindow():
         self.target_combobox = ttk.Combobox(self.language_frame, state="readonly", width=10, font=self.font_config)
         self.target_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
         self.source_combobox.bind("<<ComboboxSelected>>", self.target_combobox_change)
-        self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchange_language))
+        self.exchange_button = tk.Button((self.language_frame), text='⇄',command=(self.exchange_language),font=self.font_config)
         self.setup_language_item()
 
         # Button
@@ -150,12 +151,12 @@ class MainWindow():
         self.scrollbar = tk.Scrollbar(self.root)
         self.scrollbar.pack(side=(tk.RIGHT), fill=(tk.Y))
         # Inputbox
-        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(config["font"]), str(self.font_size))))
+        self.inputbox = tk.Text(height=3, font=("{} {}".format(str(self.font_), str(self.font_size))),fg=config['inputbox_font_color'])
         self.inputbox.insert(tk.END, 'Try to copy/highlight/select/screenshot contents that you want to translate')
         self.inputbox.configure(bg=config["inputbox_color"])
         self.inputbox.bind('<Return>', self.input_press)
         #resultbox
-        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(config["font"]), str(self.font_size))))
+        self.resultbox = tk.Text((self.root),yscrollcommand=(self.scrollbar.set), height=100, font=("{} {}".format(str(self.font_), str(self.font_size))),fg=config['resultbox_font_color'])
         self.resultbox.configure(bg=config["resultbox_color"])
 
         self.checkbox_frame.pack()
@@ -208,7 +209,7 @@ class MainWindow():
         self.root.bind('<Motion>', self.motion)
         self.root.title('Highlight Translator')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
-
+        self.scrollbar.pack_forget()
         #check is it double click or not
         self.clickstarttime = datetime.datetime.now()
         self.clickendtime = datetime.datetime.now()
@@ -232,6 +233,7 @@ class MainWindow():
             text = text[1:]
         self.inputbox.delete(1.0, tk.END)
         self.inputbox.insert(1.0, text)
+        self.movein=True
         self.changeText(True)
 
     def exchange_language(self):
@@ -267,6 +269,10 @@ class MainWindow():
         originY =win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
         scaleX = originX/1280
         scaleY = originY/720
+        font_family=list(font.families())
+        font_family = [f.lower() for f in font_family]
+        self.font_ = ''.join(config["font"].split(' ')).lower() if config["font"].lower() in font_family else 'Arial'
+        print(self.font_)
         self.font_size=int(config["font_size"]*scaleX)
         self.root.geometry('{}x{}+{}+{}'.format((int)(190*scaleX),(int)(320*scaleY),0,100))
 
@@ -373,8 +379,9 @@ class MainWindow():
         self.closed = True
         if self.select_value.get() == True:
             self.mouse_listener.stop()
-        self.check_clipboard_thread.join()
-        self.root.destroy()
+        os.kill(os.getpid(), -9)
+        # self.check_clipboard_thread.join()
+        # self.root.destroy()
 
     def printerror(self,error_class):
         self.resultbox.insert(tk.END, ("*"*3)+error_class +("*"*3+"\n"))
@@ -610,8 +617,9 @@ class MainWindow():
         move_virtual_desktop_thread = threading.Thread(target=(Move_window_to_current_desktop()))
         move_virtual_desktop_thread.start()
 
+        if not click:
+            self.movein = False
 
-        self.movein = False
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         text = self.inputbox.get(1.0, tk.END)
 
@@ -676,7 +684,7 @@ class MainWindow():
         self.clear_button.configure(text = 'Clear')
 
         # Let window top
-        if not self.top_value.get():
+        if not click and not self.top_value.get():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
 
@@ -697,7 +705,7 @@ class MainWindow():
                         ("*"*int((self.linelength-15)/2)+"\n"))
                 self.resultbox.insert(tk.END,"="*self.linelength+"\n")
                 self.exchange_language()
-                self.changeText(False)
+                self.changeText(click)
 
         self.changed_language=False
 
@@ -743,18 +751,18 @@ class SettingWindow():
         self.root.title('Setting')
         self.textlist = []
         self.maxlen = max([len(str(v)) for v in config.values()])
-        tk.Label(self.root,text='Some setting need to reload the application', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size']))), fg='#FF0000').pack()
+        tk.Label(self.root,text='Some setting need to reload the application', justify=tk.LEFT, font=("{} {}".format('Arial', str(config['font_size']))), fg='#FF0000').pack()
 
         language_frame = tk.Frame(self.root)
         language_frame.pack(fill=(tk.BOTH))
-        tk.Label(language_frame,text='Source Language', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size'])))).pack( side=tk.LEFT)
-        self.source_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format(str(config["font"]), str(config['font_size']))),width=self.maxlen-2)
+        tk.Label(language_frame,text='Default Source Language', justify=tk.LEFT, font=("{} {}".format('Arial', str(config['font_size'])))).pack( side=tk.LEFT)
+        self.source_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format('Arial', str(config['font_size']))),width=self.maxlen-2)
         self.source_combobox.pack(side=tk.RIGHT)
 
         language_frame = tk.Frame(self.root)
         language_frame.pack(fill=(tk.BOTH))
-        tk.Label(language_frame,text='Target Language', justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config['font_size'])))).pack( side=tk.LEFT)
-        self.target_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format(str(config["font"]), str(config['font_size']))), width=self.maxlen-2)
+        tk.Label(language_frame,text='Default Target Language', justify=tk.LEFT, font=("{} {}".format('Arial', str(config['font_size'])))).pack( side=tk.LEFT)
+        self.target_combobox = ttk.Combobox(language_frame, state="readonly",font=("{} {}".format('Arial', str(config['font_size']))), width=self.maxlen-2)
         self.target_combobox.pack(side=tk.RIGHT)
 
         self.setup_language_item()
@@ -802,8 +810,8 @@ class SettingWindow():
         frame = tk.Frame(self.root)
         frame.pack(fill=(tk.BOTH))
 
-        tk.Label(frame,text=key.replace('_',' '), justify=tk.LEFT, font=("{} {}".format(str(config["font"]), str(config["font_size"])))).pack( side=tk.LEFT)
-        textbox=tk.Text(frame,height=1,width=self.maxlen, font=("{} {}".format(str(config["font"]), str(config["font_size"]))))
+        tk.Label(frame,text=key.replace('_',' '), justify=tk.LEFT, font=("{} {}".format('Arial', str(config["font_size"])))).pack( side=tk.LEFT)
+        textbox=tk.Text(frame,height=1,width=self.maxlen, font=("{} {}".format('Arial', str(config["font_size"]))))
         textbox.insert(tk.END, str(value))
         textbox.pack( side=tk.RIGHT)
 
