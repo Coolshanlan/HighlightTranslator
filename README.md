@@ -149,7 +149,7 @@ python Highlight_Translator.py
 python 3.6
 ``` python
 pyinstaller == 4.1
-Pillow == 8.2.0
+Pillow >= 8.2.0
 pynput == 1.6
 pyautogui == 0.9
 pytesseract == 0.3
