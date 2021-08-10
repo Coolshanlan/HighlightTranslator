@@ -1,0 +1,40 @@
+08/10/2021 19:30:10
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 84, in parser:
+ [KeyError]
+examples
+-------------------------
+08/10/2021 19:36:59
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 84, in parser:
+ [KeyError]
+examples
+-------------------------
+08/10/2021 19:37:09
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 84, in parser:
+ [KeyError]
+examples
+-------------------------
+08/10/2021 19:37:12
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 84, in parser:
+ [KeyError]
+examples
+-------------------------
+08/10/2021 19:37:14
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 84, in parser:
+ [KeyError]
+examples
+-------------------------
+08/10/2021 19:38:52
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 108, in parser:
+ [UnboundLocalError]
+local variable 'examples' referenced before assignment
+-------------------------
+08/10/2021 19:38:55
+File "c:\UserD\Program\Project_Python\Copy_Translator\GoogleTranslate.py", line 108, in parser:
+ [UnboundLocalError]
+local variable 'examples' referenced before assignment
+-------------------------
+08/10/2021 19:58:42
+File "C:\UserC\Anaconda\envs\translator\lib\tkinter\__init__.py", line 875, in clipboard_get:
+ [RuntimeError]
+main thread is not in main loop
+-------------------------

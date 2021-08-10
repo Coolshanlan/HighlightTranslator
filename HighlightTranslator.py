@@ -272,7 +272,6 @@ class MainWindow():
         font_family=list(font.families())
         font_family = [f.lower() for f in font_family]
         self.font_ = ''.join(config["font"].split(' ')).lower() if config["font"].lower() in font_family else 'Arial'
-        print(self.font_)
         self.font_size=int(config["font_size"]*scaleX)
         self.root.geometry('{}x{}+{}+{}'.format((int)(190*scaleX),(int)(320*scaleY),0,100))
 
@@ -573,17 +572,19 @@ class MainWindow():
     def get_translation(self,text):
         try:
             # Google Translate
-            result, allresult, detect_language, revise = Translators[self.dictionary_combobox.get()].get_translate(
+            result_dict = Translators[self.dictionary_combobox.get()].get_translate(
                     inputtext=text, sourcelanguage=source_languages[self.source_combobox.get()],targetlanguage=target_languages[self.target_combobox.get()])
 
-            if result == None and self.dictionary_combobox.get() != 'Google' :
+
+            if result_dict == None and self.dictionary_combobox.get() != 'Google' :
                 self.dictionary_combobox.current(0)
                 self.dictionary_change()
                 return self.get_translation(text)
-            elif result == None:
-                return False,(None,None,None,None)
+            elif result_dict == None:
+                return False,None
 
-            return True,(result,allresult,revise,detect_language)
+
+            return True,result_dict
 
         except Exception as e:
             self.printerror(self.record_error(e))
@@ -626,58 +627,77 @@ class MainWindow():
         if not click and not self.changed_language:
             self.autochange_dictionary(text)
 
-        status,(result,allresult,revise,detect_language) = self.get_translation(text)
+        status,result_dict = self.get_translation(text)
 
         if not status:
             self.clear_button.configure(text = 'Clear')
             return False
-
+        detect_language = result_dict['detect_language']
         # modify text, if the final letter is 's' or 'es', it will be remove, this feature can get more result
         if (detect_language == 'en' or source_languages[self.source_combobox.get()] == 'en') and not click:
-            if len(text.split(' ')) == 1 and (allresult == None or allresult==[]) and text[-2] == 's':
+            if len(text.split(' ')) == 1 and (result_dict['all_result'] == None or result_dict['all_result']==[]) and text[-2] == 's':
                 if text[-3] == 'e' and text[-4] in ['s','o','x','z'] or text[-5:-3] in ['sh','ch']:
                     revise_text = text[:-3]+'\n'
                 elif text[-4:-1] == 'ies':
                     revise_text = text[:-4]+'y\n'
                 else:
                     revise_text=text[:-2]+'\n'
-                _status,(_result,_allresult,_revise,_detect_language) = self.get_translation(revise_text)
-                if (_revise == None or _revise=='') and( _allresult != [] and _allresult != None):
-                    status,(result,allresult,revise,detect_language) = _status,(_result,_allresult,_revise,_detect_language)
+                _status,_result_dict = self.get_translation(revise_text)
+                if (_result_dict['revise'] == None or _result_dict['revise'] =='') and( _result_dict['all_result']  != [] and _result_dict['all_result'] != None):
+                    status,result_dict = _status,_result_dict
 
 
         # print input
         self.resultbox.insert(tk.END, text)
-        if revise:
-            self.resultbox.insert(tk.END, '({})\n'.format(revise))
+        if result_dict['revise']:
+            self.resultbox.insert(tk.END, '({})\n'.format(result_dict['revise']))
+
 
         self.resultbox.insert(
             tk.END, "-"*((int)(self.linelength*1.8))+"\n")
 
         # print result
         self.translate_result=''
-        for iter_result in result:
+        for iter_result in result_dict['result']:
             self.resultbox.insert(tk.END, iter_result)
             self.translate_result += iter_result+'\n'
-            if allresult != []:
+
+            if result_dict['all_result'] != []:
                 self.resultbox.insert(tk.END, "\n")
 
-        if  allresult != None and len(allresult) > 0:
+        if  result_dict['all_result'] != None and len(result_dict['all_result']) > 0:
             self.resultbox.insert(tk.END, "\n")
             # print all result
-            for r_idx,iter_result in enumerate(allresult):
+            for r_idx,iter_result in enumerate(result_dict['all_result']):
                 self.translate_result += iter_result['pos'].capitalize()+":"+"\n"
-                self.resultbox.insert(tk.END, iter_result['pos'].capitalize()+":"+"\n")
+                self.resultbox.insert(tk.END, '【'+iter_result['pos'].capitalize()+"】:"+"\n")
+
                 terms = iter_result['terms'][:config['number_of_terms']]
                 for t_idx,iter_terms in enumerate(terms):
                     self.resultbox.insert(tk.END, iter_terms)
                     self.translate_result+=iter_terms
                     if t_idx != len(terms)-1:
-                        self.translate_result += ","
+                        #self.translate_result += ","
                         self.resultbox.insert(tk.END, ",")
-                if r_idx != len(allresult)-1:
+
+                if config['definition'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                    if result_dict['definition'][iter_result['pos']][0]['detail'] != None:
+                        self.resultbox.insert(tk.END, '\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
+
+                if config['sentence_example'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                    if result_dict['definition'][iter_result['pos']][0]['example'] != None:
+                        self.resultbox.insert(tk.END, '\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
+
+                if r_idx != len(result_dict['all_result'])-1:
                     self.resultbox.insert(tk.END, "\n\n")
-                    self.translate_result+="\n\n"
+                    #self.translate_result+="\n\n"
+            if config['sentence_example'] and result_dict['example']!= None :
+                self.resultbox.insert(tk.END, "\n")
+                result_dict['example'] = result_dict['example'][:config['sentence_example']]
+                self.resultbox.insert(tk.END, '\n【Examples】')
+                for idx,ex in enumerate(result_dict['example']):
+                    self.resultbox.insert(tk.END,f"\n{idx+1}."+ex+"\n")
+
 
         self.resultbox.insert(tk.END, "\n"+"="*self.linelength+"\n")
         self.resultbox.see(tk.END)

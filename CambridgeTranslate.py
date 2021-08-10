@@ -14,7 +14,7 @@ def get_translate(inputtext,**kwargs):
         a = BeautifulSoup(r.content,"html.parser")
         a = a.find_all("div", class_="pr entry-body__el")
         if len(a) == 0:
-            return None,None,None,None
+            return None
         allresult = []
 
         for i in a:
@@ -28,9 +28,14 @@ def get_translate(inputtext,**kwargs):
                 for t in translist:
                     allresult[len(allresult)-1]['terms'].append(t)
         result = allresult[0]["terms"][:1]
-        return result, allresult, 'en', None
+        result_dict = {}
+        result_dict['result']=result
+        result_dict['all_result']=allresult
+        result_dict['detect_language']='en'
+        result_dict['revise']=None
+        return result_dict
     except Exception:
-        return None,None,None,None
+        return None
 
 if __name__ == "__main__":
-    print(get_translate(inputtext="make-up"))
+    print(get_translate(inputtext="makep"))

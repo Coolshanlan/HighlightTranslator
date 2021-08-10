@@ -32,6 +32,7 @@ class GoogleTranslator():
             "Content-Type": "application/x-www-form-urlencoded; application/json; charset=UTF-8",
             "Connection": "keep-alive"
         }
+        result_dict={}
         #text = self.convert_qtext(input_text)
         self.parames=general_params
         self.parames['sl']=sourcelanguage
@@ -56,15 +57,15 @@ class GoogleTranslator():
             req = get(self.url,params=self.parames,headers=HEADERS)
             status_code = req.status_code
         except Exception :
-            return 400,(None,None,None,None)
+            return 400,None
 
         if status_code == 400:
-            return status_code,(None,None,None,None)
+            return status_code,None
 
         while  status_code != 200:
             self.client_list[mode].pop(0)
             if self.client_list[mode] == []:
-                return False,(None,None,None,None)
+                return False,None
             self.parames['client']=self.client_list[mode][0]
             req = get(self.url,params=self.parames,headers=HEADERS)
             status_code = req.status_code
@@ -74,11 +75,22 @@ class GoogleTranslator():
 
     def parser(self,request_text):
         req = loads(request_text)
-
+        if 'definitions' in req.keys():
+            definitions={}
+            for p in  req['definitions']:
+                definitions[p['pos']]= [ {'detail':g['gloss'],'example':g['example'] if 'example' in g.keys() else None} for g in p['entry']]
+        else:
+            definitions =None
+        if 'examples' in req.keys():
+            examples=[e['text'].replace('<b>','').replace('</b>','') for e in req['examples']['example']]
+        else:
+            examples=None
         detect_language = req['ld_result']['extended_srclangs'][0]#req['src']
+
         if self.name  == 'clients5':
             req['sentences']=req['sentences'][:-1]
         result = [ trans['trans'] for trans in req['sentences']]
+
         if 'spell' in req and 'spell_res' in req['spell']:
             revise=req['spell']['spell_res']
         else:
@@ -89,8 +101,14 @@ class GoogleTranslator():
             allresult = [{'pos': dic['pos'],'terms':dic['terms'] } for dic in dict_list]
         else:
             allresult=[]
-
-        return result, allresult,detect_language,revise
+        result_dict = {}
+        result_dict['result']=result
+        result_dict['all_result']=allresult
+        result_dict['detect_language']=detect_language
+        result_dict['revise']=revise
+        result_dict['definition']=definitions
+        result_dict['example']=examples
+        return result_dict
 
 #service
 service_dict={
@@ -101,8 +119,8 @@ service_dict={
     'cn':'https://translate.google.cn/translate_a/single',
 }
 
-#params = {"dt": ["t", "bd", "ex", "ld", "md", "qca", "rw", "rm", "ss", "t", "at"], "client": "gtx", "q": text, "hl": destination_language, "sl": source_language, "tl": destination_language, "dj": "1", "source": "bubble"}
-general_params = {"dt": ["t", "bd", "qca","t", "at"],"dj": "1"}
+all_params = {"dt": ["t", "bd", "ex", "ld", "md", "qca", "rw", "rm", "ss", "t", "at"], "dj": "1", "source": "bubble"}
+general_params = {"dt": ["t", "bd", "qca","t", "at",'ex','md','rw'],"dj": "1"}
 translator_list = [GoogleTranslator(name,url,general_params) for name,url in service_dict.items()]
 
 translator_idx=0
@@ -113,12 +131,12 @@ RETRY_TIME=60*5
 def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
     global ttk_enable,translator_idx,RETRY_TIME
 
-    status,(result, allresult,detect_language,revise)=translator_list[translator_idx](inputtext, sourcelanguage,targetlanguage,ttk_enable)
+    status,result_dict=translator_list[translator_idx](inputtext, sourcelanguage,targetlanguage,ttk_enable)
 
     if status == 200:
-        return result, allresult,detect_language,revise
+        return result_dict
     elif status == 400:
-        return None, None,None,None
+        return None
     else:
         translator_idx +=1
         if translator_idx < len(translator_list):
@@ -135,7 +153,7 @@ def get_translate(inputtext, sourcelanguage='auto',targetlanguage='zh-TW'):
 
 if __name__ == '__main__':
     #print(get_translate("And say mean things", "en","zh-TW"))
-    print(get_translate("And say mean things", "en","zh-TW"))
+    print(get_translate("insert", "en","zh-TW"))
 
 
 
