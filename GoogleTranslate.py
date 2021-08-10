@@ -56,7 +56,7 @@ class GoogleTranslator():
             req = get(self.url,params=self.parames,headers=HEADERS)
             status_code = req.status_code
         except Exception :
-            return status_code,(None,None,None,None)
+            return 400,(None,None,None,None)
 
         if status_code == 400:
             return status_code,(None,None,None,None)
