@@ -193,6 +193,7 @@ class MainWindow():
 
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size-4*(self.font_size/11))-1))
         self.now_copy = ''
+        self.translate_result = ''
         self.previous_copy = ''
 
         # not translate the word already in clipboard when open the application
@@ -419,10 +420,10 @@ class MainWindow():
             im = ImageOps.grayscale(im)
             if self.source_combobox.get() == "English" or self.source_combobox.get() =="Detect language":
                 self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='eng+osd+equ')
+                                                            lang='eng+osd+equ').strip()
             elif self.source_combobox.get() == "Chinese":
                 self.now_copy = pytesseract.image_to_string(im,
-                                                            lang='chi_tra+eng+osd+equ').replace(" ", "")
+                                                            lang='chi_tra+eng+osd+equ').replace(" ", "").strip()
             else:
                 tk.messagebox.showinfo(title=f"Not Support {self.source_combobox.get()}", message="Screenshot Translate only support English, Chinese")
         except Exception as e:
@@ -441,7 +442,7 @@ class MainWindow():
     def get_clipboard(self):
         if win32clipboard.IsClipboardFormatAvailable(CF_TEXT):
             try:
-                self.now_copy = self.root.clipboard_get()#self.root.selection_get(selection="CLIPBOARD")
+                self.now_copy = self.root.clipboard_get().strip('-= \n')#self.root.selection_get(selection="CLIPBOARD")
             except TclError:
                 # self.printerror(self.record_error(te))
                 return False
@@ -469,8 +470,11 @@ class MainWindow():
         if not self.get_clipboard(): return False
         if self.now_copy == self.previous_copy:
             return False
-        if self.now_copy.strip() == '':
+        if self.now_copy == self.translate_result.strip():
             return False
+        if self.now_copy == '':
+            return False
+
         self.previous_copy = self.now_copy
         self.inputbox.delete(1.0, tk.END)
         self.inputbox.insert(1.0, self.textprocessing(self.now_copy))
@@ -569,6 +573,7 @@ class MainWindow():
             text = text.replace("@", "\n")
         return text
 
+
     def get_translation(self,text):
         try:
             # Google Translate
@@ -582,8 +587,6 @@ class MainWindow():
                 return self.get_translation(text)
             elif result_dict == None:
                 return False,None
-
-
             return True,result_dict
 
         except Exception as e:
@@ -596,7 +599,7 @@ class MainWindow():
             self.top = threading.Thread(target=self.changetop)
             self.top.start()
             self.reset_clip_event()
-            return False,(None,None,None,None)
+            return False,None
 
 
     def autochange_dictionary(self,text):
@@ -669,15 +672,12 @@ class MainWindow():
             self.resultbox.insert(tk.END, "\n")
             # print all result
             for r_idx,iter_result in enumerate(result_dict['all_result']):
-                self.translate_result += iter_result['pos'].capitalize()+":"+"\n"
                 self.resultbox.insert(tk.END, '【'+iter_result['pos'].capitalize()+"】:"+"\n")
 
                 terms = iter_result['terms'][:config['number_of_terms']]
                 for t_idx,iter_terms in enumerate(terms):
                     self.resultbox.insert(tk.END, iter_terms)
-                    self.translate_result+=iter_terms
                     if t_idx != len(terms)-1:
-                        #self.translate_result += ","
                         self.resultbox.insert(tk.END, ",")
 
                 if config['definition'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
@@ -690,7 +690,6 @@ class MainWindow():
 
                 if r_idx != len(result_dict['all_result'])-1:
                     self.resultbox.insert(tk.END, "\n\n")
-                    #self.translate_result+="\n\n"
             if config['sentence_example'] and result_dict['example']!= None :
                 self.resultbox.insert(tk.END, "\n")
                 result_dict['example'] = result_dict['example'][:config['sentence_example']]
