@@ -4,7 +4,7 @@
 -->
 Highlight Translator can help you to **translate the words quickly and accurately**. By only `highlighting`, `copying`, or `screenshoting` the content you want to translate anywhere on your computer (ex. `PDF`, `PPT`, `WORD` etc.), the translated results will then be automatically displayed before you.
 
-:warning: **The software is only supported in Windows. Mac OS version might be added in the future.** :warning:
+:warning: **The software doesn’t now support Windows 11. Mac OS might be supported in the future.** :warning:
 
 
 Translation resource: [Google Translate](https://translate.google.com.tw) and [Cambridge dictionary](https://dictionary.cambridge.org)
