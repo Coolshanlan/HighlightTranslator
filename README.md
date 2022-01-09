@@ -16,7 +16,7 @@ Virtual Desktop Control DLL: [Ciantic/VirtualDesktopAccessor Github](https://git
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
-## :small_red_triangle_down: How To Use :small_red_triangle_down:
+## :small_red_triangle_down: How To Use / Download :small_red_triangle_down:
 ### Step 1. Download the software in the Executable File
 [Download Zip File](https://coolshan.pse.is/3jrczc)
 ### Step 2. Decompress the Zip file and Execute the file
