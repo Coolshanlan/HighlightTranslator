@@ -623,7 +623,7 @@ class MainWindow():
 
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         output_string=[]
-        output_string.append('\n\n※'+'='*(self.linelength-2)+'\n')
+        output_string.append('\n※'+'='*(self.linelength-2)+'\n')
 
         if not click:
             self.movein = False
@@ -700,7 +700,7 @@ class MainWindow():
                 output_string.append('\n【Examples】')
                 for idx,ex in enumerate(result_dict['example']):
                     output_string.append(f'\n{idx+1}.'+ex+'\n')
-
+        output_string.append('\n')
         self.resultbox.insert(tk.END,''.join(output_string))
         self.resultbox.see(tk.END)
         self.clear_button.configure(text = 'Clear')
