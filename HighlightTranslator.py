@@ -621,12 +621,14 @@ class MainWindow():
         move_virtual_desktop_thread = threading.Thread(target=(Move_window_to_current_desktop()))
         move_virtual_desktop_thread.start()
 
+        self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
         output_string=[]
+        output_string.append('\n\n※'+'='*(self.linelength-2)+'\n')
 
         if not click:
             self.movein = False
 
-        self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
+
         text = self.inputbox.get(1.0, tk.END)
 
         if not click and not self.changed_language:
@@ -654,69 +656,53 @@ class MainWindow():
 
         # print input
         output_string.append(text)
-        #self.resultbox.insert(tk.END, text)
         if result_dict['revise']:
             output_string.append('({})\n'.format(result_dict['revise']))
             #self.resultbox.insert(tk.END, '({})\n'.format(result_dict['revise']))
 
         output_string.append("—"*((int)((self.linelength*1.8)//3))+"\n")
-        # self.resultbox.insert(tk.END, "-"*((int)(self.linelength*1.8))+"\n")
 
         # print result
         self.translate_result=''
         for iter_result in result_dict['result']:
-            # self.resultbox.insert(tk.END, iter_result)
             output_string.append(iter_result)
             self.translate_result += iter_result+'\n'
 
             if result_dict['all_result'] != []:
                 output_string.append('\n')
-                #self.resultbox.insert(tk.END, "\n")
 
         if  result_dict['all_result'] != None and len(result_dict['all_result']) > 0:
-            #self.resultbox.insert(tk.END, "\n")
             output_string.append('\n')
             # print all result
             for r_idx,iter_result in enumerate(result_dict['all_result']):
-                #self.resultbox.insert(tk.END, '【'+iter_result['pos'].capitalize()+"】:"+"\n")
                 output_string.append('【'+iter_result['pos'].capitalize()+"】:"+"\n")
 
                 terms = iter_result['terms'][:config['number_of_terms']]
                 for t_idx,iter_terms in enumerate(terms):
                     output_string.append(iter_terms)
-                    #self.resultbox.insert(tk.END, iter_terms)
                     if t_idx != len(terms)-1:
                         output_string.append(',')
-                        #self.resultbox.insert(tk.END, ",")
 
                 if config['definition'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
                     if result_dict['definition'][iter_result['pos']][0]['detail'] != None:
                         output_string.append('\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
-                        #self.resultbox.insert(tk.END, '\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
 
                 if config['sentence_example'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
                     if result_dict['definition'][iter_result['pos']][0]['example'] != None:
                         output_string.append('\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
-                        #self.resultbox.insert(tk.END, '\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
 
                 if r_idx != len(result_dict['all_result'])-1:
                     output_string.append('\n\n')
-                    #self.resultbox.insert(tk.END, "\n\n")
 
             if config['sentence_example'] and result_dict['example']!= None :
                 output_string.append('\n')
-                #self.resultbox.insert(tk.END, "\n")
                 result_dict['example'] = result_dict['example'][:config['sentence_example']]
                 output_string.append('\n【Examples】')
-                #self.resultbox.insert(tk.END, '\n【Examples】')
                 for idx,ex in enumerate(result_dict['example']):
                     output_string.append(f'\n{idx+1}.'+ex+'\n')
-                    #self.resultbox.insert(tk.END,f"\n{idx+1}."+ex+"\n")
-        if self.resultbox.get(1.0).replace('\n','') != '':
-            output_string.append('\n\n※'+'='*(self.linelength-2)+'\n')
-        #self.resultbox.insert(tk.END, '\n'+'='*self.linelength+'\n')
-        self.resultbox.insert('1.0',''.join(output_string))
-        self.resultbox.see('1.0')
+
+        self.resultbox.insert(tk.END,''.join(output_string))
+        self.resultbox.see(tk.END)
         self.clear_button.configure(text = 'Clear')
 
         # Let window top

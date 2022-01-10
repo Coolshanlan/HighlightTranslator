@@ -89,6 +89,7 @@ class GoogleTranslator():
 
         if self.name  == 'clients5':
             req['sentences']=req['sentences'][:-1]
+
         result = [ trans['trans'] for trans in req['sentences']]
 
         if 'spell' in req and 'spell_res' in req['spell']:
