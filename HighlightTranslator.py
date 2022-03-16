@@ -40,6 +40,7 @@ def load_config():
 load_config()
 detect_language=None
 MP3FILEPATH='speech_file/output.mp3'
+VDA_DLL_VERSION = 'VirtualDesktopAccessor11.dll' if sys.getwindowsversion().build>20000 else 'VirtualDesktopAccessor.dll'
 
 #Load all language from language.txt
 source_languages={}
@@ -75,7 +76,7 @@ def get_windows(pid):
             return
 
 def Move_window_to_current_desktop():
-    virtual_desktop_accessor = ctypes.WinDLL("VirtualDesktopAccessor.dll")
+    virtual_desktop_accessor = ctypes.WinDLL(VDA_DLL_VERSION)
     pid = os.getpid()
     current_number = virtual_desktop_accessor.GetCurrentDesktopNumber()
     for window in get_windows(pid):
