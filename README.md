@@ -1,4 +1,5 @@
 # :books: Highlight Translator :books:
+[:safety_pin: Dwonload](https://coolshan.pse.is/3jrczc)
 <!--
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/895ab53151cc4734ab63da3abaf25b82)](https://www.codacy.com/gh/Coolshanlan/HighlightTranslator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Coolshanlan/HighlightTranslator&amp;utm_campaign=Badge_Grade)
 -->
@@ -18,7 +19,7 @@ Virtual Desktop Control DLL: [Ciantic/VirtualDesktopAccessor Github](https://git
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
 ## :small_red_triangle_down: How To Use / Download :small_red_triangle_down:
 ### Step 1. Download the software in the Executable File
-[Download Zip File](https://coolshan.pse.is/3jrczc)
+[:safety_pin: Download Zip File](https://coolshan.pse.is/3jrczc)
 ### Step 2. Decompress the Zip file and Execute the file
 Find the `HighlightTranslator.exe` in the folder and then double click
 
@@ -81,7 +82,7 @@ Only Google and Cambridge Dictionary supported for now. For Cambridge Dictionary
 ### :pushpin: Switch Language Button
 It can switch between source and target languages
 
-## :notebook_with_decorative_cover: Google Translate API
+## :open_book: Google Translate API
 This API can get the translation result from Google Translate
 ### How to use
 ```python
