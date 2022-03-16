@@ -1,5 +1,5 @@
 # :books: Highlight Translator :books:
-[:safety_pin: Dwonload](https://coolshan.pse.is/3jrczc)
+[:safety_pin: Dwonload Zip File](https://coolshan.pse.is/3jrczc)
 <!--
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/895ab53151cc4734ab63da3abaf25b82)](https://www.codacy.com/gh/Coolshanlan/HighlightTranslator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Coolshanlan/HighlightTranslator&amp;utm_campaign=Badge_Grade)
 -->
