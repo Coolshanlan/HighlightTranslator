@@ -1,4 +1,5 @@
 # :books: Highlight Translator :books:
+[![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2FCoolshanlan%2FHighlightTranslator%2F&label=Visitors&countColor=%23379a6d&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FCoolshanlan%2FHighlightTranslator%2F)   
 [:safety_pin: Dwonload Zip File](https://coolshan.pse.is/3jrczc)
 <!--
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/895ab53151cc4734ab63da3abaf25b82)](https://www.codacy.com/gh/Coolshanlan/HighlightTranslator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Coolshanlan/HighlightTranslator&amp;utm_campaign=Badge_Grade)
