@@ -1,8 +1,9 @@
 # import pyautogui
 # -*- coding: utf-8 -*-
+from tokenize import Ignore
 from gtts import gTTS
 from pygame import error, mixer
-from os import system
+from os import system,path,mkdir
 from pynput.keyboard import Key, Controller
 from pynput.mouse import Listener, Button
 import datetime
@@ -23,6 +24,7 @@ import tkinter as tk
 import re
 import json
 import sys
+import pandas as pd
 # root = tk.Tk()
 # print(font.families())
 # tesseract setting
@@ -38,6 +40,7 @@ def load_config():
     with open("config.json") as f:
         config = json.loads(f.read())
 load_config()
+
 detect_language=None
 MP3FILEPATH='speech_file/output.mp3'
 VDA_DLL_VERSION = 'VirtualDesktopAccessor11.dll' if sys.getwindowsversion().build>20000 else 'VirtualDesktopAccessor.dll'
@@ -56,6 +59,35 @@ Translators={'Google':gt,
              'Cambridge':ct,
              #'Transcom':tt,
              }
+
+def load_vocabulary()->None:
+    global vocabulary_df,vocabulary_path
+    vocabulary_df = pd.read_pickle(vocabulary_path)
+
+def add_to_vocabulary(word,content)->None:
+    global vocabulary_df,vocabulary_path
+    if not word in vocabulary_df.index:
+        new_row = pd.DataFrame(index=[word],data={'content':[content],'wrong':[0]})
+        vocabulary_df=pd.concat([vocabulary_df,new_row])
+
+    vocabulary_df.loc[word,'wrong']+=1
+    vocabulary_df.to_pickle(vocabulary_path)
+
+def remove_word(word)->None:
+    if not word in vocabulary_df.word:
+        vocabulary_df.drop(word)
+    vocabulary_df.to_pickle(vocabulary_path)
+
+
+vocabulary_path='vocabulary/vocabulary.pkl'
+if not path.exists(vocabulary_path):
+    new_row = pd.DataFrame({'word':['initial'],'content':['最初的'],'wrong':[1]})
+    new_row=new_row.set_index('word')
+    new_row=new_row.drop('initial')
+    new_row.to_pickle(vocabulary_path)
+
+vocabulary_df=None
+load_vocabulary()
 
 # Automatic change virtual desktop
 import ctypes
@@ -94,6 +126,7 @@ class MainWindow():
         self.font_config=("{} {}".format(str('Arial'), str(int(self.font_size*self.button_size_scale))))
 
         self.translate_result=''
+        self.result_dict=None
 
         # Top of feature checkboxes
         self.checkbox_frame =tk.Frame(self.root)
@@ -136,8 +169,10 @@ class MainWindow():
         self.setup_language_item()
 
         # Button
+        self.bottom_button_frame =tk.Frame(self.root)
         self.translate_button = tk.Button((self.root), text='Translate',command=(self.changeText),font=self.font_config)
-        self.clear_button = tk.Button((self.root), text='Clear',command=(self.ClearText),font=self.font_config)
+        self.clear_button = tk.Button((self.bottom_button_frame), text='Clear',command=(self.ClearText),font=self.font_config)
+        self.Add_to_book_button = tk.Button((self.bottom_button_frame), text='Add',command=(self.AddToBook),font=self.font_config)
 
         # Speak button region
         self.speak_frame =tk.Frame(self.root)
@@ -178,7 +213,9 @@ class MainWindow():
         self.auto_speak_checkbox.pack( fill=(tk.BOTH),expand=True,side=tk.RIGHT)
 
         self.translate_button.pack(fill=(tk.BOTH))
-        self.clear_button.pack(fill=(tk.BOTH))
+        self.bottom_button_frame.pack(fill=(tk.BOTH))
+        self.clear_button.pack(fill=(tk.BOTH),expand=True,side=tk.LEFT)
+        self.Add_to_book_button.pack(fill=(tk.BOTH),expand=True,side=tk.RIGHT)
 
         self.inputbox.pack(fill=(tk.BOTH))
         self.resultbox.pack(fill=(tk.BOTH))
@@ -572,7 +609,7 @@ class MainWindow():
             text = self.restructure_sentences(text)
         else:
             text = text.replace("@", "\n")
-        return text
+        return text.rstrip().lstrip()
 
 
     def get_translation(self,text):
@@ -615,7 +652,57 @@ class MainWindow():
             self.dictionary_change()
 
 
+    def get_output_string(self,input_string,result_dict,number_of_terms=config['number_of_terms'],num_sentence_example=config['sentence_example'],definition=config['definition']):
+        output_string=[]
+        output_string.append('\n※'+'='*(self.linelength-2)+'\n')
 
+        output_string.append(input_string)
+        if result_dict['revise']:
+            output_string.append('({})\n'.format(result_dict['revise']))
+            #self.resultbox.insert(tk.END, '({})\n'.format(result_dict['revise']))
+
+        output_string.append("—"*((int)((self.linelength*1.8)//3))+"\n")
+
+        # print result
+        self.translate_result=''
+        for iter_result in result_dict['result']:
+            output_string.append(iter_result)
+            self.translate_result += iter_result+'\n'
+
+            if result_dict['all_result'] != []:
+                output_string.append('\n')
+
+        if  result_dict['all_result'] != None and len(result_dict['all_result']) > 0:
+            output_string.append('\n')
+            # print all result
+            for r_idx,iter_result in enumerate(result_dict['all_result']):
+                output_string.append('【'+iter_result['pos'].capitalize()+"】:"+"\n")
+
+                terms = iter_result['terms'][:number_of_terms]
+                for t_idx,iter_terms in enumerate(terms):
+                    output_string.append(iter_terms)
+                    if t_idx != len(terms)-1:
+                        output_string.append(',')
+
+                if definition and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                    if result_dict['definition'][iter_result['pos']][0]['detail'] != None:
+                        output_string.append('\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
+
+                if num_sentence_example and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                    if result_dict['definition'][iter_result['pos']][0]['example'] != None:
+                        output_string.append('\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
+
+                if r_idx != len(result_dict['all_result'])-1:
+                    output_string.append('\n\n')
+
+            if num_sentence_example and result_dict['example']!= None :
+                output_string.append('\n')
+                result_dict['example'] = result_dict['example'][:num_sentence_example]
+                output_string.append('\n【Examples】')
+                for idx,ex in enumerate(result_dict['example']):
+                    output_string.append(f'\n{idx+1}.'+ex+'\n')
+        output_string.append('\n')
+        return output_string
 
     def changeText(self, click=True):
         global detect_language
@@ -654,54 +741,10 @@ class MainWindow():
                 if (_result_dict['revise'] == None or _result_dict['revise'] =='') and( _result_dict['all_result']  != [] and _result_dict['all_result'] != None):
                     status,result_dict = _status,_result_dict
 
+        self.result_dict=result_dict
 
-        # print input
-        output_string.append(text)
-        if result_dict['revise']:
-            output_string.append('({})\n'.format(result_dict['revise']))
-            #self.resultbox.insert(tk.END, '({})\n'.format(result_dict['revise']))
+        output_string = self.get_output_string(text,result_dict)
 
-        output_string.append("—"*((int)((self.linelength*1.8)//3))+"\n")
-
-        # print result
-        self.translate_result=''
-        for iter_result in result_dict['result']:
-            output_string.append(iter_result)
-            self.translate_result += iter_result+'\n'
-
-            if result_dict['all_result'] != []:
-                output_string.append('\n')
-
-        if  result_dict['all_result'] != None and len(result_dict['all_result']) > 0:
-            output_string.append('\n')
-            # print all result
-            for r_idx,iter_result in enumerate(result_dict['all_result']):
-                output_string.append('【'+iter_result['pos'].capitalize()+"】:"+"\n")
-
-                terms = iter_result['terms'][:config['number_of_terms']]
-                for t_idx,iter_terms in enumerate(terms):
-                    output_string.append(iter_terms)
-                    if t_idx != len(terms)-1:
-                        output_string.append(',')
-
-                if config['definition'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
-                    if result_dict['definition'][iter_result['pos']][0]['detail'] != None:
-                        output_string.append('\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
-
-                if config['sentence_example'] and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
-                    if result_dict['definition'][iter_result['pos']][0]['example'] != None:
-                        output_string.append('\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
-
-                if r_idx != len(result_dict['all_result'])-1:
-                    output_string.append('\n\n')
-
-            if config['sentence_example'] and result_dict['example']!= None :
-                output_string.append('\n')
-                result_dict['example'] = result_dict['example'][:config['sentence_example']]
-                output_string.append('\n【Examples】')
-                for idx,ex in enumerate(result_dict['example']):
-                    output_string.append(f'\n{idx+1}.'+ex+'\n')
-        output_string.append('\n')
         self.resultbox.insert(tk.END,''.join(output_string))
         self.resultbox.see(tk.END)
         self.clear_button.configure(text = 'Clear')
@@ -764,6 +807,11 @@ class MainWindow():
 
     def ClearText(self):
         self.resultbox.delete(0.0, tk.END)
+
+    def AddToBook(self):
+        input_text=self.inputbox.get(1.0, tk.END).rstrip().lstrip()
+        output_string = self.get_output_string(input_text,self.result_dict,number_of_terms=10,num_sentence_example=2,definition=0)
+        add_to_vocabulary(input_text,''.join(output_string[3:]))
 
 class SettingWindow():
 
