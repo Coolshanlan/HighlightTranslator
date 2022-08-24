@@ -19,7 +19,7 @@ from time import sleep
 import threading
 from win32con import CF_TEXT
 import win32clipboard
-from tkinter import TclError, ttk, font
+from tkinter import TclError, ttk, font,messagebox
 import tkinter as tk
 import re
 import json
@@ -60,26 +60,35 @@ Translators={'Google':gt,
              #'Transcom':tt,
              }
 
+
 def load_vocabulary()->None:
     global vocabulary_df,vocabulary_path
     vocabulary_df = pd.read_pickle(vocabulary_path)
 
-def add_to_vocabulary(word,content)->None:
+def add_to_vocabulary(word,content)->bool:
     global vocabulary_df,vocabulary_path
-    if not word in vocabulary_df.index:
+    word=word.lower().strip()
+    word_exist= word in vocabulary_df.index
+    if not word_exist:
         new_row = pd.DataFrame(index=[word],data={'content':[content],'wrong':[0]})
         vocabulary_df=pd.concat([vocabulary_df,new_row])
 
     vocabulary_df.loc[word,'wrong']+=1
     vocabulary_df.to_pickle(vocabulary_path)
+    return word_exist
 
 def remove_word(word)->None:
     if not word in vocabulary_df.word:
         vocabulary_df.drop(word)
     vocabulary_df.to_pickle(vocabulary_path)
 
+def edit_word(word,content)->None:
+    vocabulary_df.loc[word,'content']=content
 
-vocabulary_path='vocabulary/vocabulary.pkl'
+    vocabulary_df.to_pickle(vocabulary_path)
+
+
+vocabulary_path=r'C:\UserD\Program\Project_Python\Copy_Translator\vocabulary\vocabulary.pkl'
 if not path.exists(vocabulary_path):
     new_row = pd.DataFrame({'word':['initial'],'content':['最初的'],'wrong':[1]})
     new_row=new_row.set_index('word')
@@ -684,18 +693,18 @@ class MainWindow():
                     if t_idx != len(terms)-1:
                         output_string.append(',')
 
-                if definition and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                if definition and 'definition' in result_dict.keys() and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
                     if result_dict['definition'][iter_result['pos']][0]['detail'] != None:
                         output_string.append('\n●definition\n'+result_dict['definition'][iter_result['pos']][0]['detail'])
 
-                if num_sentence_example and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
+                if num_sentence_example and 'definition' in result_dict.keys() and result_dict['definition'] != None and iter_result['pos'] in result_dict['definition'].keys():
                     if result_dict['definition'][iter_result['pos']][0]['example'] != None:
                         output_string.append('\n●example\n'+result_dict['definition'][iter_result['pos']][0]['example'])
 
                 if r_idx != len(result_dict['all_result'])-1:
                     output_string.append('\n\n')
 
-            if num_sentence_example and result_dict['example']!= None :
+            if num_sentence_example and 'example' in result_dict.keys() and result_dict['example']!= None :
                 output_string.append('\n')
                 result_dict['example'] = result_dict['example'][:num_sentence_example]
                 output_string.append('\n【Examples】')
@@ -810,8 +819,13 @@ class MainWindow():
 
     def AddToBook(self):
         input_text=self.inputbox.get(1.0, tk.END).rstrip().lstrip()
-        output_string = self.get_output_string(input_text,self.result_dict,number_of_terms=10,num_sentence_example=2,definition=0)
-        add_to_vocabulary(input_text,''.join(output_string[3:]))
+        output_string = self.get_output_string(input_text,self.result_dict,number_of_terms=10,num_sentence_example=2,definition=0)[3:]
+        output_string=''.join(output_string)
+        word_exist=add_to_vocabulary(input_text,output_string)
+        if word_exist:
+            edit_state=messagebox.askquestion('this word already exists',f'{input_text} already exists, edit or not')
+            if edit_state=='yes':
+                edit_word(input_text,output_string)
 
 class SettingWindow():
 
