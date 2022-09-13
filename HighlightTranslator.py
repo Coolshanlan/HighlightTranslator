@@ -533,15 +533,14 @@ class MainWindow():
                 del textlist[i]
                 i -= 1
             i += 1
-        textlist[0] = textlist[0].strip()
+
         tmpsentence = textlist[0]
 
         for i in range(1, len(textlist)):
-            textlist[i] = textlist[i].strip()
-            if len(textlist[i]) == 0:
-                continue
             if textlist[i][-1] == "-":
                 textlist[i] = textlist[i][:-1]
+                tmpsentence += textlist[i]
+                continue
             if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search("[0-9]+\.?:", textlist[i]) != None or tmpsentence[-1] == ":"or tmpsentence[-1] == "：":
                 newsentence.append(tmpsentence)
                 tmpsentence = textlist[i]
@@ -563,10 +562,10 @@ class MainWindow():
 
     def textprocessing(self, inptext):
         text = inptext.replace(
-            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
-        while text[-1] == "@" or text[-1] == ' ' or text[-1]=='\n':
+            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ").strip()
+        while text[-1] == "@":
             text = text[:-1]
-        while text[0] == "@" or text[0] == ' ' or text[0]=='\n':
+        while text[0] == "@":
             text = text[1:]
         if config["restructure_sentences"]:
             text = self.restructure_sentences(text)
