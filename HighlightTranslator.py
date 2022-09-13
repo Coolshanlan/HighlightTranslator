@@ -478,7 +478,10 @@ class MainWindow():
 
         self.previous_copy = self.now_copy
         self.inputbox.delete(1.0, tk.END)
-        self.inputbox.insert(1.0, self.textprocessing(self.now_copy))
+        process_text=self.textprocessing(self.now_copy)
+        if process_text == '':
+            return False
+        self.inputbox.insert(1.0,process_text)
         return True
 
 
@@ -562,7 +565,9 @@ class MainWindow():
 
     def textprocessing(self, inptext):
         text = inptext.replace(
-            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ").strip()
+            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace('','').replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ").strip()
+        if text.replace('@','') == '':
+            return ''
         while text[-1] == "@":
             text = text[:-1]
         while text[0] == "@":
