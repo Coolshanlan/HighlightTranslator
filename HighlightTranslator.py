@@ -524,7 +524,10 @@ class MainWindow():
 
         self.previous_copy = self.now_copy
         self.inputbox.delete(1.0, tk.END)
-        self.inputbox.insert(1.0, self.textprocessing(self.now_copy))
+        process_text=self.textprocessing(self.now_copy)
+        if process_text == '':
+            return False
+        self.inputbox.insert(1.0,process_text)
         return True
 
 
@@ -579,16 +582,16 @@ class MainWindow():
                 del textlist[i]
                 i -= 1
             i += 1
-        textlist[0] = textlist[0].strip()
+
         tmpsentence = textlist[0]
 
         for i in range(1, len(textlist)):
-            textlist[i] = textlist[i].strip()
-            if len(textlist[i]) == 0:
-                continue
             if textlist[i][-1] == "-":
                 textlist[i] = textlist[i][:-1]
+                tmpsentence += textlist[i]
+                continue
             if tmpsentence[-1] == '.' or textlist[i][0] == "•" or textlist[i][0] == "" or re.search("[0-9]+\.?:", textlist[i]) != None or tmpsentence[-1] == ":"or tmpsentence[-1] == "：":
+
                 newsentence.append(tmpsentence)
                 tmpsentence = textlist[i]
                 continue
@@ -607,12 +610,16 @@ class MainWindow():
         return resultsentence
 
 
+
     def textprocessing(self, inptext):
-        text = inptext.replace(
-            '\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ")
-        while text[-1] == "@" or text[-1] == ' ' or text[-1]=='\n':
+
+        text = inptext.replace('\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace('','').replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ").strip()
+
+        if text.replace('@','') == '':
+            return ''
+        while text[-1] == "@":
             text = text[:-1]
-        while text[0] == "@" or text[0] == ' ' or text[0]=='\n':
+        while  text[0] == "@":
             text = text[1:]
         if config["restructure_sentences"]:
             text = self.restructure_sentences(text)
