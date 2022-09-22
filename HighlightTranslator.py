@@ -12,6 +12,7 @@ import win32api
 import CambridgeTranslate as ct
 #import TranslatecomTranslate as tt
 import GoogleTranslate as gt
+import DeepLTranslate as dt
 import pytesseract
 from PIL import Image, ImageOps,ImageGrab
 import traceback
@@ -25,6 +26,7 @@ import re
 import json
 import sys
 import pandas as pd
+import deepl
 # root = tk.Tk()
 # print(font.families())
 # tesseract setting
@@ -57,6 +59,7 @@ for i in range(len(languagelist[1])):
 
 Translators={'Google':gt,
              'Cambridge':ct,
+             'DeepL':dt
              #'Transcom':tt,
              }
 
@@ -343,7 +346,7 @@ class MainWindow():
 
 
     def dictionary_change(self):
-        if self.dictionary_combobox.get() != "Cambridge":
+        if self.dictionary_combobox.get() == "Google":
             self.setup_language_item()
         else:
             self.source_combobox["values"] = ["English"]
@@ -658,7 +661,7 @@ class MainWindow():
 
     def autochange_dictionary(self,text):
         # if not a word change to google because Cambridge can only translate a word
-        if len(text.split(' ')) > 1  and self.dictionary_combobox.get() != "Google":
+        if len(text.split(' ')) > 1  and self.dictionary_combobox.get() == "Cambridge":
             self.dictionary_combobox.current(0)
             self.dictionary_change()
 
@@ -780,7 +783,7 @@ class MainWindow():
 
         #auto exchange dictionary
         if config['auto_switch_language']:
-            if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto':
+            if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto' and self.dictionary_combobox.get() == "Google":
                 self.changed_language=True
                 self.resultbox.insert(
                         tk.END, ("*"*int((self.linelength-15)/2))+"Exchange Language" +
