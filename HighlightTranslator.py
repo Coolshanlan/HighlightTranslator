@@ -91,7 +91,7 @@ def edit_word(word,content)->None:
     vocabulary_df.to_pickle(vocabulary_path)
 
 
-vocabulary_path=r'C:\UserD\Program\Project_Python\Copy_Translator\vocabulary\vocabulary.pkl'
+vocabulary_path=r'vocabulary\vocabulary.pkl'
 if not path.exists(vocabulary_path):
     new_row = pd.DataFrame({'word':['initial'],'content':['最初的'],'wrong':[1]})
     new_row=new_row.set_index('word')
@@ -613,7 +613,6 @@ class MainWindow():
         return resultsentence
 
 
-
     def textprocessing(self, inptext):
 
         text = inptext.replace('\r', '').replace('¡', '').replace('\uf0a7', '').replace('¦', '').replace("\n", "@").replace("\t", "").replace("\x00", "").replace('','').replace(' – ', '-').replace("     ", " ").replace("    ", " ").replace("   ", " ").replace("  ", " ").replace("  ", " ").strip()
@@ -631,32 +630,29 @@ class MainWindow():
         return text.rstrip().lstrip()
 
 
-    def get_translation(self,text):
+    def get_translation(self,text,dictionary=None,source_language=None,target_language=None):
+
+        if dictionary is None:
+            dictionary = self.dictionary_combobox.get()
+
+        if source_language is None:
+            source_language = self.source_combobox.get()
+
+        if target_language is None:
+            target_language = self.target_combobox.get()
+
         try:
-            # Google Translate
-            result_dict = Translators[self.dictionary_combobox.get()].get_translate(
-                    inputtext=text, sourcelanguage=source_languages[self.source_combobox.get()],targetlanguage=target_languages[self.target_combobox.get()])
-
-
-            if result_dict == None and self.dictionary_combobox.get() != 'Google' :
-                self.dictionary_combobox.current(0)
-                self.dictionary_change()
-                return self.get_translation(text)
-            elif result_dict == None:
-                return False,None
-            return True,result_dict
+            result_dict = Translators[dictionary].get_translate(
+                        inputtext=text, sourcelanguage=source_languages[source_language],targetlanguage=target_languages[target_language])
 
         except Exception as e:
             self.printerror(self.record_error(e))
-            self.resultbox.insert(
-                tk.END, ("*"*int((self.linelength-21)/2))+"Checking WIFI and try again" +
-                ("*"*int((self.linelength-21)/2)+"\n"))
-            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
-            self.resultbox.see(tk.END)
-            self.top = threading.Thread(target=self.changetop)
-            self.top.start()
-            self.reset_clip_event()
             return False,None
+
+        if result_dict == None:
+            return True,None
+
+        return True,result_dict
 
 
     def autochange_dictionary(self,text):
@@ -743,9 +739,28 @@ class MainWindow():
 
         status,result_dict = self.get_translation(text)
 
+        if status and result_dict == None and self.dictionary_combobox.get() != 'Google' :
+            self.dictionary_combobox.current(0)
+            self.dictionary_change()
+            status,result_dict = self.get_translation(text)
+
         if not status:
+            self.resultbox.insert(
+                tk.END, ("*"*int((self.linelength-21)/2))+"Checking WIFI and try again" +
+                ("*"*int((self.linelength-21)/2)+"\n"))
+            self.resultbox.insert(tk.END, "="*self.linelength+"\n")
+            self.resultbox.see(tk.END)
+            self.top = threading.Thread(target=self.changetop)
+            self.top.start()
+            self.reset_clip_event()
             self.clear_button.configure(text = 'Clear')
             return False
+
+        if result_dict == None:
+            self.clear_button.configure(text = 'Clear')
+            return False
+
+
         detect_language = result_dict['detect_language']
         # modify text, if the final letter is 's' or 'es', it will be remove, this feature can get more result
         if (detect_language == 'en' or source_languages[self.source_combobox.get()] == 'en') and not click:
@@ -757,7 +772,7 @@ class MainWindow():
                 else:
                     revise_text=text[:-2]+'\n'
                 _status,_result_dict = self.get_translation(revise_text)
-                if (_result_dict['revise'] == None or _result_dict['revise'] =='') and( _result_dict['all_result']  != [] and _result_dict['all_result'] != None):
+                if (_result_dict['revise'] == None or _result_dict['revise'] =='') and ( _result_dict['all_result']  != [] and _result_dict['all_result'] != None):
                     status,result_dict = _status,_result_dict
 
         self.result_dict=result_dict
@@ -829,7 +844,13 @@ class MainWindow():
 
     def AddToBook(self):
         input_text=self.inputbox.get(1.0, tk.END).rstrip().lstrip()
-        output_string = self.get_output_string(input_text,self.result_dict,number_of_terms=10,num_sentence_example=2,definition=0)[3:]
+        result_dict = self.result_dict
+        if self.dictionary_combobox.get() != 'Google':
+            _status, _result_dict = self.get_translation(input_text,dictionary='Google')
+
+            if _status and 'example' in _result_dict.keys() and _result_dict['example']!= None :
+                result_dict['example'] = _result_dict['example']
+        output_string = self.get_output_string(input_text,result_dict,number_of_terms=10,num_sentence_example=2,definition=0)[3:]
         output_string=''.join(output_string)
         word_exist=add_to_vocabulary(input_text,output_string)
         if word_exist:
