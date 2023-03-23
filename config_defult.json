@@ -20,5 +20,6 @@
   "resultbox_font_color": "#111111",
   "copycheck": 0.3,
   "doubleclickcheck": 0.5,
-  "selectcheck": 0.3
+  "selectcheck": 0.3,
+  "vocabulary_path":"vocabulary/vocabulary.pkl"
 }

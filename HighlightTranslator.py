@@ -9,6 +9,7 @@ from pynput.mouse import Listener, Button
 import datetime
 import win32con
 import win32api
+import win32gui
 import CambridgeTranslate as ct
 #import TranslatecomTranslate as tt
 import GoogleTranslate as gt
@@ -27,6 +28,15 @@ import json
 import sys
 import pandas as pd
 import deepl
+
+import ctypes
+import os
+from ctypes.wintypes import *
+from ctypes import windll, byref
+
+from pyvda import AppView, get_apps_by_z_order, VirtualDesktop, get_virtual_desktops
+from pyvda.com_defns import IApplicationView,IApplicationViewCollection
+
 # root = tk.Tk()
 # print(font.families())
 # tesseract setting
@@ -45,7 +55,6 @@ load_config()
 
 detect_language=None
 MP3FILEPATH='speech_file/output.mp3'
-VDA_DLL_VERSION = 'VirtualDesktopAccessor11.dll' if sys.getwindowsversion().build>20000 else 'VirtualDesktopAccessor.dll'
 
 #Load all language from language.txt
 source_languages={}
@@ -91,7 +100,7 @@ def edit_word(word,content)->None:
     vocabulary_df.to_pickle(vocabulary_path)
 
 
-vocabulary_path=r'vocabulary\vocabulary.pkl'
+vocabulary_path=config['vocabulary_path']
 if not path.exists(vocabulary_path):
     new_row = pd.DataFrame({'word':['initial'],'content':['最初的'],'wrong':[1]})
     new_row=new_row.set_index('word')
@@ -101,37 +110,14 @@ if not path.exists(vocabulary_path):
 vocabulary_df=None
 load_vocabulary()
 
-# Automatic change virtual desktop
-import ctypes
-import os
-from ctypes.wintypes import *
-from ctypes import windll, byref
 
-def get_windows(pid):
-    current_window = 0
-    pid_local = DWORD()
-    while True:
-        current_window = windll.User32.FindWindowExA(0, current_window, 0, 0)
-        windll.user32.GetWindowThreadProcessId(current_window, byref(pid_local))
-        if pid == pid_local.value:
-            yield current_window
-
-        if current_window == 0:
-            return
-
-def Move_window_to_current_desktop():
-    virtual_desktop_accessor = ctypes.WinDLL(VDA_DLL_VERSION)
-    pid = os.getpid()
-    current_number = virtual_desktop_accessor.GetCurrentDesktopNumber()
-    for window in get_windows(pid):
-        window = HWND(window)
-        virtual_desktop_accessor.MoveWindowToDesktopNumber(window, current_number)
 class MainWindow():
 
     def __init__(self):
         """The Main Window."""
         self.root = tk.Tk()
         self.set_WindowsSize()# Auto resizing
+
         self.keyboard = Controller()# keyboard hook
 
         self.button_size_scale=config['button_font_size_scale']
@@ -254,9 +240,6 @@ class MainWindow():
         self.closed = False
         self.changed_language=False
 
-        # # get current desktop number
-        # self.vd_number = Move_window_to_current_desktop()
-
         self.root.bind('<Motion>', self.motion)
         self.root.title('Highlight Translator')
         self.root.protocol('WM_DELETE_WINDOW', self.closewindows)
@@ -273,8 +256,17 @@ class MainWindow():
         # check clipboard change or not
         self.check_clipboard_thread = threading.Thread(target=(self.CheckCopyWhile))
         self.check_clipboard_thread.start()
-
+        self.current_window=None
         self.root.mainloop()
+
+    def Move_window_to_current_desktop(self):
+        if self.current_window:
+            if not self.current_window.is_on_current_desktop():
+                self.current_window.move(VirtualDesktop.current())
+        else:
+            self.current_window=AppView(win32gui.GetParent(self.root.winfo_id()))
+
+
 
     def input_press(self,event):
         text = self.inputbox.get(1.0, tk.END)
@@ -721,7 +713,7 @@ class MainWindow():
 
     def changeText(self, click=True):
         global detect_language
-        move_virtual_desktop_thread = threading.Thread(target=(Move_window_to_current_desktop()))
+        move_virtual_desktop_thread = threading.Thread(target=(self.Move_window_to_current_desktop()))
         move_virtual_desktop_thread.start()
 
         self.linelength = int((self.resultbox.winfo_width()/(self.font_size)*1.2))
