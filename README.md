@@ -149,7 +149,7 @@ pip install -r requirements.txt
 python Highlight_Translator.py
 ```
 ## Requirement
-python 3.6
+python 3.7
 ``` python
 pyinstaller == 4.1
 Pillow >= 8.2.0

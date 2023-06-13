@@ -27,9 +27,6 @@ import re
 import json
 import sys
 import pandas as pd
-import deepl
-
-import ctypes
 import os
 from ctypes.wintypes import *
 from ctypes import windll, byref
