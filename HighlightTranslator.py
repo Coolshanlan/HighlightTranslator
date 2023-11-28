@@ -32,7 +32,6 @@ from ctypes.wintypes import *
 from ctypes import windll, byref
 
 from pyvda import AppView, get_apps_by_z_order, VirtualDesktop, get_virtual_desktops
-from pyvda.com_defns import IApplicationView,IApplicationViewCollection
 
 # root = tk.Tk()
 # print(font.families())
@@ -72,14 +71,19 @@ Translators={'Google':gt,
 
 def load_vocabulary()->None:
     global vocabulary_df,vocabulary_path
-    vocabulary_df = pd.read_pickle(vocabulary_path)
+    if os.path.exists(vocabulary_path):
+        vocabulary_df = pd.read_pickle(vocabulary_path)
+
 
 def add_to_vocabulary(word,content)->bool:
     global vocabulary_df,vocabulary_path
+    load_vocabulary()
     word=word.lower().strip()
     word_exist= word in vocabulary_df.index
     if not word_exist:
-        new_row = pd.DataFrame(index=[word],data={'content':[content],'wrong':[0]})
+        new_row = pd.DataFrame(index=[word],data={'content':[content['content']],
+                                                  'example':[content['example']],
+                                                  'wrong':[0]})
         vocabulary_df=pd.concat([vocabulary_df,new_row])
 
     vocabulary_df.loc[word,'wrong']+=1
@@ -87,13 +91,16 @@ def add_to_vocabulary(word,content)->bool:
     return word_exist
 
 def remove_word(word)->None:
+    global vocabulary_df,vocabulary_path
+    load_vocabulary()
     if not word in vocabulary_df.word:
         vocabulary_df.drop(word)
     vocabulary_df.to_pickle(vocabulary_path)
 
 def edit_word(word,content)->None:
-    vocabulary_df.loc[word,'content']=content
-
+    load_vocabulary()
+    vocabulary_df.loc[word,'content']=content['content']
+    vocabulary_df.loc[word,'example']=content['example']
     vocabulary_df.to_pickle(vocabulary_path)
 
 
@@ -104,7 +111,7 @@ if not path.exists(vocabulary_path):
     new_row=new_row.drop('initial')
     new_row.to_pickle(vocabulary_path)
 
-vocabulary_df=None
+vocabulary_df=pd.DataFrame()
 load_vocabulary()
 
 
@@ -784,7 +791,10 @@ class MainWindow():
                 text_max_length = max([len(str(t)) for t in audio_text.split(' ')])
                 if text_max_length <= config['auto_speak_length_limit']*1.5:
                     self.speak()
-
+            # auto add to dictionary
+            if len(audio_text.split(' ')) <= 3:
+                self.AddToBook(click=False)
+                
         #auto exchange dictionary
         if config['auto_switch_language']:
             if not self.changed_language and detect_language.replace('zh-CN','zh-TW') == target_languages[self.target_combobox.get()] and source_languages[self.source_combobox.get()] != 'auto' and self.dictionary_combobox.get() == "Google":
@@ -831,7 +841,7 @@ class MainWindow():
     def ClearText(self):
         self.resultbox.delete(0.0, tk.END)
 
-    def AddToBook(self):
+    def AddToBook(self,click=True):
         input_text=self.inputbox.get(1.0, tk.END).rstrip().lstrip()
         result_dict = self.result_dict
         if self.dictionary_combobox.get() != 'Google':
@@ -841,11 +851,14 @@ class MainWindow():
                 result_dict['example'] = _result_dict['example']
         output_string = self.get_output_string(input_text,result_dict,number_of_terms=10,num_sentence_example=2,definition=0)[3:]
         output_string=''.join(output_string)
-        word_exist=add_to_vocabulary(input_text,output_string)
-        if word_exist:
+        content_dict={}
+        content_dict['example'] = output_string.split('【Examples】\n')[1] if '【Examples】\n' in output_string else ''
+        content_dict['content'] = output_string.split('【Examples】\n')[0]
+        word_exist=add_to_vocabulary(input_text,content_dict)
+        if word_exist and click:
             edit_state=messagebox.askquestion('this word already exists',f'{input_text} already exists, edit or not')
             if edit_state=='yes':
-                edit_word(input_text,output_string)
+                edit_word(input_text,content_dict)
 
 class SettingWindow():
 
