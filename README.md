@@ -4,6 +4,7 @@
 <!--
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/895ab53151cc4734ab63da3abaf25b82)](https://www.codacy.com/gh/Coolshanlan/HighlightTranslator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Coolshanlan/HighlightTranslator&amp;utm_campaign=Badge_Grade)
 -->
+
 Highlight Translator can help you to **translate the words quickly and accurately**. By only `highlighting`, `copying`, or `screenshoting` the content you want to translate anywhere on your computer (ex. `PDF`, `PPT`, `WORD` etc.), the translated results will then be automatically displayed before you.
 
 :warning: **The software doesn’t support Linux and Mac OS. Mac OS might be supported in the future.** :warning:
@@ -17,15 +18,19 @@ Virtual Desktop Control DLL: [Ciantic/VirtualDesktopAccessor Github](https://git
 
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
+## :loudspeaker: Update
+【2023/11/28】 Fix the problem that Windows cannot be used after updating [#12](https://github.com/Coolshanlan/HighlightTranslator/issues/12#issue-2013958177)
+
+## :movie_camera: Demo
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
-## :small_red_triangle_down: How To Use / Download :small_red_triangle_down:
+## :arrow_down_small: How To Use / Download :arrow_down_small:
 ### Step 1. Download the software in the Executable File
 [:safety_pin: Download Zip File](https://coolshan.pse.is/3jrczc)
 ### Step 2. Decompress the Zip file and Execute the file
 Find the `HighlightTranslator.exe` in the folder and then double click
 
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/executablefile.png)
-## :loudspeaker: Highlight Features
+## :key: Highlight Features
 ### [Methods of Getting Source Texts](#GettingMethods)
 - Highlight/Selected
 - Screenshot (keyboard shortcut: `Windows + Shift + S` )
