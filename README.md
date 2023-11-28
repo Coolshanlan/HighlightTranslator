@@ -149,17 +149,19 @@ pip install -r requirements.txt
 python Highlight_Translator.py
 ```
 ## Requirement
-python 3.6
+python 3.7
 ``` python
-pyinstaller == 4.1
-Pillow >= 8.2.0
-pynput == 1.6
-pyautogui == 0.9
-pytesseract == 0.3
-pywin32 == 227
-requests >= 2.24.0
-beautifulsoup4 >= 4.9.3
-numpy
-pygame
-gTTS
+python==3.7
+pyinstaller==5.13.2
+Pillow==9.5.0
+pynput==1.6.0
+PyAutoGUI==0.9.0
+pytesseract==0.3.0
+pywin32==306
+requests>=2.24.0
+beautifulsoup4>=4.9.3
+numpy==1.21.6
+pygame==2.5.2
+gTTS==2.2.4
+pyvda==0.3.1
 ```
