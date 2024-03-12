@@ -19,7 +19,9 @@ Virtual Desktop Control DLL: [Ciantic/VirtualDesktopAccessor Github](https://git
 [Highlight Translate Github](https://github.com/Coolshanlan/Copy-Translator)
 
 ## :loudspeaker: Update
-【2023/11/28】 Fix the problem that Windows cannot be used after updating [#12](https://github.com/Coolshanlan/HighlightTranslator/issues/12#issue-2013958177)
+【2024/03/12】 Upgrade pyvda to `0.4.3` to fixed [pyvda #34 Windows update KB5034765 completely broke pyvda](https://github.com/mrob95/pyvda/issues/34)
+
+【2023/11/28】 Fixed  the problem that Windows cannot be used after updating [#12](https://github.com/Coolshanlan/HighlightTranslator/issues/12#issue-2013958177)
 
 ## :movie_camera: Demo
 ![](https://github.com/Coolshanlan/Highlight-Translator/blob/master/image/demo.gif)
@@ -157,6 +159,7 @@ python Highlight_Translator.py
 python 3.7
 ``` python
 python==3.7
+pyvda==0.4.3
 pyinstaller==5.13.2
 Pillow==9.5.0
 pynput==1.6.0
@@ -168,5 +171,4 @@ beautifulsoup4>=4.9.3
 numpy==1.21.6
 pygame==2.5.2
 gTTS==2.2.4
-pyvda==0.3.1
 ```

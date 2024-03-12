@@ -1,11 +1,11 @@
 {
   "source_language": "Detect language",
   "target_language": "Chinese (Traditional)",
-  "number_of_terms": 10,
+  "number_of_terms": 8,
   "definition":0,
   "sentence_example":0,
-  "appear_time": 7,
-  "dynamic_adjust_appear_time": 1.2,
+  "appear_time": 8,
+  "dynamic_adjust_appear_time": 1.3,
   "audio_volume": 0.8,
   "auto_speak_length_limit": 15,
   "font": "Arial",
@@ -20,5 +20,6 @@
   "resultbox_font_color": "#111111",
   "copycheck": 0.3,
   "doubleclickcheck": 0.3,
-  "selectcheck": 0.3
+  "selectcheck": 0.3,
+  "vocabulary_path":"../vocabulary/vocabulary.pkl"
 }
