@@ -151,6 +151,7 @@ python Highlight_Translator.py
 ## Requirement
 python 3.7
 ``` python
+pyvda==0.4.3
 pyinstaller == 4.1
 Pillow >= 8.2.0
 pynput == 1.6
